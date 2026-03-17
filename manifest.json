@@ -1,26 +1,16 @@
 {
-  "name": "GeoQuiz · Matemáticas 11",
-  "short_name": "GeoQuiz",
-  "description": "Quiz interactivo de Geometría tipo SABER 11 para grado 11",
-  "start_url": "./quiz-matematicas.html",
+  "name": "Simulador SABER 11° · Nariño",
+  "short_name": "SABER 11",
+  "description": "Simulador oficial de pruebas SABER 11° - Secretaría de Educación de Nariño",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#060d1a",
-  "theme_color": "#00e5ff",
+  "background_color": "#1a3a5c",
+  "theme_color": "#1a3a5c",
   "orientation": "portrait-primary",
   "lang": "es",
   "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ],
   "categories": ["education"],
   "screenshots": []
