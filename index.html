@@ -224,7 +224,14 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 .info-chips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
 .chip{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 11px;font-size:11px;font-weight:700;color:var(--primary)}
 
-/* ── Confetti ── */
+/* ── Modal confirmación ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal-box{background:var(--surface);border-radius:var(--r-lg);padding:28px 24px;max-width:360px;width:100%;box-shadow:var(--shadow-lg);text-align:center;animation:fadeUp .25s ease}
+.modal-box h3{font-size:18px;font-weight:900;color:var(--text);margin-bottom:8px}
+.modal-box p{font-size:14px;color:var(--text-2);line-height:1.55;margin-bottom:24px}
+.modal-actions{display:flex;gap:10px;justify-content:center}
+.modal-actions .btn{flex:1}
 .confetti-piece{position:fixed;pointer-events:none;z-index:9999;animation:confettiFall linear forwards}
 @keyframes confettiFall{0%{opacity:1;transform:translateY(-10px) rotate(0deg)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
 
@@ -1236,15 +1243,21 @@ const QB = {
 
 /* ════════════ SHUFFLE ════════════ */
 function shuffleOpts(q){
-  // Crear orden mezclado con Fisher-Yates
+  // Siempre mezclar desde las opciones ORIGINALES del banco
+  // Guardarlas la primera vez que se accede
+  if(!q._origOpts){
+    q._origOpts=[...q.opts];
+    q._origCorrect=q.correct;
+  }
+  const origOpts=q._origOpts;
+  const origCorrect=q._origCorrect;
+  // Fisher-Yates sobre [0,1,2,3]
   const order=[0,1,2,3];
   for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
-  // order[newIdx] = originalIdx
-  // newCorrect = posición en el nuevo orden donde está la respuesta original correcta
-  const newOpts=order.map(i=>q.opts[i]);
-  const newCorrect=order.indexOf(q.correct);
-  // Guardar el orden para traducir de vuelta al calificar
-  return{...q, opts:newOpts, correct:newCorrect, _originalCorrect:q.correct, _order:order};
+  const newOpts=order.map(i=>origOpts[i]);
+  const newCorrect=order.indexOf(origCorrect);
+  // Devolver NUEVO objeto sin mutar el original del banco
+  return{...q, opts:newOpts, correct:newCorrect};
 }
 
 /* ════════════ STATE ════════════ */
@@ -1472,11 +1485,13 @@ function goScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classLis
 function setProgress(pct){document.getElementById('progFill').style.width=pct+'%';}
 function restartSame(){state.allSubjects=false;beginSubject();}
 function confirmBack(){
-  if(confirm('¿Seguro que quieres terminar el simulacro? Perderás tu progreso actual.')){
-    goHome();
-  }
+  document.getElementById('modalBack').classList.add('show');
+}
+function closeModal(){
+  document.getElementById('modalBack').classList.remove('show');
 }
 function goHome(){
+  closeModal();
   state={subject:null,questions:[],current:0,answers:[],hintsUsed:0,allSubjects:false,allQueue:[],allAnswers:{}};
   document.querySelectorAll('.subj-card').forEach(c=>c.classList.remove('active-subj'));
   document.getElementById('btnStart').disabled=true;
@@ -1492,5 +1507,17 @@ function launchConfetti(n){
 }
 if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script>
+<!-- MODAL REGRESAR -->
+<div class="modal-overlay" id="modalBack" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <h3>⚠️ ¿Terminar simulacro?</h3>
+    <p>Perderás el progreso actual de esta prueba.</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Continuar</button>
+      <button class="btn btn-primary" onclick="goHome()">Salir</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
