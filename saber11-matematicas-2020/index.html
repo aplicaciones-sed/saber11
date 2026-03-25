@@ -489,6 +489,7 @@ function showIntro(){
       ${s.competencias.map(c=>`<div style="font-size:13px;color:var(--text);padding:3px 0;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">•</span>${c}</div>`).join('')}
     </div>
     <div class="actions" style="justify-content:center">
+      <button class="btn btn-outline" onclick="goScreen('s-home')">← Regresar</button>
       <button class="btn btn-primary" onclick="showQuestion()">Iniciar prueba ➜</button>
     </div>`;
   goScreen('s-intro');setProgress(0);
