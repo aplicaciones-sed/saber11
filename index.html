@@ -232,112 +232,27 @@
 
       /* ── HERO ── */
       .hero {
-         background: var(--navy);
-         color: #fff;
-         padding: 72px 24px 80px;
-         text-align: center;
          position: relative;
+         width: 100%;
          overflow: hidden
       }
 
-      .hero::before {
-         content: '';
-         position: absolute;
-         inset: 0;
-         background: radial-gradient(ellipse at 60% 0%, rgba(232, 160, 32, .15), transparent 60%), radial-gradient(ellipse at 10% 100%, rgba(30, 138, 74, .1), transparent 50%);
-         pointer-events: none
-      }
-
-      .hero-escudo {
-         display: flex;
-         justify-content: center;
-         margin-bottom: 24px
-      }
-
-      .hero-escudo .escudo-svg {
-         height: 90px;
-         width: auto;
-         filter: drop-shadow(0 4px 20px rgba(232, 160, 32, .35));
-         animation: floatY 4s ease-in-out infinite
-      }
-
-      @keyframes floatY {
-
-         0%,
-         100% {
-            transform: translateY(0)
-         }
-
-         50% {
-            transform: translateY(-8px)
-         }
-      }
-
-      .hero-eyebrow {
-         font-size: 11px;
-         font-weight: 800;
-         letter-spacing: 2px;
-         text-transform: uppercase;
-         color: var(--gold);
-         margin-bottom: 16px
-      }
-
-      .hero h1 {
-         font-family: 'Playfair Display', serif;
-         font-size: clamp(32px, 6vw, 58px);
-         font-weight: 900;
-         line-height: 1.1;
-         margin-bottom: 16px;
-         color: #fff
-      }
-
-      .hero h1 span {
-         color: var(--gold)
-      }
-
-      .hero-sub {
-         font-size: clamp(15px, 2vw, 18px);
-         color: rgba(255, 255, 255, .75);
-         max-width: 560px;
-         margin: 0 auto 36px;
-         line-height: 1.65
-      }
-
-      .hero-stats {
-         display: flex;
-         gap: 32px;
-         justify-content: center;
-         flex-wrap: wrap;
-         margin-top: 40px
-      }
-
-      .hero-stat {
-         text-align: center
-      }
-
-      .hero-stat .num {
-         font-family: 'Space Mono', monospace;
-         font-size: 28px;
-         font-weight: 700;
-         color: var(--gold);
+      .hero-banner {
          display: block;
-         line-height: 1
+         width: 100%;
+         height: auto
       }
 
-      .hero-stat .lbl {
-         font-size: 11px;
-         color: rgba(255, 255, 255, .6);
-         text-transform: uppercase;
-         letter-spacing: .8px;
-         margin-top: 4px
+      @media(min-width: 769px) {
+         .hero-banner-movil {
+            display: none
+         }
       }
 
-      .hero-divider {
-         width: 60px;
-         height: 2px;
-         background: var(--gold);
-         margin: 0 auto;
-         opacity: .4
+      @media(max-width: 768px) {
+         .hero-banner-web {
+            display: none
+         }
       }
 
       /* ── SECTION ── */
@@ -2286,17 +2201,8 @@
 
       <!-- HERO -->
       <section class="hero">
-         <div class="hero-eyebrow">Secretaría de Educación Departamental de Nariño</div>
-         <h1>Portal de <span>Simulacros</span><br>SABER 11°</h1>
-         <p class="hero-sub">Prepárate para el examen ICFES con simulacros oficiales basados en pruebas reales.
-            Herramienta gratuita para los estudiantes del Departamento de Nariño.</p>
-         <div class="hero-divider"></div>
-         <div class="hero-stats">
-            <div class="hero-stat"><span class="num">+120k</span><span class="lbl">Estudiantes</span></div>
-            <div class="hero-stat"><span class="num">61</span><span class="lbl">Municipios</span></div>
-            <div class="hero-stat"><span class="num">5</span><span class="lbl">Pruebas SABER</span></div>
-            <div class="hero-stat"><span class="num">100%</span><span class="lbl">Gratuito</span></div>
-         </div>
+         <img class="hero-banner hero-banner-web" src="assets/banner_web.png" alt="Portal de Simulacros SABER 11">
+         <img class="hero-banner hero-banner-movil" src="assets/banner_movil.png" alt="Portal de Simulacros SABER 11">
       </section>
 
       <!-- SIMULACROS -->

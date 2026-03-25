@@ -1,7 +1,7 @@
 {
   "name": "Portal SABER 11° · Nariño",
   "short_name": "SABER 11 Nariño",
-  "description": "Portal oficial de simulacros SABER 11° de la Secretaría de Educación de Nariño",
+  "description": "Portal oficial de simulacros SABER 11° de la Secretaría de Educación Departamental de Nariño",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
