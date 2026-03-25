@@ -2,28 +2,24 @@
 
 ## Project Overview
 
-This is a simple Progressive Web App (PWA) for a SABER 11 test simulator. It uses vanilla HTML, CSS, and JavaScript with no build system or dependencies.
+This is a Progressive Web App (PWA) for a SABER 11 test simulator by the Secretaría de Educación de Nariño. It uses vanilla HTML, CSS, and JavaScript with no build system or dependencies.
 
 ## Project Structure
 
 ```
 /Users/fjimenezg/Documents/geotest/
-├── index.html      # Main app (HTML + embedded CSS + embedded JS)
-├── sw.js           # Service worker for PWA caching
-├── manifest.json   # PWA manifest
-├── icon-192.png   # App icon (192x192)
-└── icon-512.png   # App icon (512x512)
+├── index.html         # Main app (HTML + embedded CSS + embedded JS)
+├── sw.js              # Service worker for PWA caching
+├── manifest.json      # PWA manifest
+├── icon-192.png      # App icon (192x192)
+├── icon-512.png      # App icon (512x512)
+├── icon-escudo.svg   # Shield/logo SVG
+└── saber11-2017/     # Legacy simulator (standalone PWA)
 ```
 
 ## Build / Development Commands
 
-Since this is a vanilla HTML/CSS/JS project with no build system:
-
-- **No build commands required** - Edit files directly
-- **No linting configured** - No ESLint, Prettier, or other linters
-- **No tests configured** - No test framework present
-
-To test the app, serve the files with any static server:
+**No build system** - Edit files directly. To test locally:
 
 ```bash
 # Python 3
@@ -32,187 +28,153 @@ python -m http.server 8000
 # PHP
 php -S localhost:8000
 
-# Node.js (if installed)
+# Node.js
 npx serve
+
+# Then open http://localhost:8000
 ```
 
-Then open `http://localhost:8000` in browser.
-
-## Running a Single Test
-
-No tests exist in this project.
+**No linting configured** - No ESLint, Prettier, or other linters
+**No tests configured** - No test framework present
 
 ---
 
-# Code Style Guidelines
+## Code Style Guidelines
 
-## General Principles
+### General Principles
 
-- This is a vanilla JavaScript project - no frameworks
+- Vanilla JavaScript project - no frameworks
+- Mobile-first responsive design
 - Keep code simple and readable
-- Use semantic HTML5 elements
-- Mobile-first responsive design (the app targets mobile devices)
+- All CSS/JS embedded in `index.html`
 
-## HTML Style
+### HTML Style
 
 - Use HTML5 doctype: `<!DOCTYPE html>`
-- Include `lang` attribute: `<html lang="es">`
-- Use meaningful, semantic tags (`<header>`, `<main>`, `<section>`, `<button>`, etc.)
-- All inline styles and scripts are in `index.html`
-- External resources (fonts) loaded from Google Fonts CDN
+- Include `lang="es"` attribute
+- Semantic tags: `<header>`, `<main>`, `<section>`, `<nav>`, `<button>`, etc.
 - SVG icons embedded inline in HTML
+- External fonts loaded from Google Fonts CDN
 
-## CSS Style
+### CSS Style
 
-- Use CSS custom properties (variables) in `:root` for theming
-- Follow the existing pattern for colors:
-  - `--primary`, `--primary-lt` (primary blue)
-  - `--accent`, `--accent-lt` (accent gold/yellow)
-  - `--green`, `--green-lt` (success)
-  - `--red`, `--red-lt` (error/wrong)
-  - `--purple`, `--purple-lt` (language/lectura crítica)
-  - `--text`, `--text-2`, `--text-3` (text hierarchy)
-  - `--surface`, `--bg` (backgrounds)
-  - `--border`, `--shadow-*` (borders and shadows)
-- Use `clamp()` for responsive font sizes
-- Use flexbox and grid for layouts
-- Mobile-first approach with `@media(max-width:...)` for breakpoints
-
-### CSS Variable Naming
-
+**Variables** (defined in `:root`):
 ```css
 :root {
-  --bg: #f6f8fa;           /* background */
-  --surface: #ffffff;       /* card/surface background */
-  --primary: #1a3a5c;       /* main brand color */
-  --primary-lt: #e8eef5;    /* light variant */
-  --accent: #e8a020;        /* accent/highlight */
-  --accent-lt: #fef3d7;    /* light variant */
-  --text: #111827;         /* main text */
-  --text-2: #4b5563;       /* secondary text */
-  --text-3: #9ca3af;       /* muted text */
-  --border: #e5e7eb;       /* borders */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.05);
-  --r: 12px;               /* border-radius */
-  --r-sm: 8px;
-  --r-lg: 16px;
+  --navy: #1a3a5c;       /* primary brand */
+  --gold: #e8a020;       /* accent/highlight */
+  --green: #1e8a4a;      /* success */
+  --bg: #f6f8fa;         /* background */
+  --text: #111827;       /* main text */
+  --text-2: #4b5563;     /* secondary text */
+  --text-3: #9ca3af;     /* muted text */
+  --border: #e5e7eb;     /* borders */
+  --r: 12px;             /* border-radius */
+  --shadow: 0 4px 24px rgba(26,58,92,.12);
 }
 ```
 
-## JavaScript Style
+**Conventions**:
+- Use `clamp()` for responsive font sizes
+- Flexbox and grid for layouts
+- Mobile-first with `@media(max-width:...)`
+- No unit for zero: `0` not `0px`
 
-- Use ES6+ features (const/let, arrow functions, template literals)
-- Use strict equality (`===` instead of `==`)
-- Use meaningful variable names in Spanish (project is in Spanish)
-- Data structures: objects for configuration, arrays for collections
-- Event handlers attached via `addEventListener`
+### JavaScript Style
 
-### Data Structures
+- ES6+ features (const/let, arrow functions, template literals)
+- Strict equality: `===` not `==`
+- Variable names in Spanish (project is Spanish)
+- Event handlers via `addEventListener`
+- No semicolons required ( ASI used)
 
-Questions are stored in the `QB` (Questions Bank) object:
-
-```javascript
-const QB = {
-  lc: { /* Lectura Crítica */ },
-  mat: { /* Matemáticas */ },
-  // ... other subjects
-};
-```
-
-Each subject has:
-- `name`: Display name
-- `icon`: Emoji icon
-- `tag`: CSS class for styling
-- `color`: Brand color
-- `desc`: Description
-- `competencies`: Array of competencies assessed
-- `questions`: Array of question objects
-
-Each question has:
-- `id`: Unique identifier
-- `context`: Question context/setup (HTML allowed)
-- `text`: The question text
-- `opts`: Array of 4 options (A, B, C, D)
-- `correct`: Index of correct answer (0-3)
-- `hint`: Hint text
-- `comp`: Competency being assessed
-- `nivel`: Difficulty level (1-4)
-- `explain`: Explanation for the answer
-
-### Images
-
-Images are stored as Base64 in the `IMGS` object to keep everything in a single file:
-
-```javascript
-const IMGS = {
-  "mat_fig1": "data:image/png;base64,...",
-  // ...
-};
-```
-
-## Naming Conventions
+### Naming Conventions
 
 | Type | Convention | Example |
 |------|------------|---------|
 | CSS Variables | kebab-case | `--primary-color` |
 | CSS Classes | kebab-case | `.btn-primary` |
-| JavaScript Const | PascalCase | `const QB = {...}` |
-| JavaScript Let | camelCase | `let currentQuestion` |
+| JS Constants | PascalCase | `const QB = {...}` |
+| JS Variables | camelCase | `let currentQuestion` |
 | Subject keys | lowercase | `lc`, `mat`, `soc` |
 
-## Error Handling
+### Data Structures
 
-- No try/catch blocks in this simple app
-- Service worker has minimal error handling (silent cache failures)
+Questions stored in `QB` object:
+```javascript
+const QB = {
+  lc: { name: "Lectura Crítica", icon: "📖", questions: [...] },
+  mat: { name: "Matemáticas", icon: "📐", questions: [...] },
+};
+```
+
+Each question object:
+```javascript
+{
+  id: 1,
+  context: "<p>Texto de contexto...</p>",
+  text: "¿Cuál es la respuesta?",
+  opts: ["A) Opción", "B) Opción", "C) Opción", "D) Opción"],
+  correct: 0,  // index 0-3
+  hint: "Pista...",
+  comp: "Competencia evaluada",
+  nivel: 1-4,
+  explain: "Explicación..."
+}
+```
+
+Images stored as Base64 in `IMGS` object to keep in single file.
+
+### Error Handling
+
+- No try/catch blocks
+- Service worker: silent cache failures
 - DOM queries assume elements exist (no null checks)
+
+---
 
 ## PWA / Service Worker
 
-The service worker (`sw.js`) handles caching:
-- Cache name: `saber11-narino-v1`
-- Caches: `index.html`, `manifest.json`, icons
-- Uses cache-first strategy
-- Cleans old caches on activation
+**Cache name**: `portal-sed-narino-v2`
+
+**Caching strategy**: Cache-first with network fallback
+
+**Cached assets**:
+- `index.html`, `manifest.json`, icons
+- `saber11-2017/` subdirectory
+
+**Activation**: Cleans old caches on activation
+
+---
 
 ## Accessibility
 
-- Use semantic HTML
-- Include `alt` attributes on images (if any)
+- Semantic HTML elements
+- Include `alt` attributes on images
 - Use `aria-label` where appropriate
-- Ensure sufficient color contrast
-- Test with keyboard navigation
+- Sufficient color contrast
+- Keyboard navigation support
+
+---
 
 ## Adding New Subjects
 
-To add a new subject (e.g., Science - Ciencias Naturales):
-
-1. Add subject data to `QB` object in `index.html`:
+1. Add to `QB` object in `index.html`:
 ```javascript
 cn: {
   name: "Ciencias Naturales",
   icon: "🔬",
   tag: "tag-cn",
   color: "#1e8a4a",
-  desc: "Evalúa competencias científicas...",
-  competencias: ["UsoComprension...", ...],
-  questions: [
-    {id: 1, context: "...", text: "...", opts: [...], correct: 0, ...},
-    // more questions
-  ]
+  questions: [...]
 }
 ```
 
-2. Add corresponding CSS classes if needed:
-   - `.s-cn` for subject card styling
-   - `.tag-cn` for question tag styling
+2. Add CSS classes if needed (`.s-cn`, `.tag-cn`)
 
-3. Add icons to `IMGS` if the subject has images
-
-4. Update `ASSETS` array in `sw.js` if adding new assets
+3. Update `ASSETS` array in `sw.js` if adding new files
 
 ## Browser Support
 
 - Modern browsers (Chrome, Firefox, Safari, Edge)
-- Mobile-first design
 - Service worker requires HTTPS or localhost
