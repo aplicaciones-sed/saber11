@@ -109,7 +109,25 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 .review-header h3{font-size:18px;font-weight:900;color:var(--primary);margin-bottom:4px}
 .review-header p{font-size:13px;color:var(--text-3)}
 .review-subject{margin-bottom:24px}
-.review-subj-title{font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--primary)}
+.review-subj-header{background:var(--surface);padding:16px;border-radius:var(--r);margin-bottom:16px;border:1px solid var(--border);display:flex;align-items:center;gap:14px}
+.review-subj-icon{font-size:32px;line-height:1}
+.review-subj-title{font-size:15px;font-weight:800;color:var(--primary);flex:1}
+.review-subj-nivel{font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px}
+.review-nivel-detail{padding:20px;border-radius:var(--r);margin-bottom:20px;border:2px solid var(--border)}
+.review-nivel-detail.lv1{background:#f8f9fa;border-color:#d1d5db}
+.review-nivel-detail.lv2{background:#fff9e6;border-color:#ffc107}
+.review-nivel-detail.lv3{background:#e8f5e9;border-color:#4caf50}
+.review-nivel-detail.lv4{background:#e3f2fd;border-color:#2196f3}
+.nivel-detail-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.nivel-detail-badge{font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px}
+.review-nivel-detail.lv1 .nivel-detail-badge{background:#6b7280;color:#fff}
+.review-nivel-detail.lv2 .nivel-detail-badge{background:#d97706;color:#fff}
+.review-nivel-detail.lv3 .nivel-detail-badge{background:#16a34a;color:#fff}
+.review-nivel-detail.lv4 .nivel-detail-badge{background:#2563eb;color:#fff}
+.nivel-detail-range{font-size:12px;font-weight:600;color:#374151}
+.nivel-detail-summary{font-size:14px;color:#1f2937;line-height:1.6;margin:0 0 14px 0;font-weight:500}
+.nivel-items-list{margin:0;padding-left:22px;font-size:13px;color:#374151;line-height:1.8}
+.nivel-items-list li{margin-bottom:5px}
 .review-card{background:var(--surface);border-radius:var(--r);padding:16px;margin-bottom:12px;border:1px solid var(--border);border-left:4px solid var(--border)}
 .review-card.review-correct{border-left-color:var(--green)}
 .review-card.review-wrong{border-left-color:var(--red)}
@@ -494,6 +512,18 @@ const NIVEL_INFO = {
   }
 };
 
+const NIVEL_THRESHOLDS = {
+  mat: { 4: 71, 3: 51, 2: 36 }
+};
+
+function getNivel(pct, subject) {
+  const th = NIVEL_THRESHOLDS[subject] || { 4: 75, 3: 50, 2: 25 };
+  if (pct >= th[4]) return 4;
+  if (pct >= th[3]) return 3;
+  if (pct >= th[2]) return 2;
+  return 1;
+}
+
 /* ════════════ STATE ════════════ */
 let state={subject:null,questions:[],current:0,answers:[],hintsUsed:0,immediateFeedback:true};
 const CORRECT=q=>q.correct;
@@ -610,7 +640,7 @@ function selectOpt(idx){
       const parts=q.comp.split(' · ');
       const nivel=q.nivel||'';
       const nivelCls=['','meta-nivel-1','meta-nivel-2','meta-nivel-3','meta-nivel-4'][nivel]||'meta-nivel-1';
-      metaDiv.innerHTML=`<table class="meta-table"><tr><td>Competencia</td><td>${parts[0]||''}</td></tr><tr><td>Nivel</td><td><span class="meta-pill meta-nivel ${nivelCls} nivel-clickable" onclick="showNivelInfo(${nivel},'mat')">Nivel ${nivel}</span></td></tr></table>`;
+      metaDiv.innerHTML=`<table class="meta-table"><tr><td>Competencia</td><td>${parts[0]||''}</td></tr><tr><td>Nivel</td><td><span class="meta-pill meta-nivel ${nivelCls}">${nivel}</span></td></tr></table>`;
       metaDiv.style.display='block';
     }
     if(correct) launchConfetti(4);
@@ -652,7 +682,7 @@ function showResults(){
     let correct=answers.filter((a,i)=>a===questions[i].correct).length;
     totalCorrect+=correct;totalQ+=questions.length;
     const pct=Math.round((correct/questions.length)*100);
-    const nivel=pct>=75?4:pct>=50?3:pct>=25?2:1;
+    const nivel=getNivel(pct,key);
     return{key,correct,total:questions.length,pct,nivel,answers};
   });
   const globalPct=Math.round((totalCorrect/totalQ)*100);
@@ -680,41 +710,55 @@ function showResults(){
       <h3>Revisión de respuestas</h3>
       <p>Analiza cada pregunta para aprender de tus errores</p>
     </div>`;
-    subjects.forEach(({key,answers,questions})=>{
+    sc.forEach(({key,nivel,pct})=>{
       const subj=QB[key];
+      const lv=lvText[nivel];
+      const subjData=subjects.find(s=>s.key===key);
       html+=`<div class="review-subject">
-        <div class="review-subj-title">${subj.icon} ${subj.name}</div>`;
-      questions.forEach((q,i)=>{
-        const userAns=answers[i];
-        const correct=userAns===q.correct;
-        html+=`<div class="review-card ${correct?'review-correct':'review-wrong'}">
-          <div class="review-card-header">
-            <span class="review-q-num">${i+1}</span>
-            <span class="review-status ${correct?'status-correct':'status-wrong'}">${correct?'Correcto':'Incorrecto'}</span>
+        <div class="review-subj-header">
+          <span class="review-subj-icon">${subj.icon}</span>
+          <span class="review-subj-title">${subj.name}</span>
+          <span class="review-subj-nivel ${lv.cls}">${lv.label}</span>
+        </div>
+        ${(()=>{const nd=NIVEL_INFO[key]?.[nivel];if(!nd)return'';const items=nd.items.length?`<ul class="nivel-items-list">${nd.items.map(i=>`<li>${i}</li>`).join('')}</ul>`:'';return`<div class="review-nivel-detail ${lv.cls}">
+          <div class="nivel-detail-header">
+            <span class="nivel-detail-badge ${lv.cls}">${lv.label}</span>
+            <span class="nivel-detail-range">${nd.range}</span>
           </div>
-          ${q.context?'<div class="review-context">'+q.context+'</div>':''}
-          ${q.contextImg&&IMGS[q.contextImg]?'<div class="review-img"><img src="'+IMGS[q.contextImg]+'" alt="Imagen de contexto" loading="lazy"></div>':''}
-          <div class="review-question">${q.text||''}</div>
-          ${q.img&&IMGS[q.img]?'<div class="review-img"><img src="'+IMGS[q.img]+'" alt="Imagen de la pregunta" loading="lazy"></div>':''}
-          <div class="review-answers">
-            ${correct?`
-            <div class="review-answer answer-correct">
-              <span class="answer-label">Respuesta correcta</span>
-              <span class="answer-text">${q.opts[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
-            </div>`:`
-            <div class="review-answer answer-wrong">
-              <span class="answer-label">Tu respuesta</span>
-              <span class="answer-text">${q.opts[userAns]?.replace(/^[A-D]\.\s*/,'') || '<em>Sin responder</em>'}</span>
+          <p class="nivel-detail-summary">${nd.summary}</p>
+          ${items}
+        </div>`;})()}
+        ${subjData.questions.map((q,i)=>{
+          const userAns=state.answers[i];
+          const correct=userAns===q.correct;
+          return `<div class="review-card ${correct?'review-correct':'review-wrong'}">
+            <div class="review-card-header">
+              <span class="review-q-num">${i+1}</span>
+              <span class="review-status ${correct?'status-correct':'status-wrong'}">${correct?'Correcto':'Incorrecto'}</span>
             </div>
-            <div class="review-answer answer-correct">
-              <span class="answer-label">Respuesta correcta</span>
-              <span class="answer-text">${q.opts[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
-            </div>`}
-          </div>
-          ${q.explain?'<div class="review-explain"><span class="explain-icon">💡</span><span>'+q.explain+'</span></div>':''}
-        </div>`;
-      });
-      html+=`</div>`;
+            ${q.context?'<div class="review-context">'+q.context+'</div>':''}
+            ${q.contextImg&&IMGS[q.contextImg]?'<div class="review-img"><img src="'+IMGS[q.contextImg]+'" alt="Imagen de contexto" loading="lazy"></div>':''}
+            <div class="review-question">${q.text||''}</div>
+            ${q.img&&IMGS[q.img]?'<div class="review-img"><img src="'+IMGS[q.img]+'" alt="Imagen de la pregunta" loading="lazy"></div>':''}
+            <div class="review-answers">
+              ${correct?`
+              <div class="review-answer answer-correct">
+                <span class="answer-label">Respuesta correcta</span>
+                <span class="answer-text">${q.opts[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
+              </div>`:`
+              <div class="review-answer answer-wrong">
+                <span class="answer-label">Tu respuesta</span>
+                <span class="answer-text">${q.opts[userAns]?.replace(/^[A-D]\.\s*/,'') || '<em>Sin responder</em>'}</span>
+              </div>
+              <div class="review-answer answer-correct">
+                <span class="answer-label">Respuesta correcta</span>
+                <span class="answer-text">${q.opts[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
+              </div>`}
+            </div>
+            ${q.explain?'<div class="review-explain"><span class="explain-icon">💡</span><span>'+q.explain+'</span></div>':''}
+          </div>`;
+        }).join('')}
+      </div>`;
     });
     html+=`</div>`;
 

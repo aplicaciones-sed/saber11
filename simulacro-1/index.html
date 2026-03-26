@@ -197,7 +197,31 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 .review-header h3{font-size:18px;font-weight:900;color:var(--primary);margin-bottom:4px}
 .review-header p{font-size:13px;color:var(--text-3)}
 .review-subject{margin-bottom:24px}
-.review-subj-title{font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--primary)}
+.review-subj-header{background:var(--surface);padding:16px;border-radius:var(--r);margin-bottom:16px;border:1px solid var(--border);display:flex;align-items:center;gap:14px}
+.review-subj-icon{font-size:32px;line-height:1}
+.review-subj-title{font-size:15px;font-weight:800;color:var(--primary);flex:1}
+.review-subj-nivel{font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px}
+.review-nivel-detail{padding:20px;border-radius:var(--r);margin-bottom:20px;border:2px solid var(--border)}
+.review-nivel-detail.lv0{background:#fee2e2;border-color:#ef4444}
+.review-nivel-detail.lv1{background:#f8f9fa;border-color:#d1d5db}
+.review-nivel-detail.lv2{background:#fff9e6;border-color:#ffc107}
+.review-nivel-detail.lv3{background:#e8f5e9;border-color:#4caf50}
+.review-nivel-detail.lv4{background:#e3f2fd;border-color:#2196f3}
+.nivel-detail-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.nivel-detail-badge{font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px}
+.review-nivel-detail.lv0 .nivel-detail-badge{background:#dc2626;color:#fff}
+.review-nivel-detail.lv1 .nivel-detail-badge{background:#6b7280;color:#fff}
+.review-nivel-detail.lv2 .nivel-detail-badge{background:#d97706;color:#fff}
+.review-nivel-detail.lv3 .nivel-detail-badge{background:#16a34a;color:#fff}
+.review-nivel-detail.lv4 .nivel-detail-badge{background:#2563eb;color:#fff}
+.nivel-detail-range{font-size:12px;font-weight:600;color:#374151}
+.nivel-detail-summary{font-size:14px;color:#1f2937;line-height:1.6;margin:0 0 14px 0;font-weight:500}
+.nivel-items-list{margin:0;padding-left:22px;font-size:13px;color:#374151;line-height:1.8}
+.nivel-items-list li{margin-bottom:5px}
+.review-subj-header{background:var(--surface);padding:16px;border-radius:var(--r);margin-bottom:16px;border:1px solid var(--border);display:flex;align-items:center;gap:14px}
+.review-subj-icon{font-size:32px;line-height:1}
+.review-subj-title{font-size:15px;font-weight:800;color:var(--primary);flex:1}
+.review-subj-nivel{font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px}
 .review-card{background:var(--surface);border-radius:var(--r);padding:16px;margin-bottom:12px;border:1px solid var(--border);border-left:4px solid var(--border)}
 .review-card.review-correct{border-left-color:var(--green)}
 .review-card.review-wrong{border-left-color:var(--red)}
@@ -236,6 +260,7 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 .score-bar-wrap{background:var(--border);border-radius:4px;height:6px;width:100%;overflow:hidden}
 .score-bar{height:100%;border-radius:4px;transition:width 1s ease}
 .level-pill{font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;display:inline-block;white-space:nowrap}
+.lv0{background:#fee2e2;color:#dc2626}
 .lv1{background:var(--red-lt);color:var(--red)}
 .lv2{background:var(--accent-lt);color:#8a5010}
 .lv3{background:var(--green-lt);color:var(--green)}
@@ -1650,7 +1675,7 @@ function selectOpt(idx){
       if(contenido && !contenido.startsWith('Tipo:') && !contenido.startsWith('Componente:')) rows += `<tr><td>📚 Contenido</td><td>${contenido}</td></tr>`;
       if(componente) rows += `<tr><td>🔖 Componente</td><td>${componente}</td></tr>`;
       if(tipo) rows += `<tr><td>📄 Tipo de texto</td><td>${tipo}</td></tr>`;
-      if(nivel) rows += `<tr><td>⭐ Nivel de desempeño</td><td><span class="meta-pill meta-nivel ${nivelCls} nivel-clickable" onclick="showNivelInfo(${nivel},'${state.subject}')" title="Ver descripción del nivel">${nivel} <span style="font-size:10px;opacity:.7">ⓘ</span></span></td></tr>`;
+      if(nivel) rows += `<tr><td>⭐ Nivel de desempeño</td><td><span class="meta-pill meta-nivel ${nivelCls}">${nivel}</span></td></tr>`;
       metaDiv.innerHTML = rows ? `<table class="meta-table">${rows}</table>` : '';
       metaDiv.style.display = rows ? 'block' : 'none';
     }
@@ -1695,14 +1720,38 @@ const NIVEL_INFO = {
   },
   ing: {
     name: 'Inglés',
-    1: { range: 'Puntaje 0 – 47 (A−)', summary: 'El estudiante promedio clasificado en este nivel no supera las preguntas de menor complejidad de la prueba.', items: [] },
-    2: { range: 'Puntaje 48 – 57 (A1)', summary: 'Comprende y utiliza expresiones cotidianas de uso muy frecuente, así como frases sencillas destinadas a satisfacer necesidades inmediatas.', items: ['Puede presentarse a sí mismo y a otros, pedir y dar información personal básica sobre su domicilio, sus pertenencias y las personas que conoce.','Puede relacionarse de forma elemental con su interlocutor siempre que este hable despacio y con claridad.'] },
-    3: { range: 'Puntaje 58 – 67 (A2)', summary: 'Comprende frases y expresiones de uso frecuente relacionadas con áreas de experiencia que le son especialmente relevantes.', items: ['Sabe comunicarse a la hora de llevar a cabo tareas simples y cotidianas que no requieran más que intercambios sencillos y directos.','Sabe describir en términos sencillos aspectos de su pasado y su entorno, así como cuestiones relacionadas con sus necesidades inmediatas.'] },
-    4: { range: 'Puntaje 68 – 78 (B1)', summary: 'Comprende los puntos principales de textos claros y en lengua estándar si tratan sobre cuestiones conocidas, ya sea en situaciones de trabajo, de estudio o de ocio.', items: ['Sabe desenvolverse en la mayor parte de las situaciones que pueden surgir durante un viaje por zonas donde se utiliza la lengua.','Es capaz de producir textos sencillos y coherentes sobre temas familiares o en los que tiene un interés personal.','Puede describir experiencias, acontecimientos, deseos y aspiraciones, así como justificar brevemente sus opiniones.'] }
+    0: { range: 'Puntaje 0 – 19 (A−)', summary: 'El estudiante promedio clasificado en este nivel no supera las preguntas de menor complejidad de la prueba.', items: [] },
+    1: { range: 'Puntaje 20 – 40 (A1)', summary: 'Comprende y utiliza expresiones cotidianas de uso muy frecuente, así como frases sencillas destinadas a satisfacer necesidades inmediatas.', items: ['Puede presentarse a sí mismo y a otros, pedir y dar información personal básica sobre su domicilio, sus pertenencias y las personas que conoce.','Puede relacionarse de forma elemental con su interlocutor siempre que este hable despacio y con claridad.'] },
+    2: { range: 'Puntaje 41 – 57 (A2)', summary: 'Comprende frases y expresiones de uso frecuente relacionadas con áreas de experiencia que le son especialmente relevantes.', items: ['Sabe comunicarse a la hora de llevar a cabo tareas simples y cotidianas que no requieran más que intercambios sencillos y directos.','Sabe describir en términos sencillos aspectos de su pasado y su entorno, así como cuestiones relacionadas con sus necesidades inmediatas.'] },
+    3: { range: 'Puntaje 58 – 70 (B1)', summary: 'Comprende los puntos principales de textos claros y en lengua estándar si tratan sobre cuestiones conocidas, ya sea en situaciones de trabajo, de estudio o de ocio.', items: ['Sabe desenvolverse en la mayor parte de las situaciones que pueden surgir durante un viaje por zonas donde se utiliza la lengua.','Es capaz de producir textos sencillos y coherentes sobre temas familiares o en los que tiene un interés personal.','Puede describir experiencias, acontecimientos, deseos y aspiraciones, así como justificar brevemente sus opiniones.'] },
+    4: { range: 'Puntaje 71 – 100 (B+)', summary: 'Comprende y produce textos complejos con precisión y fluidez. Se comunica con eficacia en situaciones avanzadas.', items: ['Comprende textos extensos y complejos sobre temas abstractos y especializados.','Se expresa con fluidez y espontaneidad en conversaciones avanzadas.','Produce textos claros y bien estructurados sobre temas complejos.','Utiliza el idioma con precisión en contextos académicos y profesionales.'] }
   }
 };
 
 const NIVEL_COLORS = ['','#856404,#fff3cd','#0c5460,#d1ecf1','#155724,#d4edda','#004085,#cce5ff'];
+
+const NIVEL_THRESHOLDS = {
+  lc: { 4: 66, 3: 51, 2: 36 },
+  mat: { 4: 71, 3: 51, 2: 36 },
+  soc: { 4: 71, 3: 56, 2: 41 },
+  cn: { 4: 71, 3: 56, 2: 41 },
+  ing: { 4: 71, 3: 58, 2: 41 }
+};
+
+function getNivel(pct, subject) {
+  if (subject === 'ing') {
+    if (pct >= 71) return 4;
+    if (pct >= 58) return 3;
+    if (pct >= 41) return 2;
+    if (pct >= 20) return 1;
+    return 0;
+  }
+  const th = NIVEL_THRESHOLDS[subject] || { 4: 75, 3: 50, 2: 25 };
+  if (pct >= th[4]) return 4;
+  if (pct >= th[3]) return 3;
+  if (pct >= th[2]) return 2;
+  return 1;
+}
 
 function showNivelInfo(nivel, subject) {
   const subjectData = NIVEL_INFO[subject];
@@ -1753,11 +1802,10 @@ function showResults(){
   }
   let totalCorrect=0,totalQ=0;
   const sc=subjects.map(({key,answers,questions})=>{
-    // Comparar contra q.correct del state (ya tiene en cuenta el shuffle)
     let correct=answers.filter((a,i)=>a===questions[i].correct).length;
     totalCorrect+=correct;totalQ+=questions.length;
     const pct=Math.round((correct/questions.length)*100);
-    const nivel=pct>=75?4:pct>=50?3:pct>=25?2:1;
+    const nivel=getNivel(pct,key);
     return{key,correct,total:questions.length,pct,nivel,answers};
   });
   const globalPct=Math.round((totalCorrect/totalQ)*100);
@@ -1766,6 +1814,11 @@ function showResults(){
     3:{label:'Nivel 3',cls:'lv3',desc:'Interpreta, infiere y relaciona información con solidez.'},
     2:{label:'Nivel 2',cls:'lv2',desc:'Identifica y comprende información básica.'},
     1:{label:'Nivel 1',cls:'lv1',desc:'Nivel inicial: reconoce información explícita.'}};
+  const lvTextIng={4:{label:'B+',cls:'lv4',desc:'Comprende y produce textos complejos con precisión y fluidez.'},
+    3:{label:'B1',cls:'lv3',desc:'Comprende puntos principales de textos claros en lengua estándar.'},
+    2:{label:'A2',cls:'lv2',desc:'Comprende frases y expresiones de uso frecuente.'},
+    1:{label:'A1',cls:'lv1',desc:'Utiliza expresiones cotidianas de uso muy frecuente.'},
+    0:{label:'A−',cls:'lv0',desc:'No supera las preguntas de menor complejidad.'}};
   const sc_colors={lc:'#6c4bc0',mat:'#1a3a5c',soc:'#e8a020',cn:'#2a9d5c',ing:'#d94040'};
 
   let html=`<div class="result-header">
@@ -1782,13 +1835,14 @@ function showResults(){
       <td><strong style="font-size:13px">${QB[s.key].icon} ${QB[s.key].name}</strong><br><span style="font-size:11px;color:var(--muted)">${s.correct}/${s.total} correctas</span></td>
       <td><span style="font-family:'Space Mono';font-size:18px;font-weight:700;color:${sc_colors[s.key]}">${s.pct}</span></td>
       <td style="width:100px"><div class="score-bar-wrap"><div class="score-bar" style="width:${s.pct}%;background:${sc_colors[s.key]}"></div></div></td>
-      <td><span class="level-pill ${lvText[s.nivel].cls}">${lvText[s.nivel].label}</span></td>
+      <td><span class="level-pill ${(s.key==='ing'?lvTextIng:lvText)[s.nivel].cls}">${(s.key==='ing'?lvTextIng:lvText)[s.nivel].label}</span></td>
     </tr>`).join('')}
     </tbody></table></div>`;
 
   sc.forEach(s=>{
-    const lv=lvText[s.nivel];const subj=QB[s.key];
-    const comp=s.nivel>=3?subj.competencias:subj.competencias.slice(0,s.nivel);
+    const isIng=s.key==='ing';
+    const lv=(isIng?lvTextIng:lvText)[s.nivel];const subj=QB[s.key];
+    const comp=isIng?[]:(s.nivel>=3?subj.competencias:subj.competencias.slice(0,s.nivel));
     html+=`<div class="subj-result-card">
       <div class="subj-result-header">
         <span class="subj-result-icon">${subj.icon}</span>
@@ -1812,55 +1866,70 @@ function showResults(){
       <h3>Revisión de respuestas</h3>
       <p>Analiza cada pregunta para aprender de tus errores</p>
     </div>`;
-    subjects.forEach(({key,answers,questions})=>{
+    sc.forEach(({key,nivel,pct})=>{
       const subj=QB[key];
+      const isIng=key==='ing';
+      const lv=(isIng?lvTextIng:lvText)[nivel];
+      const subjData=subjects.find(s=>s.key===key);
       html+=`<div class="review-subject">
-        <div class="review-subj-title">${subj.icon} ${subj.name}</div>`;
-      questions.forEach((q,i)=>{
-        const userAns=answers[i];
-        const correct=userAns===q.correct;
-        const letters=['A','B','C','D'];
-        const origLetter = letters[q._origCorrect ?? q.correct];
-        const newLetter  = letters[q.correct];
-        function fixExplainLetter(text, orig, rep){
-          if(orig === rep) return text;
-          return text
-            .replace(new RegExp(`\\(${orig}\\)`, 'g'), `(${rep})`)
-            .replace(new RegExp(`\\b(opci[oó]n|respuesta|answer is|answer:|option|gr[aá]fica|Solo|solo|es la)\\s+${orig}\\b`, 'gi'),(_, p) => `${p} ${rep}`)
-            .replace(new RegExp(`\\bthe correct answer is ${orig}\\b`, 'gi'), `The correct answer is ${rep}`)
-            .replace(new RegExp(`\\b(Por tanto|Therefore|purpose is)\\s+${orig}\\b`, 'gi'),(_, p) => `${p} ${rep}`)
-            .replace(new RegExp(`\\bSolo ${orig}\\b`, 'g'), `Solo ${rep}`)
-            .replace(new RegExp(`\\bOnly ${orig}\\b`, 'g'), `Only ${rep}`);
-        }
-        const fixedExplain = fixExplainLetter(q.explain, origLetter, newLetter);
-        html+=`<div class="review-card ${correct?'review-correct':'review-wrong'}">
-          <div class="review-card-header">
-            <span class="review-q-num">${i+1}</span>
-            <span class="review-status ${correct?'status-correct':'status-wrong'}">${correct?'Correcto':'Incorrecto'}</span>
+        <div class="review-subj-header">
+          <span class="review-subj-icon">${subj.icon}</span>
+          <span class="review-subj-title">${subj.name}</span>
+          <span class="review-subj-nivel ${lv.cls}">${lv.label}</span>
+        </div>
+        ${(()=>{const nd=NIVEL_INFO[key]?.[nivel];if(!nd)return'';const items=nd.items.length?`<ul class="nivel-items-list">${nd.items.map(i=>`<li>${i}</li>`).join('')}</ul>`:'';return`<div class="review-nivel-detail ${lv.cls}">
+          <div class="nivel-detail-header">
+            <span class="nivel-detail-badge ${lv.cls}">${lv.label}</span>
+            <span class="nivel-detail-range">${nd.range}</span>
           </div>
-          ${q.context?'<div class="review-context">'+q.context+'</div>':''}
-          ${q.contextImg&&IMGS[q.contextImg]?'<div class="review-img"><img src="'+IMGS[q.contextImg]+'" alt="Imagen de contexto" loading="lazy"></div>':''}
-          <div class="review-question">${q.text||''}</div>
-          ${q.img&&IMGS[q.img]?'<div class="review-img"><img src="'+IMGS[q.img]+'" alt="Imagen de la pregunta" loading="lazy"></div>':''}
-          <div class="review-answers">
-            ${correct?`
-            <div class="review-answer answer-correct">
-              <span class="answer-label">Respuesta correcta</span>
-              <span class="answer-text">${q.opts[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
-            </div>`:`
-            <div class="review-answer answer-wrong">
-              <span class="answer-label">Tu respuesta</span>
-              <span class="answer-text">${q.opts[userAns]?.replace(/^[A-D]\.\s*/,'') || '<em>Sin responder</em>'}</span>
+          <p class="nivel-detail-summary">${nd.summary}</p>
+          ${items}
+        </div>`;})()}
+        ${subjData.questions.map((q,i)=>{
+          const userAns=state.allSubjects?state.allAnswers[key]?.answers[i]:state.answers[i];
+          const correct=userAns===q.correct;
+          const letters=['A','B','C','D'];
+          const origLetter = letters[q._origCorrect ?? q.correct];
+          const newLetter  = letters[q.correct];
+          function fixExplainLetter(text, orig, rep){
+            if(orig === rep) return text;
+            return text
+              .replace(new RegExp(`\\(${orig}\\)`, 'g'), `(${rep})`)
+              .replace(new RegExp(`\\b(opci[oó]n|respuesta|answer is|answer:|option|gr[aá]fica|Solo|solo|es la)\\s+${orig}\\b`, 'gi'),(_, p) => `${p} ${rep}`)
+              .replace(new RegExp(`\\bthe correct answer is ${orig}\\b`, 'gi'), `The correct answer is ${rep}`)
+              .replace(new RegExp(`\\b(Por tanto|Therefore|purpose is)\\s+${orig}\\b`, 'gi'),(_, p) => `${p} ${rep}`)
+              .replace(new RegExp(`\\bSolo ${orig}\\b`, 'g'), `Solo ${rep}`)
+              .replace(new RegExp(`\\bOnly ${orig}\\b`, 'g'), `Only ${rep}`);
+          }
+          const fixedExplain = fixExplainLetter(q.explain, origLetter, newLetter);
+          return `<div class="review-card ${correct?'review-correct':'review-wrong'}">
+            <div class="review-card-header">
+              <span class="review-q-num">${i+1}</span>
+              <span class="review-status ${correct?'status-correct':'status-wrong'}">${correct?'Correcto':'Incorrecto'}</span>
             </div>
-            <div class="review-answer answer-correct">
-              <span class="answer-label">Respuesta correcta</span>
-              <span class="answer-text">${q.opts[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
-            </div>`}
-          </div>
-          ${fixedExplain?'<div class="review-explain"><span class="explain-icon">💡</span><span>'+fixedExplain+'</span></div>':''}
-        </div>`;
-      });
-      html+=`</div>`;
+            ${q.context?'<div class="review-context">'+q.context+'</div>':''}
+            ${q.contextImg&&IMGS[q.contextImg]?'<div class="review-img"><img src="'+IMGS[q.contextImg]+'" alt="Imagen de contexto" loading="lazy"></div>':''}
+            <div class="review-question">${q.text||''}</div>
+            ${q.img&&IMGS[q.img]?'<div class="review-img"><img src="'+IMGS[q.img]+'" alt="Imagen de la pregunta" loading="lazy"></div>':''}
+            <div class="review-answers">
+              ${correct?`
+              <div class="review-answer answer-correct">
+                <span class="answer-label">Respuesta correcta</span>
+                <span class="answer-text">${q.opts[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
+              </div>`:`
+              <div class="review-answer answer-wrong">
+                <span class="answer-label">Tu respuesta</span>
+                <span class="answer-text">${q.opts[userAns]?.replace(/^[A-D]\.\s*/,'') || '<em>Sin responder</em>'}</span>
+              </div>
+              <div class="review-answer answer-correct">
+                <span class="answer-label">Respuesta correcta</span>
+                <span class="answer-text">${q.opts[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
+              </div>`}
+            </div>
+            ${fixedExplain?'<div class="review-explain"><span class="explain-icon">💡</span><span>'+fixedExplain+'</span></div>':''}
+          </div>`;
+        }).join('')}
+      </div>`;
     });
     html+=`</div>`;
 
