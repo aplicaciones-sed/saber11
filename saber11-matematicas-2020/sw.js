@@ -1,4 +1,4 @@
-const CACHE = 'saber11-mat-2020-v1';
+const CACHE = 'saber11-mat-2020-v2';
 const ASSETS = [
   './index.html',
   './manifest.json',
