@@ -206,15 +206,15 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 .review-subj-title{font-size:15px;font-weight:800;color:var(--primary);flex:1}
 .review-subj-nivel{font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px}
 .review-nivel-detail{padding:20px;border-radius:var(--r);margin-bottom:20px;border:2px solid var(--border)}
-.review-nivel-detail.lv0{background:#fee2e2;border-color:#ef4444}
-.review-nivel-detail.lv1{background:#f8f9fa;border-color:#d1d5db}
+.review-nivel-detail.lv0{background:#ffcccc;border-color:#c53030}
+.review-nivel-detail.lv1{background:#fee2e2;border-color:#dc2626}
 .review-nivel-detail.lv2{background:#fff9e6;border-color:#ffc107}
 .review-nivel-detail.lv3{background:#e8f5e9;border-color:#4caf50}
 .review-nivel-detail.lv4{background:#e3f2fd;border-color:#2196f3}
 .nivel-detail-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
 .nivel-detail-badge{font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px}
-.review-nivel-detail.lv0 .nivel-detail-badge{background:#dc2626;color:#fff}
-.review-nivel-detail.lv1 .nivel-detail-badge{background:#6b7280;color:#fff}
+.review-nivel-detail.lv0 .nivel-detail-badge{background:#c53030;color:#fff}
+.review-nivel-detail.lv1 .nivel-detail-badge{background:#dc2626;color:#fff}
 .review-nivel-detail.lv2 .nivel-detail-badge{background:#d97706;color:#fff}
 .review-nivel-detail.lv3 .nivel-detail-badge{background:#16a34a;color:#fff}
 .review-nivel-detail.lv4 .nivel-detail-badge{background:#2563eb;color:#fff}
@@ -255,11 +255,26 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 .result-header::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(255,255,255,.07),transparent 60%);pointer-events:none}
 .result-header h2{font-size:19px;font-weight:900;margin-bottom:4px;position:relative;z-index:1}
 .result-header p{opacity:.75;font-size:13px;position:relative;z-index:1}
-.global-score{position:relative;background:linear-gradient(135deg,#e0e0e0 0%,#ffffff 50%,#d0d0d0 100%);border-radius:16px;padding:20px 32px;margin-top:16px;display:inline-block;min-width:180px;box-shadow:0 8px 32px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.8);border:1px solid rgba(0,0,0,.1)}
+.global-score{position:relative;background:linear-gradient(135deg,#e0e0e0 0%,#ffffff 50%,#d0d0d0 100%);border-radius:16px;padding:20px 32px;margin-top:16px;display:inline-block;min-width:180px;box-shadow:0 4px 12px rgba(0,0,0,.1);border:1px solid rgba(0,0,0,.1)}
 .global-score::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(255,255,255,.5) 0%,transparent 50%);border-radius:16px;pointer-events:none}
 .global-score .pts{font-family:'Space Mono',monospace;font-size:clamp(36px,10vw,52px);font-weight:700;color:#1a3a5c;display:block;line-height:1;word-break:break-all;text-shadow:0 1px 2px rgba(0,0,0,.1)}
 .global-score .pts-label{font-size:11px;font-weight:700;color:#1a3a5c;text-transform:uppercase;letter-spacing:1.5px;margin-top:6px;display:block;opacity:.8}
-.global-score-badge{position:absolute;top:-8px;right:-8px;background:var(--primary);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 4px 12px rgba(0,0,0,.2);border:2px solid rgba(255,255,255,.3)}
+.global-score-badge{position:absolute;top:-8px;right:-8px;background:var(--primary);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,.15);border:2px solid rgba(255,255,255,.3)}
+.global-score.gs-lv0{background:linear-gradient(135deg,#ffcccc 0%,#fff 50%,#ffcccc 100%);border-color:#c53030}
+.global-score.gs-lv0 .pts,.global-score.gs-lv0 .pts-label{color:#c53030}
+.global-score.gs-lv0 .global-score-badge{background:#c53030}
+.global-score.gs-lv1{background:linear-gradient(135deg,#fee2e2 0%,#fff 50%,#fee2e2 100%);border-color:#dc2626}
+.global-score.gs-lv1 .pts,.global-score.gs-lv1 .pts-label{color:#dc2626}
+.global-score.gs-lv1 .global-score-badge{background:#dc2626}
+.global-score.gs-lv2{background:linear-gradient(135deg,#fef3d7 0%,#fff 50%,#fef3d7 100%);border-color:#8a5010}
+.global-score.gs-lv2 .pts,.global-score.gs-lv2 .pts-label{color:#8a5010}
+.global-score.gs-lv2 .global-score-badge{background:#8a5010}
+.global-score.gs-lv3{background:linear-gradient(135deg,#d4f0e2 0%,#fff 50%,#d4f0e2 100%);border-color:#1e8a4a}
+.global-score.gs-lv3 .pts,.global-score.gs-lv3 .pts-label{color:#1e8a4a}
+.global-score.gs-lv3 .global-score-badge{background:#1e8a4a}
+.global-score.gs-lv4{background:linear-gradient(135deg,#dbeafe 0%,#fff 50%,#dbeafe 100%);border-color:#2563eb}
+.global-score.gs-lv4 .pts,.global-score.gs-lv4 .pts-label{color:#2563eb}
+.global-score.gs-lv4 .global-score-badge{background:#2563eb}
 .score-table{width:100%;border-collapse:collapse;margin-bottom:0}
 .score-table th{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3);padding:8px 10px;text-align:left;border-bottom:2px solid var(--border)}
 .score-table td{padding:9px 10px;border-bottom:1px solid var(--border);font-size:13px}
@@ -267,8 +282,8 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 .score-bar-wrap{background:var(--border);border-radius:4px;height:6px;width:100%;overflow:hidden}
 .score-bar{height:100%;border-radius:4px;transition:width 1s ease}
 .level-pill{font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;display:inline-block;white-space:nowrap}
-.lv0{background:#fee2e2;color:#dc2626}
-.lv1{background:var(--red-lt);color:var(--red)}
+.lv0{background:#ffcccc;color:#c53030}
+.lv1{background:#fee2e2;color:#dc2626}
 .lv2{background:var(--accent-lt);color:#8a5010}
 .lv3{background:var(--green-lt);color:var(--green)}
 .lv4{background:var(--primary-lt);color:var(--primary)}
@@ -2006,6 +2021,10 @@ function showResults(){
   });
   const globalPct=Math.round((totalCorrect/totalQ)*100);
   const globalPts=subjects.length>1?Math.round(globalPct*5):globalPct;
+  const isSingleSubject=subjects.length===1;
+  const mainSubject=isSingleSubject?subjects[0].key:(subjects.some(s=>s.key==='ing')?'ing':'lc');
+  const globalNivel=getNivel(globalPct,mainSubject);
+  const scoreClass='gs-lv'+globalNivel;
   const lvText={4:{label:'Nivel 4',cls:'lv4',desc:'Reflexiona, evalúa y argumenta con alto nivel crítico.'},
     3:{label:'Nivel 3',cls:'lv3',desc:'Interpreta, infiere y relaciona información con solidez.'},
     2:{label:'Nivel 2',cls:'lv2',desc:'Identifica y comprende información básica.'},
@@ -2024,7 +2043,7 @@ function showResults(){
     <h2>${state.timeExpired?'¡Tiempo agotado!':'¡Simulacro completado!'}</h2>
     ${state.timeExpired?'<p style="color:#dc2626;margin-bottom:8px">El tiempo se agotó antes de responder todas las preguntas</p>':''}
     <p>Secretaría de Educación Departamental de Nariño</p>
-    <div class="global-score">
+    <div class="global-score ${scoreClass}">
       <div class="global-score-badge">🏆</div>
       <span class="pts">${subjects.length>1?globalPts+'/500':globalPct+'/100'}</span>
       <span class="pts-label">${subjects.length>1?'Puntaje global':'Puntaje'}</span>
