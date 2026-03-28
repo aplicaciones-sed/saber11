@@ -1683,6 +1683,14 @@ function showQuestion(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+function hideCuyAvatars(){
+  const el1=document.getElementById('cuyAvatar');
+  const el2=document.getElementById('cuyAvatarLeft');
+  if(el1){el1.classList.remove('show');el1.style.display='none';}
+  if(el2){el2.classList.remove('show');el2.style.display='none';}
+  clearTimeout(window._cuyTimer);
+  clearTimeout(window._cuyWrongTimer);
+}
 
 function showCuyWrong(){
   const el=document.getElementById('cuyAvatarLeft');
@@ -2220,5 +2228,12 @@ if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.se
 <div id="nivelModal" onclick="if(event.target===this)closeNivelModal()">
   <div class="nivel-sheet" id="nivelSheet"></div>
 </div>
+<script>
+document.addEventListener('click',function(e){
+  if(e.target.closest('#btnNext')){
+    if(state.immediateFeedback) hideCuyAvatars();
+  }
+});
+</script>
 </body>
 </html>
