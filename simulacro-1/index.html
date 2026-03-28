@@ -201,6 +201,7 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 .review-header h3{font-size:18px;font-weight:900;color:#fff;margin-bottom:4px}
 .review-header p{font-size:13px;color:var(--text-3)}
 .review-subject{margin-bottom:24px}
+.review-subject-name{font-size:16px;font-weight:800;color:var(--primary);padding:8px 12px;background:var(--surface);border-radius:var(--r-sm);margin-bottom:12px;border-left:4px solid var(--accent)}
 .review-subj-header{background:var(--surface);padding:16px;border-radius:var(--r);margin-bottom:16px;border:1px solid var(--border);display:flex;align-items:center;gap:14px}
 .review-subj-icon{font-size:32px;line-height:1}
 .review-subj-title{font-size:15px;font-weight:800;color:var(--primary);flex:1}
@@ -1005,7 +1006,7 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
   <div class="card">
     <div class="home-hero">
       <h1>Simulacro #1<br>SABER 11°</h1>
-      <p>Practica con preguntas e imágenes reales del examen ICFES. Selecciona una asignatura.</p>
+      <p>Practica con preguntas e imágenes reales del examen ICFES. Selecciona una asignatura o realiza el examen completo</p>
     </div>
     <hr style="border:none;border-top:1px solid var(--border);margin:20px 0">
     <div style="font-size:12px;font-weight:800;color:var(--text-3);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px">Elige una asignatura</div>
@@ -1023,7 +1024,7 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
           <div style="font-size:11px;color:var(--text-3);margin-top:2px">Muestra resultado después de cada respuesta</div>
         </div>
         <label class="toggle-switch" onclick="toggleFeedbackMode()">
-          <input type="checkbox" id="feedbackToggle" checked>
+          <input type="checkbox" id="feedbackToggle">
           <span class="toggle-slider"></span>
         </label>
       </div>
@@ -1031,8 +1032,8 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
     <div style="margin-bottom:16px;padding:12px 16px;background:#fef9e7;border-radius:var(--r);border:1px solid #f0d88a">
       <div style="font-size:11px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Modo de tiempo</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn mode-btn active" id="homeModeUntimed" onclick="setTimedMode(false)" style="flex:1;min-width:100px;padding:8px 12px;font-size:12px;border:2px solid var(--border);background:var(--surface);color:var(--text)">⏱️ Sin límite</button>
-        <button class="btn mode-btn" id="homeModeTimed" onclick="setTimedMode(true)" style="flex:1;min-width:100px;padding:8px 12px;font-size:12px;border:2px solid var(--border);background:var(--surface);color:var(--text)">⏰ Cronometrado</button>
+        <button class="btn mode-btn" id="homeModeUntimed" onclick="setTimedMode(false)" style="flex:1;min-width:100px;padding:8px 12px;font-size:12px;border:2px solid var(--border);background:var(--surface);color:var(--text)">⏱️ Sin límite</button>
+        <button class="btn mode-btn active" id="homeModeTimed" onclick="setTimedMode(true)" style="flex:1;min-width:100px;padding:8px 12px;font-size:12px;border:2px solid var(--border);background:var(--surface);color:var(--text)">⏰ Cronometrado</button>
       </div>
       <div id="homeTimeInfo" style="display:none;margin-top:8px;font-size:11px;color:var(--text-2)">⏱️ <span id="timeDisplay">20 minutos</span></div>
     </div>
@@ -1494,7 +1495,7 @@ function shuffleOpts(q){
 }
 
 /* ════════════ STATE ════════════ */
-let state={subject:null,questions:[],current:0,answers:[],hintsUsed:0,allSubjects:false,allQueue:[],allAnswers:{},immediateFeedback:true,timedMode:false,timeRemaining:0,timerInterval:null,timeExpired:false};
+let state={subject:null,questions:[],current:0,answers:[],hintsUsed:0,allSubjects:false,allQueue:[],allAnswers:{},immediateFeedback:false,timedMode:true,timeRemaining:0,timerInterval:null,timeExpired:false};
 const CORRECT=q=>q.correct;
 
 /* ════════════ HOME ════════════ */
@@ -1506,17 +1507,27 @@ function selectSubject(key){
 }
 function startAllSubjects(){
   state.allSubjects=true;state.allQueue=['lc','mat','soc','cn','ing'];
-  state.allAnswers={};state.subject=state.allQueue.shift();beginSubject();
+  state.allAnswers={};
+  if(state.timedMode){
+    state.timeRemaining=state.allQueue.reduce((acc,key)=>acc+QB[key].questions.length*60,0);
+  }
+  state.subject=state.allQueue.shift();beginSubject();
 }
-function startQuiz(){state.allSubjects=false;beginSubject();}
+function startQuiz(){stopTimer();state.allSubjects=false;beginSubject();}
 function beginSubject(){
   const s=QB[state.subject];
   state.questions=s.questions.map(q=>shuffleOpts(q));
   state.current=0;
   state.answers=new Array(s.questions.length).fill(null);state.hintsUsed=0;
   state.timeExpired=false;
-  if(state.timedMode && state.timeRemaining===0){
-    state.timeRemaining=s.questions.length*60;
+  if(state.timedMode){
+    if(state.allSubjects){
+      if(state.timeRemaining===0){
+        state.timeRemaining=state.allQueue.reduce((acc,key)=>acc+QB[key].questions.length*60,0)+s.questions.length*60;
+      }
+    } else {
+      state.timeRemaining=s.questions.length*60;
+    }
   }
   showIntro();
 }
@@ -1626,7 +1637,7 @@ function showQuestion(){
   if(timerEl){
     timerEl.style.display=state.timedMode?'inline-flex':'none';
   }
-  if(state.current===0 && state.timedMode){
+  if(state.current===0 && state.timedMode && !state.timerInterval){
     startTimer();
   }
   // context block
@@ -2025,6 +2036,9 @@ function showResults(){
   const mainSubject=isSingleSubject?subjects[0].key:(subjects.some(s=>s.key==='ing')?'ing':'lc');
   const globalNivel=getNivel(globalPct,mainSubject);
   const scoreClass='gs-lv'+globalNivel;
+  const formatTime=(secs)=>{const m=Math.floor(secs/60);const s=secs%60;return`${m}:${s.toString().padStart(2,'0')}`;};
+  const totalTime=state.allSubjects?state.allQueue.reduce((acc,key)=>acc+QB[key].questions.length*60,0)+subjects[0].questions.length*60:subjects[0].questions.length*60;
+  const timeUsed=state.timedMode?totalTime-state.timeRemaining:null;
   const lvText={4:{label:'Nivel 4',cls:'lv4',desc:'Reflexiona, evalúa y argumenta con alto nivel crítico.'},
     3:{label:'Nivel 3',cls:'lv3',desc:'Interpreta, infiere y relaciona información con solidez.'},
     2:{label:'Nivel 2',cls:'lv2',desc:'Identifica y comprende información básica.'},
@@ -2047,7 +2061,9 @@ function showResults(){
       <div class="global-score-badge">🏆</div>
       <span class="pts">${subjects.length>1?globalPts+'/500':globalPct+'/100'}</span>
       <span class="pts-label">${subjects.length>1?'Puntaje global':'Puntaje'}</span>
-    </div></div>
+    </div>
+    ${timeUsed!==null?`<div style="margin-top:12px;font-size:13px;color:rgba(255,255,255,.8)">⏱️ Tiempo utilizado: ${formatTime(timeUsed)} de ${formatTime(totalTime)}</div>`:''}
+  </div>
   <div class="card">
     <div style="font-size:12px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px">Resultados por prueba</div>
     <table class="score-table"><thead><tr><th>Prueba</th><th>Puntaje</th><th>Progreso</th><th>Nivel</th></tr></thead><tbody>
@@ -2070,6 +2086,7 @@ function showResults(){
       const lv=(isIng?lvTextIng:lvText)[nivel];
       const subjData=subjects.find(s=>s.key===key);
       html+=`<div class="review-subject">
+        ${subjects.length>1?`<div class="review-subject-name"><span>${subj.icon}</span> ${subj.name}</div>`:''}
         ${(()=>{const nd=NIVEL_INFO[key]?.[nivel];if(!nd)return'';const items=nd.items.length?`<ul class="nivel-items-list">${nd.items.map(i=>`<li>${i}</li>`).join('')}</ul>`:'';return`<div class="review-nivel-detail ${lv.cls}">
           <div class="nivel-detail-header">
             <span class="nivel-detail-badge ${lv.cls}">${lv.label}</span>
