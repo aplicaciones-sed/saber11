@@ -286,21 +286,12 @@ function calculateScores() {
     const correct = data.answers.filter((a, i) => a === data.questions[i].correct).length;
     const total = data.questions.length;
     const percent = Math.round((correct / total) * 100);
-    const nivel = getNivel(subj, percent);
+    const nivel = getNivel(percent, subj);
     
     scores[subj] = { correct, total, percent, nivel };
   });
   
   renderScores(scores);
-}
-
-// Get nivel
-function getNivel(subject, percent) {
-  const thresholds = NIVEL_THRESHOLDS[subject] || { 4: 80, 3: 60, 2: 40 };
-  if (percent >= thresholds[4]) return 4;
-  if (percent >= thresholds[3]) return 3;
-  if (percent >= thresholds[2]) return 2;
-  return 1;
 }
 
 // Render scores
