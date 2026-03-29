@@ -12,231 +12,9 @@
 <title>Simulador SABER 11° · Simulacro 2020 · Nariño</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#f6f8fa;--surface:#ffffff;--primary:#1a3a5c;--primary-lt:#e8eef5;--accent:#e8a020;--accent-lt:#fef3d7;--green:#1e8a4a;--green-lt:#d4f0e2;--red:#c0392b;--red-lt:#fde8e6;--text:#111827;--text-2:#4b5563;--text-3:#9ca3af;--border:#e5e7eb;--muted:#6b7280;--shadow-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.05);--shadow-lg:0 10px 30px rgba(0,0,0,.1),0 4px 8px rgba(0,0,0,.06);--r:12px;--r-sm:8px;--r-lg:16px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--primary)}
-body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh}
-.top-bar{background:var(--primary);padding:0;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.18)}
-.top-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;max-width:1100px;margin:0 auto}
-.logo-gov{display:flex;align-items:center}
-.sed-logo-wrap{background:#fff;border-radius:var(--r-sm);padding:5px 10px;display:flex;align-items:center;height:40px}
-.sed-logo{height:28px;width:auto;flex-shrink:0;display:block}
-@media(max-width:480px){.sed-logo{height:24px}.sed-logo-wrap{padding:4px 8px;height:36px}}
-.escudo-icon{height:36px;width:auto;flex-shrink:0;display:block}
-.app{max-width:1100px;margin:0 auto;padding:14px 12px 70px}
-.screen{display:none;animation:fadeUp .3s ease}
-.screen.active{display:block}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.card{background:var(--surface);border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
-@media(min-width:768px){.app-inner{padding:20px 24px 80px}.card{padding:24px;margin-bottom:16px}}
-@media(min-width:1024px){.app-inner{padding:28px 32px 90px}.card{padding:28px;margin-bottom:20px}}
-.home-hero{text-align:center;padding:12px 4px 16px}
-.home-hero h1{font-size:clamp(20px,4vw,36px);font-weight:900;color:var(--primary);line-height:1.15;margin-bottom:6px}
-.home-hero p{color:var(--text-2);font-size:clamp(13px,1.5vw,15px);line-height:1.5;max-width:520px;margin:0 auto}
-.subject-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:16px}
-.subj-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:12px 10px;text-align:center;cursor:pointer;transition:all .2s ease;box-shadow:var(--shadow-sm)}
-.subj-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:#c5cdd8}
-.subj-card.active-subj{border-width:2px;transform:translateY(-2px);box-shadow:var(--shadow-md)}
-.subj-icon{font-size:26px;margin-bottom:6px;display:block}
-.subj-name{font-size:12px;font-weight:800;color:var(--text);line-height:1.3}
-.subj-count{font-size:11px;color:var(--text-3);margin-top:3px}
-.s-mat.active-subj{border-color:#1a3a5c;background:var(--primary-lt)}
-.s-lc.active-subj{border-color:#1a3a5c;background:var(--primary-lt)}
-.tag-lc{background:var(--primary-lt);color:var(--primary)}
-@media(min-width:768px){.home-hero{padding:20px 8px 24px}.subject-grid{grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}.subj-card{padding:20px 14px}.subj-icon{font-size:32px;margin-bottom:10px}.subj-name{font-size:13px}}
-.btn{display:inline-flex;align-items:center;gap:7px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;padding:10px 20px;border-radius:var(--r-sm);border:none;cursor:pointer;transition:all .18s;letter-spacing:.2px;line-height:1}
-.btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(26,58,92,.25)}
-.btn-primary:hover{background:#1f4570;transform:translateY(-1px);box-shadow:0 5px 16px rgba(26,58,92,.3)}
-.btn-accent{background:var(--accent);color:#fff}
-.btn-accent:hover{background:#d4911a;transform:translateY(-1px)}
-.btn-outline{background:var(--surface);color:var(--primary);border:2px solid var(--border)}
-.btn-outline:hover{border-color:var(--primary);background:var(--primary-lt)}
-.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important;box-shadow:none!important}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-@media(min-width:768px){.btn{font-size:15px;padding:12px 26px}.actions{gap:12px;margin-top:10px}}
-@media(max-width:500px){.btn{width:100%;justify-content:center}.actions{flex-direction:column}}
-.badge-saber{background:var(--accent);color:#fff;font-size:12px;font-weight:800;padding:6px 13px;border-radius:20px;white-space:nowrap;letter-spacing:.5px;border:none}
-.prog-wrap{background:var(--border);border-radius:4px;height:4px;margin-bottom:14px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),#f7d070);border-radius:4px;transition:width .5s ease}
-.stepper{display:flex;gap:4px;margin-bottom:14px;align-items:center}
-.step-dot{flex:1;height:3px;border-radius:2px;background:var(--border);transition:all .3s}
-.step-dot.done{background:var(--green)}
-.step-dot.current{background:var(--accent)}
-.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.q-subject-tag{font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.6px}
-.tag-mat{background:var(--primary-lt);color:var(--primary)}
-.q-num{font-family:'Space Mono',monospace;font-size:11px;color:var(--text-3)}
-.q-context{background:#fffdf7;border:1px solid #f0d88a;border-left:4px solid var(--accent);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:14px 18px;margin-bottom:16px;font-size:14px;line-height:1.75;color:var(--text)}
-.q-text{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:14px;color:var(--text)}
-@media(min-width:768px){.q-meta{margin-bottom:14px}.q-context{padding:14px 18px;margin-bottom:16px;font-size:14px}.q-text{font-size:16px;margin-bottom:18px}}
-.q-figure{margin:10px 0;text-align:center}
-.q-figure img{max-width:100%;border-radius:var(--r-sm);border:1px solid var(--border);display:block;margin:0 auto;background:#fff}
-.q-figure figcaption{font-size:11px;color:var(--text-3);margin-top:4px;font-style:italic}
-.q-img{max-width:100%;width:100%;border-radius:var(--r-sm);border:1px solid var(--border);display:block;background:#fff}
-.opts{display:grid;gap:7px;margin-bottom:14px}
-.opt{display:flex;align-items:center;gap:11px;background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:11px 13px;cursor:pointer;transition:all .18s;text-align:left;width:100%;font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;color:var(--text);line-height:1.4}
-.opt:hover:not(:disabled){border-color:#93adc8;background:var(--primary-lt);transform:translateX(2px)}
-.opt.selected{border-color:var(--primary);background:var(--primary-lt)}
-.opt.correct{border-color:var(--green)!important;background:var(--green-lt)!important}
-.opt.wrong{border-color:var(--red)!important;background:var(--red-lt)!important}
-.opt:disabled{cursor:default}
-.opt-letter{width:26px;height:26px;min-width:26px;border-radius:var(--r-sm);background:var(--border);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:var(--text-2);transition:all .18s;flex-shrink:0}
-.opt.selected .opt-letter{background:var(--primary);color:#fff}
-.opt.correct .opt-letter{background:var(--green);color:#fff}
-.opt.wrong .opt-letter{background:var(--red);color:#fff}
-@media(min-width:768px){.opts{gap:9px;margin-bottom:18px}.opt{padding:13px 16px;font-size:15px}.opt-letter{width:28px;height:28px;min-width:28px}}
-.feedback{border-radius:var(--r);padding:11px 14px;margin-bottom:12px;display:none;animation:fadeUp .3s ease}
-.feedback.show{display:flex;gap:10px;align-items:flex-start}
-.fb-correct{background:var(--green-lt);border:1px solid rgba(30,138,74,.25)}
-.fb-wrong{background:var(--red-lt);border:1px solid rgba(192,57,43,.25)}
-.fb-icon{font-size:20px;flex-shrink:0}
-.fb-content h3{font-size:13px;font-weight:800;margin-bottom:2px}
-.fb-correct h3{color:var(--green)}
-.fb-wrong h3{color:var(--red)}
-.fb-content p{font-size:12px;line-height:1.5;color:var(--text-2)}
-.mode-btn{transition:all .2s}
-.mode-btn.active{border-color:var(--primary)!important;background:var(--primary-lt)!important;color:var(--primary)!important}
-.mode-btn:hover:not(.active){border-color:#93adc8}
-.timer-display{display:inline-flex;align-items:center;gap:5px;background:var(--primary-lt);color:var(--primary);padding:4px 12px;border-radius:20px;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;margin-left:auto}
-.timer-display.timer-warning{background:#fef3c7;color:#b45309}
-.timer-display.timer-danger{background:#fee2e2;color:#dc2626;animation:pulse 1s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
-
-.toggle-switch{position:relative;display:inline-block;width:52px;height:28px;flex-shrink:0;cursor:pointer}
-.toggle-switch input{opacity:0;width:0;height:0}
-.toggle-slider{position:absolute;inset:0;background:var(--border);border-radius:28px;transition:.25s}
-.toggle-slider::before{content:'';position:absolute;width:22px;height:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 2px 4px rgba(0,0,0,.2)}
-.toggle-switch input:checked+.toggle-slider{background:var(--primary)}
-.toggle-switch input:checked+.toggle-slider::before{transform:translateX(24px)}
-
-.review-section{margin-top:24px}
-.review-header{text-align:center;margin-bottom:20px}
-.review-header h3{font-size:18px;font-weight:900;color:#fff;margin-bottom:4px}
-.review-header p{font-size:13px;color:var(--text-3)}
-.review-subject{margin-bottom:24px}
-.review-subj-header{background:var(--surface);padding:16px;border-radius:var(--r);margin-bottom:16px;border:1px solid var(--border);display:flex;align-items:center;gap:14px}
-.review-subj-icon{font-size:32px;line-height:1}
-.review-subj-title{font-size:15px;font-weight:800;color:var(--primary);flex:1}
-.review-subj-nivel{font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px}
-.review-nivel-detail{padding:20px;border-radius:var(--r);margin-bottom:20px;border:2px solid var(--border)}
-.review-nivel-detail.lv1{background:#fee2e2;border-color:#dc2626}
-.review-nivel-detail.lv2{background:#fff9e6;border-color:#ffc107}
-.review-nivel-detail.lv3{background:#e8f5e9;border-color:#4caf50}
-.review-nivel-detail.lv4{background:#e3f2fd;border-color:#2196f3}
-.nivel-detail-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
-.nivel-detail-badge{font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px}
-.review-nivel-detail.lv1 .nivel-detail-badge{background:#dc2626;color:#fff}
-.review-nivel-detail.lv2 .nivel-detail-badge{background:#d97706;color:#fff}
-.review-nivel-detail.lv3 .nivel-detail-badge{background:#16a34a;color:#fff}
-.review-nivel-detail.lv4 .nivel-detail-badge{background:#2563eb;color:#fff}
-.nivel-detail-range{font-size:12px;font-weight:600;color:#374151}
-.nivel-detail-summary{font-size:14px;color:#1f2937;line-height:1.6;margin:0 0 14px 0;font-weight:500}
-.nivel-items-list{margin:0;padding-left:22px;font-size:13px;color:#374151;line-height:1.8}
-.nivel-items-list li{margin-bottom:5px}
-.review-card{background:var(--surface);border-radius:var(--r);padding:16px;margin-bottom:12px;border:1px solid var(--border);border-left:4px solid var(--border)}
-.review-card.review-correct{border-left-color:var(--green)}
-.review-card.review-wrong{border-left-color:var(--red)}
-.review-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.review-q-num{width:28px;height:28px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
-.review-status{font-size:12px;font-weight:800;padding:4px 12px;border-radius:20px}
-.review-status.status-correct{background:var(--green-lt);color:var(--green)}
-.review-status.status-wrong{background:var(--red-lt);color:var(--red)}
-.review-context{font-size:13px;color:var(--text);line-height:1.6;background:var(--bg);padding:12px 14px;border-radius:var(--r-sm);margin-bottom:12px;border-left:3px solid var(--accent)}
-.review-img{text-align:center;margin:12px 0}
-.review-img img{max-width:100%;border-radius:var(--r-sm);border:1px solid var(--border);max-height:300px}
-.review-question{font-size:14px;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:12px}
-.review-answers{display:grid;gap:8px;margin-bottom:12px}
-.review-answer{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:var(--r-sm);background:var(--bg);border:1px solid var(--border)}
-.review-answer.answer-correct{border-color:var(--green);background:var(--green-lt)}
-.review-answer.answer-wrong{border-color:var(--red);background:var(--red-lt)}
-.answer-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3)}
-.answer-text{font-size:13px;color:var(--text)}
-.review-explain{display:flex;gap:8px;align-items:flex-start;padding:12px;background:#fffdf7;border:1px solid #f0d88a;border-radius:var(--r-sm)}
-.explain-icon{font-size:16px;flex-shrink:0}
-.review-explain span:last-child{font-size:13px;color:var(--text-2);line-height:1.6}
-.result-header{background:var(--primary);border-radius:var(--r);padding:24px 20px;text-align:center;color:#fff;margin-bottom:12px;position:relative;overflow:hidden}
-.result-header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(232,160,32,.15) 0%,transparent 60%);pointer-events:none}
-.result-header::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(255,255,255,.07),transparent 60%);pointer-events:none}
-.result-header h2{font-size:19px;font-weight:900;margin-bottom:4px;position:relative;z-index:1}
-.result-header p{opacity:.75;font-size:13px;position:relative;z-index:1}
-.global-score{position:relative;background:linear-gradient(135deg,#e0e0e0 0%,#ffffff 50%,#d0d0d0 100%);border-radius:16px;padding:20px 32px;margin-top:16px;display:inline-block;min-width:180px;box-shadow:0 4px 12px rgba(0,0,0,.1);border:1px solid rgba(0,0,0,.1)}
-.global-score::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(255,255,255,.5) 0%,transparent 50%);border-radius:16px;pointer-events:none}
-.global-score .pts{font-family:'Space Mono',monospace;font-size:clamp(36px,10vw,52px);font-weight:700;color:#1a3a5c;display:block;line-height:1;word-break:break-all;text-shadow:0 1px 2px rgba(0,0,0,.1)}
-.global-score .pts-label{font-size:11px;font-weight:700;color:#1a3a5c;text-transform:uppercase;letter-spacing:1.5px;margin-top:6px;display:block;opacity:.8}
-.global-score-badge{position:absolute;top:-8px;right:-8px;background:var(--primary);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,.15);border:2px solid rgba(255,255,255,.3)}
-.global-score.gs-lv1{background:linear-gradient(135deg,#fee2e2 0%,#fff 50%,#fee2e2 100%);border-color:#dc2626}
-.global-score.gs-lv1 .pts,.global-score.gs-lv1 .pts-label{color:#dc2626}
-.global-score.gs-lv1 .global-score-badge{background:#dc2626}
-.global-score.gs-lv2{background:linear-gradient(135deg,#fef3d7 0%,#fff 50%,#fef3d7 100%);border-color:#8a5010}
-.global-score.gs-lv2 .pts,.global-score.gs-lv2 .pts-label{color:#8a5010}
-.global-score.gs-lv2 .global-score-badge{background:#8a5010}
-.global-score.gs-lv3{background:linear-gradient(135deg,#d4f0e2 0%,#fff 50%,#d4f0e2 100%);border-color:#1e8a4a}
-.global-score.gs-lv3 .pts,.global-score.gs-lv3 .pts-label{color:#1e8a4a}
-.global-score.gs-lv3 .global-score-badge{background:#1e8a4a}
-.global-score.gs-lv4{background:linear-gradient(135deg,#dbeafe 0%,#fff 50%,#dbeafe 100%);border-color:#2563eb}
-.global-score.gs-lv4 .pts,.global-score.gs-lv4 .pts-label{color:#2563eb}
-.global-score.gs-lv4 .global-score-badge{background:#2563eb}
-.score-table{width:100%;border-collapse:collapse;margin-bottom:0}
-.score-table th{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3);padding:8px 10px;text-align:left;border-bottom:2px solid var(--border)}
-.score-table td{padding:9px 10px;border-bottom:1px solid var(--border);font-size:13px}
-.score-table tr:last-child td{border-bottom:none}
-.score-bar-wrap{background:var(--border);border-radius:4px;height:6px;width:100%;overflow:hidden}
-.score-bar{height:100%;border-radius:4px;transition:width 1s ease}
-.level-pill{font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;display:inline-block;white-space:nowrap}
-.lv1{background:#fee2e2;color:#dc2626}
-.lv2{background:var(--accent-lt);color:#8a5010}
-.lv3{background:var(--green-lt);color:var(--green)}
-.lv4{background:var(--primary-lt);color:var(--primary)}
-.subj-intro{text-align:center;padding:14px 0}
-.subj-intro .big-icon{font-size:48px;display:block;margin-bottom:10px;animation:bounce 2s ease-in-out infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.subj-intro h2{font-size:20px;font-weight:900;color:var(--primary);margin-bottom:6px}
-.subj-intro p{color:var(--text-2);font-size:14px;line-height:1.55;max-width:440px;margin:0 auto 16px}
-.info-chips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
-.chip{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 11px;font-size:11px;font-weight:700;color:var(--primary)}
-#fbMeta{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:14px;font-size:12px;box-shadow:var(--shadow-sm)}
-.meta-table{width:100%;border-collapse:collapse}
-.meta-table tr{border-bottom:1px solid var(--border)}
-.meta-table tr:last-child{border-bottom:none}
-.meta-table td{padding:7px 0;font-size:12.5px;line-height:1.5;vertical-align:top}
-.meta-table td:first-child{font-weight:800;color:var(--text-2);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;padding:7px 14px 7px 0;white-space:nowrap;vertical-align:top;width:1%}
-.nivel-clickable{cursor:pointer;transition:opacity .15s}
-.nivel-clickable:hover{opacity:.82}
-#nivelModal{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:20000;display:none;align-items:flex-end;justify-content:center;padding:0}
-#nivelModal.show{display:flex}
-.nivel-sheet{background:var(--surface);border-radius:var(--r-lg) var(--r-lg) 0 0;width:100%;max-width:600px;max-height:88vh;overflow-y:auto;padding:24px 20px 32px;animation:slideUp .25s ease}
-@keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1}}
-.nivel-sheet-header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
-.nivel-sheet-badge{padding:4px 14px;border-radius:20px;font-weight:900;font-size:14px}
-.nivel-sheet h3{font-size:16px;font-weight:900;color:var(--text);flex:1}
-.nivel-sheet-close{background:none;border:none;font-size:22px;color:var(--text-2);cursor:pointer;line-height:1;padding:2px 6px;border-radius:6px}
-.nivel-sheet-close:hover{background:var(--bg)}
-.nivel-desc-summary{font-size:13.5px;color:var(--text);line-height:1.6;margin-bottom:14px;padding:10px 14px;background:var(--bg);border-radius:var(--r-sm);border-left:3px solid var(--primary)}
-.nivel-range{font-size:11px;color:var(--text-3);margin-top:4px;margin-bottom:10px;font-weight:600}
-.nivel-desc-items{list-style:none;padding:0;margin:0}
-.nivel-desc-items li{font-size:13px;color:var(--text-2);padding:5px 0 5px 20px;position:relative;border-bottom:1px solid var(--border);line-height:1.5}
-.nivel-desc-items li:last-child{border-bottom:none}
-.nivel-desc-items li::before{content:'•';position:absolute;left:6px;color:var(--primary);font-weight:700}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px}
-.modal-overlay.show{display:flex}
-.modal-box{background:var(--surface);border-radius:var(--r-lg);padding:24px;max-width:340px;width:100%;box-shadow:var(--shadow-lg);text-align:center;animation:fadeUp .25s ease}
-.modal-box h3{font-size:17px;font-weight:900;color:var(--text);margin-bottom:4px}
-.modal-actions{display:flex;gap:10px;justify-content:center}
-.modal-actions .btn{flex:1}
-.modal-box .btn{display:flex;align-items:center;padding:12px 16px;border-radius:var(--r-sm);font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;width:100%}
-.modal-box .btn small{font-size:11px;display:block;margin-top:1px}
-.confetti-piece{position:fixed;pointer-events:none;z-index:9999;animation:confettiFall linear forwards}
-@keyframes confettiFall{0%{opacity:1;transform:translateY(-10px) rotate(0deg)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
-@media(max-width:600px){.subject-grid{grid-template-columns:1fr 1fr}}
-@media(min-width:768px){.subj-intro{padding:28px 0}.subj-intro .big-icon{font-size:60px;margin-bottom:14px}.subj-intro h2{font-size:24px}.subj-intro p{font-size:15px;margin-bottom:24px}.info-chips{margin-bottom:24px}.result-header{padding:28px;margin-bottom:16px}.result-header h2{font-size:22px}.global-score{padding:18px 24px;margin-top:16px}.global-score .pts{font-size:48px}.score-table th{padding:10px 12px}.score-table td{padding:11px 12px;font-size:14px}.feedback{padding:14px 18px;margin-bottom:14px}.prog-wrap{margin-bottom:18px}.stepper{margin-bottom:18px}}
-#cuyAvatar{position:fixed;bottom:-300px;right:16px;width:155px;z-index:99999;transition:bottom .6s cubic-bezier(.34,1.56,.64,1);pointer-events:none;filter:drop-shadow(0 8px 20px rgba(0,0,0,.35))}
-#cuyAvatar.show{bottom:0px}
-#cuyAvatarLeft{position:fixed;bottom:-300px;left:16px;width:155px;z-index:99999;transition:bottom .6s cubic-bezier(.34,1.56,.64,1);pointer-events:none;filter:drop-shadow(0 8px 20px rgba(0,0,0,.35))}
-#cuyAvatarLeft.show{bottom:0px}
-#cuyAvatar img,#cuyAvatarLeft img{width:100%;height:auto;display:block}
-@media(max-width:480px){#cuyAvatar{width:125px;right:6px}#cuyAvatarLeft{width:125px;left:6px}}
-</style>
+<link rel="stylesheet" href="../shared/css/exam.css">
+<script src="../js/questions.js"></script>
+<script src="../shared/js/app.js"></script>
 </head>
 <body>
 
@@ -988,342 +766,7 @@ function showCuy(){
     setTimeout(()=>{el.style.display='none';},600);
   },3200);
 }
-const QB = {
-  mat:{
-    name:"Matemáticas",icon:"📐",tag:"tag-mat",color:"#1a3a5c",
-    desc:"Evalúa competencias de interpretación, formulación y argumentación en contextos matemáticos reales.",
-    competencias:["Interpretación y representación","Formulación y ejecución","Argumentación"],
-    questions:[
-      {id:1,
-       context:"En una bolsa hay 3 bolas rojas, 3 negras y 12 blancas. Una persona afirma que al sacar una bola al azar, los tres colores tienen la misma probabilidad de salir.",
-       text:"Esta afirmación es",
-       opts:["A. verdadera, pues el número de bolas de cada color no importa.","B. falsa, pues no se sabe el número total de bolas en la bolsa.","C. falsa, pues hay más bolas de un color que de los otros dos.","D. verdadera, pues las bolas están repartidas de igual manera."],
-       correct:2,hint:"Observa cuántas bolas hay de cada color en la bolsa.",
-       comp:"Argumentación · Valida procedimientos y estrategias matemáticas.",
-       nivel:2,
-       explain:"En la bolsa hay en total 18 bolas y, por tanto, la probabilidad de seleccionar al azar una roja es de 3/18; una negra, de 3/18; una blanca, de 12/18. Luego, como 12 > 3, entonces el color blanco tiene una mayor probabilidad de ser elegido al azar. Por lo tanto, la afirmación de que los tres colores tienen la misma probabilidad es falsa."},
-      {id:2,
-       context:"Con respecto a la vertical, la torre se ha inclinado 4° como se muestra en la gráfica.",
-       text:"¿Cuánto mide el otro ángulo?",
-       opts:["A. 4°","B. 14°","C. 86°","D. 90°"],
-       correct:2,hint:"La suma de los dos ángulos debe ser igual a 90°.",
-       comp:"Interpretación · Comprende y transforma información cuantitativa.",
-       nivel:2,
-       explain:"La suma de los dos ángulos debe ser igual a 90°. Como el ángulo de inclinación de la torre es de 4°, entonces el otro ángulo mide 90° – 4° = 86°."},
-      {id:3,
-       context:"En la tabla se relaciona la cantidad de personas que ingresó cada día durante una semana, según el tipo de entrada que pagó. Sin reserva: 17 euros. Con reserva: 22,5 euros. (Lunes a Domingo: Sin reserva: 300, 300, 500, 700, 300, 300, 700. Con reserva: 700, 800, 200, 600, 500, 500, 600)",
-       text:"Aproximadamente, ¿qué porcentaje del total de personas que visitaron la torre esa semana entraron sin hacer reserva?",
-       opts:["A. 56 %","B. 50 %","C. 44 %","D. 40 %"],
-       correct:2,hint:"Suma las personas sin reserva y divídelas entre el total.",
-       comp:"Interpretación · Da cuenta de características de información en tablas.",
-       nivel:3,
-       explain:"El total de personas que entraron sin reserva fue de: 300 + 300 + 500 + 700 + 300 + 300 + 700 = 3.100, y el total de personas que entran con reserva fue de: 700 + 800 + 200 + 600 + 500 + 500 + 600 = 3.900, para un total de 3.100 + 3.900 = 7.000 visitantes. Por tanto, el porcentaje del total de personas que visitaron la torre esa semana sin hacer reserva fue de (3.100/7.000) × 100 ≈ 44%."},
-      {id:4,
-       context:"El proceso que muestra cómo se obtiene el dinero recaudado en la semana es: 1. Sumar personas sin reserva, 2. Multiplicar por 17, 3. Sumar personas con reserva, 4. Multiplicar por 22,5.",
-       text:"¿Cuál de las siguientes preguntas NO se puede resolver empleando una parte del proceso anterior?",
-       opts:["A. ¿Con cuál tipo de entrada se recaudó más dinero?","B. ¿Cuántas personas ingresaron en la semana?","C. ¿Cuál es la ganancia total del sitio turístico?","D. ¿Cuánto dinero se recaudó por tipo de entrada?"],
-       correct:2,hint:"Piensa qué información adicional necesitarías.",
-       comp:"Interpretación · Da cuenta de características de información en tablas.",
-       nivel:2,
-       explain:"Con el proceso solo se puede calcular y comparar el dinero recaudado en la semana por concepto de entradas (con o sin reserva). Sin embargo, otros valores del sitio turístico, como los gastos, son desconocidos, por lo que no es posible calcular la ganancia total del sitio."},
-      {id:5,
-       context:"Con los mismos datos de la tabla anterior (personas sin reserva y con reserva por día, precios de 17€ y 22,5€).",
-       text:"El recaudo total de la semana, registrada en la tabla, fue aproximadamente de",
-       opts:["A. 14 mil euros","B. 140 mil euros","C. 120 euros","D. 120.000 euros"],
-       correct:1,hint:"Multiplica personas por precio y suma ambos totales.",
-       comp:"Formulación y ejecución · Resuelve problemas con información cuantitativa.",
-       nivel:2,
-       explain:"Como cada entrada sin reserva vale 17 euros, entonces el total recaudado por personas que ingresaron sin reserva fue de 3.100 × 17 euros = 52.700 euros, y el total recaudado por personas que ingresaron con reserva fue de 3.900 × 22,5 euros = 87.750 euros, y por tanto, el recaudo total de la semana fue de aproximadamente 140 mil euros."},
-      {id:6,
-       context:"La mediana de la cantidad de turistas sin reserva que ingresan a la torre es 300; la de los que ingresan con reserva es 600.",
-       text:"Solamente teniendo esto en cuenta, ¿es correcto afirmar que entran el doble de turistas con reserva que sin ella?",
-       opts:["A. No, la mediana es una medida de localización central.","B. No, la mediana muestra la dispersión de los datos.","C. Sí, la mediana me da el promedio de los datos.","D. Sí, la mediana me da la mitad de los datos."],
-       correct:0,hint:"Recuerda qué representa la mediana.",
-       comp:"Argumentación · Plantea afirmaciones basadas en información estadística.",
-       nivel:3,
-       explain:"La mediana es el valor que está en la posición central cuando los datos están ordenados y, por tanto, no caracteriza necesariamente los totales ni permite hacer comparaciones de ese tipo. La mediana indica el valor central, no el total ni el promedio."},
-      {id:7,
-       context:"El dueño de un parque recreativo planea construir tres piscinas y decorar sus bordes con baldosas blancas y azules, tal como se muestra en las figuras. Figura 1: 12 baldosas azules. Figura 2: 18 baldosas azules. Figura 3: 24 baldosas azules.",
-       text:"Según la observación de las figuras 1, 2 y 3, puede afirmarse correctamente que el número de baldosas",
-       opts:["A. azules se incrementa en seis de una piscina a la del siguiente tamaño.","B. blancas aumenta en ocho a medida que crece el tamaño de las piscinas.","C. azules es el doble de la cantidad de baldosas blancas en cada piscina.","D. blancas es la tercera parte de la cantidad de las baldosas azules."],
-       correct:0,hint:"Observa el patrón: 12, 18, 24...",
-       comp:"Interpretación · Identifica patrones en secuencias.",
-       nivel:2,
-       explain:"A partir de las figuras mostradas, se observa que: Figura 1: 12 baldosas azules. Figura 2: 18 = 12 + 6. Figura 3: 24 = 18 + 6. Se puede concluir que el número de baldosas azules aumenta en 6 de una piscina a la del siguiente tamaño."},
-      {id:8,
-       context:"Se lanzan cuatro fichas que tienen dos caras cada una. Una de las fichas es azul por sus dos caras, otra es blanca por sus dos caras y las otras fichas tienen una cara azul y una cara blanca.",
-       text:"¿Cuál de los siguientes eventos es imposible que ocurra?",
-       opts:["A. Obtener una cara azul y tres caras blancas.","B. Obtener dos caras azules y dos caras blancas.","C. Obtener tres caras azules y una cara blanca.","D. Obtener cuatro caras azules y cero blancas."],
-       correct:3,hint:"Hay al menos una ficha con cara blanca.",
-       comp:"Formulación y ejecución · Determina eventos en experimentos aleatorios.",
-       nivel:3,
-       explain:"Dado que hay una ficha con sus dos caras blancas, y son cuatro fichas en total, en cualquier lanzamiento de las cuatro fichas siempre se obtendrá al menos una cara blanca. Por tanto, es imposible obtener cuatro caras azules y cero blancas."},
-      {id:9,
-       context:"El costo de la boleta en un cinema depende de la edad de la persona: De 0 a 8 años: $5.000. De 8 a 16 años: $7.000. De 16 a 56 años: $10.000. Más de 56 años: $6.000.",
-       text:"La gráfica que representa esta función es",
-       opts:["A. Gráfica escalonada correcta con los cuatro intervalos.","B. Gráfica con puntos unidos por segmentos.","C. Gráfica con línea continua.","D. Gráfica con valores en eje equivocado."],
-       correct:0,hint:"La función es a trozos y tiene saltos.",
-       comp:"Interpretación · Transforma representación de información.",
-       nivel:2,
-       explain:"Con la información de la tabla se puede construir la gráfica de la función a trozos correctamente con los intervalos de edad en el eje X y los costos en el eje Y, mostrando los saltos correspondientes a cada intervalo."},
-      {id:10,
-       context:"En la figura se muestra la construcción de una cometa triangular, en la que se conoce únicamente la medida del ángulo M = 150°. El ángulo O debe ser menor que 150° para que la cometa vuele. El análisis indica: I. M = 150°, N = 180° - 150°. II. N = 30°. III. La suma de los ángulos de un triángulo debe ser 160°. IV. Si N = 30°, O + P = 160° - 30°. V. O + P = 130°. VI. O debe ser menor que 130°. VII. Si O < 130° entonces O < 150°. VIII. La cometa volará.",
-       text:"Del anterior análisis, el paso en el que se comete un error es el",
-       opts:["A. I, porque si M = 150°, N debe ser la resta entre 160° y 150°, es decir, N = 10°.","B. III, porque la suma de los ángulos internos de un triángulo debe ser 180°.","C. VII, porque O < 130° no quiere decir O < 150°.","D. VIII, porque si O < 150° la cometa no volará."],
-       correct:1,hint:"¿Cuánto suman los ángulos internos de un triángulo?",
-       comp:"Argumentación · Valida procedimientos con criterios establecidos.",
-       nivel:3,
-       explain:"La suma de los ángulos internos de un triángulo debe ser igual a 180°. Por tanto: O + P = 180° – 30° = 150°, de donde O < 150°. La conclusión sigue siendo verdadera, pero en la argumentación había una premisa falsa en el paso III."},
-      {id:11,
-       context:"Se realizó una encuesta a 200 clientes de una empresa de telecomunicaciones. Las calificaciones fueron: Excelente 10%, Bueno 35%, Regular 40%, Malo 15%.",
-       text:"La afirmación verdadera acerca de los resultados de la encuesta es:",
-       opts:["A. Más de 30 clientes consideran que la calidad del servicio que ofrece la empresa es excelente.","B. Menos de 50 clientes consideran que la calidad del servicio que ofrece la empresa es regular.","C. Menos de 55 clientes están satisfechos con el servicio que ofrece la empresa.","D. Más de 60 clientes consideran que la calidad del servicio que ofrece la empresa es bueno."],
-       correct:3,hint:"Calcula el 35% de 200 clientes.",
-       comp:"Argumentación · Plantea afirmaciones basadas en información.",
-       nivel:3,
-       explain:"Dado que la encuesta se realizó a 200 clientes, y el 35% de los encuestados calificó como 'bueno' el servicio, entonces (35/100) × 200 clientes = 70 clientes calificaron como 'bueno' el servicio. Por tanto, es verdadero que más de 60 clientes consideran que la calidad del servicio que ofrece la empresa es buena."},
-      {id:12,
-       context:"'Quisiéramos dividir el segmento MN en dos partes congruentes'. Para su construcción, un estudiante efectuó: Se construyen dos triángulos equiláteros MNP y MNQ. Luego se traza el segmento PQ, intersecando a MN en R.",
-       text:"De acuerdo con la información anterior, la construcción geométrica que debió hacer el estudiante para realizar la actividad fue",
-       opts:["A. Dos triángulos con MN como lado.","B. Triángulos congruentes sin intersección en R.","C. M y N como centros de circunferencias.","D. Dos triángulos equiláteros sobre MN con PQ intersectando MN en R."],
-       correct:3,hint:"Los triángulos deben construirse sobre MN.",
-       comp:"Formulación y ejecución · Resuelve problemas en contextos geométricos.",
-       nivel:3,
-       explain:"Siguiendo los pasos de la construcción, se deben construir dos triángulos equiláteros MNP y MNQ sobre el segmento MN. Luego se traza el segmento PQ, intersecando a MN en R. Esta es la construcción geométrica correcta."},
-      {id:13,
-       context:"La familia Ramírez tiene un plan local de 220 minutos. En enero consumió 331 minutos. Se registró un consumo adicional de 111 minutos.",
-       text:"El tiempo adicional consumido por la familia Ramírez en enero fue:",
-       opts:["A. 1 hora y 11 minutos.","B. 1 hora y 51 minutos.","C. 3 horas y 40 minutos.","D. 5 horas y 31 minutos."],
-       correct:1,hint:"111 minutos = 1 hora + ? minutos",
-       comp:"Formulación y ejecución · Resuelve problemas con información cuantitativa.",
-       nivel:2,
-       explain:"Dado que el plan local actual de la familia Ramírez es de 220 minutos, y en el mes de enero el consumo fue de 331 minutos, entonces se registró un consumo adicional de 111 minutos, que son equivalentes a 1 hora y 51 minutos."},
-      {id:14,
-       context:"El señor Ramírez considera que el valor del minuto adicional fue excesivo. Su hija asegura que la diferencia entre el valor del minuto del plan y el del minuto adicional es de $35,42.",
-       text:"¿Cuál de los siguientes datos NO se necesita para hall ar esta diferencia?",
-       opts:["A. La cantidad de minutos del plan.","B. El valor del consumo adicional.","C. El total de cargos del mes.","D. El valor del plan local."],
-       correct:2,hint:"Solo necesitas datos directos del plan y consumo.",
-       comp:"Formulación y ejecución · Diseña planes para решения problemas.",
-       nivel:3,
-       explain:"Para determinar el valor por minuto del plan local se debe dividir el costo del plan local entre la cantidad de minutos del plan local; para determinar el valor por minuto adicional se debe dividir el costo del consumo adicional entre la cantidad de minutos adicionales consumidos. Por tanto, el total de cargos del mes no es necesario para hall ar esta diferencia."},
-      {id:15,
-       context:"En un hospital, los niveles de clasificación son: Nivel I: atención inmediata. Nivel II: 5 min a 2 horas. Nivel III: 4 a 6 horas. Isabel llegó y recibió el turno 180. Fue clasificada en Nivel III y al cabo del máximo tiempo (6 horas) es llamada cuando el tablero muestra el número 240.",
-       text:"¿Aproximadamente cuántas personas por hora llegaron a la sala de espera mientras Isabel estuvo allí?",
-       opts:["A. 60 personas por hora.","B. 40 personas por hora.","C. 15 personas por hora.","D. 10 personas por hora."],
-       correct:3,hint:"Divide personas adicionales entre horas.",
-       comp:"Formulación y ejecución · Ejecuta planes de solución.",
-       nivel:3,
-       explain:"Como Isabel fue clasificada en el Nivel III, recibió el turno 180 cuando llegó, y fue atendida en el tiempo máximo de espera que es de 6 horas, entonces cuando observa el número 240, han llegado 240 – 180 = 60 personas adicionales. Por tanto, han llegado 60 personas / 6 horas = 10 personas por hora."},
-      {id:16,
-       context:"Cada uno de los lados del cuadrilátero de la figura se traslada una unidad hacia la izquierda; luego se amplía esta al doble de su tamaño, manteniéndose fijo el vértice inferior. Dos de los vértices del cuadrilátero ampliado son (-5,7) y (-1,1).",
-       text:"¿Cuáles son las coordenadas de los otros dos vértices?",
-       opts:["A. (-1,5) y (3,7).","B. (5,-1) y (7,3).","C. (5,7) y (1,1).","D. (1,5) y (-5,-7)."],
-       correct:0,hint:"Sigue la transformación paso a paso.",
-       comp:"Formulación y ejecución · Identifica características de localización en sistemas cartesianos.",
-       nivel:3,
-       explain:"Si el cuadrilátero se traduce una unidad hacia la izquierda y luego se amplía al doble de su tamaño, manteniendo fijo el vértice inferior, los otros dos vértices tienen coordenadas (-1,5) y (3,7)."},
-      {id:17,
-       context:"Un empresario compra un apartamento de $80.000.000 y acuerda pagarlo en cuotas mensuales de igual valor. Opciones: 50 cuotas de $1.600.000, 40 de $2.000.000, 32 de $2.500.000, 25 de $3.200.000, 20 de $4.000.000, 16 de $5.000.000, 10 de $8.000.000, 8 de $10.000.000.",
-       text:"Respecto a la información de la tabla, es verdadero afirmar que",
-       opts:["A. el empresario paga más por el apartamento dependiendo de la cantidad de cuotas.","B. de manera proporcional, a mayor cantidad de cuotas menor valor se pagará en cada una de ellas.","C. el empresario paga solo el valor del apartamento únicamente cuando elige el menor número de cuotas.","D. de manera proporcional, a mayor valor pagado por cuota, más tiempo se tardará en pagar la deuda."],
-       correct:1,hint:"Multiplica número de cuotas por valor de cuota.",
-       comp:"Interpretación · Da cuenta de características de información en tablas.",
-       nivel:2,
-       explain:"De la tabla se puede observar que: 50 × 1.600.000 = 80.000.000, 40 × 2.000.000 = 80.000.000, y así sucesivamente. El número de cuotas y el valor de la cuota son inversamente proporcionales, y entre mayor sea el número de cuotas, menor valor se pagará en cada una de ellas."},
-      {id:18,
-       context:"Para ambientar musicalmente una reunión, se cuenta con tres CD, cada uno de ellos tiene canciones de salsa (S) y merengue (M).",
-       text:"¿Cuál de los siguientes diagramas representa la situación de seleccionar al azar una canción del CD1, luego una del CD2 y finalmente una del CD3?",
-       opts:["A. Diagrama con todas las combinaciones posibles.","B. Diagrama con solo algunas combinaciones.","C. Diagrama con selección aleatoria de CD.","D. Diagrama con un solo tipo de canción."],
-       correct:0,hint:"Cada CD tiene canciones de ambos géneros.",
-       comp:"Interpretación · Representa experimentos aleatorios.",
-       nivel:3,
-       explain:"Como el CD1 tiene canciones de salsa y de merengue, el resultado de seleccionar al azar una canción de este CD se puede representar con dos ramas. Análogamente para CD2 y CD3. El diagrama correcto muestra todas las combinaciones posibles de los tres CD."},
-      {id:19,
-       context:"Para observar los efectos de un medicamento, este se inyecta en un animal y se registra el comportamiento de la temperatura (°C) en función del tiempo (horas). La gráfica muestra una curva con amplitud 2, trasladada 36 unidades hacia arriba, con periodo 3.",
-       text:"¿Cuál de las siguientes expresiones corresponde a la curva que describe la temperatura del animal en función del tiempo?",
-       opts:["A. F(t) = 2cos(2πt/3) + 36","B. F(t) = 3cos(2πt/3) + 38","C. F(t) = 2sen(2πt/3) + 36","D. F(t) = 3sen(2πt/3) + 38"],
-       correct:2,hint:"La amplitud es 2 y está trasladada 36 unidades.",
-       comp:"Formulación y ejecución · Modela situaciones con funciones trigonométricas.",
-       nivel:3,
-       explain:"A partir de la información de la gráfica se puede determinar que la amplitud de la curva es 2, la curva está trasladada 36 unidades hacia arriba respecto al eje horizontal, y tiene periodo 3. Por tanto, la expresión que corresponde a la curva es F(t) = 2sen(2πt/3) + 36."},
-      {id:20,
-       context:"La velocidad máxima de un auto es 100 km/h. Pilar afirma que, a su velocidad máxima, en 100 horas el auto avanzará 1 km.",
-       text:"La afirmación de Pilar es",
-       opts:["A. falsa, porque a la velocidad máxima en una hora recorrerá 100 km.","B. verdadera, porque al dividir la velocidad máxima entre 100 horas se obtiene 1 km.","C. falsa, porque en 100 horas el auto recorrerá 100 km.","D. verdadera, porque al dividir 100 entre 1 se obtiene el valor 100."],
-       correct:0,hint:"100 km/h significa 100 km en 1 hora.",
-        comp:"Argumentación · Analiza validez de afirmaciones sobre razones de cambio.",
-        nivel:2,
-        explain:"Si la velocidad máxima del auto es de 100 km/h, entonces cada hora el auto recorre 100 km manteniendo dicha velocidad. Por tanto, en 100 horas el auto recorrerá 100 horas × 100 km/hora = 10.000 km. La afirmación de que recorrerá 1 km es falsa."}
-    ]
-  },
-  lc:{
-    name:"Lectura Crítica",icon:"📖",tag:"tag-lc",color:"#1a3a5c",
-    desc:"Evalúa la capacidad de comprender, interpretar y evaluar textos de diversa índoles, identificando supuestos, implicaciones y argumentos.",
-    competencias:["Interpretación textual","Evaluación crítica","Argumentación"],
-    questions:[
-      {id:1,
-       context:"LA CONTAMINACIÓN MARINA\n\nDebido a la inmensidad y profundidad de los océanos, hasta hace poco se creía que podrían ser utilizados para verter basura y sustancias químicas en cantidades ilimitadas sin que esto tuviera consecuencias importantes. Los partidarios de continuar con los vertidos en los océanos incluso tienen un eslogan: \"La solución a la contaminación es la dilución\". En la actualidad, basta con fijarse en la zona muerta del tamaño del estado de Nueva Jersey que se forma cada verano en el delta del Río Mississippi, o en la extensión de 1.600 kilómetros de plástico en descomposición en el Pacífico Norte para darse cuenta de que esta ideología de la \"dilución\" ha contribuido a llevar al borde del colapso lo que tiempo atrás fue un ecosistema oceánico próspero. Existen pruebas de que los océanos han sufrido a manos del hombre durante miles de años. Sin embargo, estudios recientes demuestran que la degradación, especialmente en las zonas costeras, se ha acelerado notablemente en los últimos tres siglos a medida que han aumentado los vertidos industriales y los contaminantes procedentes de explotaciones agrarias y ciudades costeras.\n\nAlgunos de los contaminantes más comunes derivados de la actividad humana son los plaguicidas, fertilizantes químicos, detergentes, hidrocarburos, aguas residuales, plásticos y otros sólidos. Muchos de estos contaminantes se acumulan en las profundidades del océano, donde son ingeridos por pequeños organismos marinos a través de los cuales se introducen en la cadena alimentaria global. Los fertilizantes ricos en nitrógeno que utilizan los productores agrícolas en zonas del interior, por ejemplo, acaban en las corrientes, ríos y aguas subterráneas locales, y más tarde se depositan en los estuarios, bahías y deltas. Este exceso de nutrientes puede provocar un crecimiento masivo de algas que consumen el oxígeno del agua, lo cual genera zonas en las que no puede haber vida marina o apenas existe. Los científicos han descubierto 400 zonas muertas con estas características por todo el planeta. Los humanos comienzan a percatarse de la insostenibilidad de la filosofía de la \"dilución\". Muchas leyes nacionales y protocolos internacionales prohíben en la actualidad el vertido de sustancias nocivas en los océanos, si bien su aplicación es a menudo incierta. Se están creando santuarios marinos con el fin de mantener ecosistemas marinos prístinos. Asimismo, se están llevando a cabo iniciativas aisladas que han logrado cierto éxito en la restauración de estuarios y bahías.",
-       text:"¿Cuál es la relación argumentativa entre los dos enunciados del texto que se presentan a continuación?\n\"Debido a la inmensidad y profundidad de los océanos, hasta hace poco se creía que podrían ser utilizados para verter basura y sustancias químicas en cantidades ilimitadas sin que esto tuviera consecuencias importantes\".\n\"Estudios recientes demuestran que la degradación, especialmente en las zonas costeras, se ha acelerado notablemente en los últimos tres siglos\".",
-       opts:["A. Premisa/evidencia.","B. Introducción/descripción.","C. Antecedente/fundamento.","D. Conjetura/contraevidencia."],
-       correct:3,hint:"El segundo enunciado contradice al primero.",
-       comp:"Comprensión · Comprende cómo se articulan las partes de un texto.",
-       nivel:3,
-       explain:"El primer enunciado presenta una conjetura sobre la posibilidad de verter basura sin consecuencias en los océanos, y el segundo enunciado presenta estudios que prueban que esa conjetura no era correcta. Por tanto, la relación es de conjetura/contraevidencia."},
-      {id:2,
-       context:"LA CONTAMINACIÓN MARINA\n\nDebido a la inmensidad y profundidad de los océanos, hasta hace poco se creía que podrían ser utilizados para verter basura y sustancias químicas en cantidades ilimitadas sin que esto tuviera consecuencias importantes. Los partidarios de continuar con los vertidos en los océanos incluso tienen un eslogan: \"La solución a la contaminación es la dilución\". En la actualidad, basta con fijarse en la zona muerta del tamaño del estado de Nueva Jersey que se forma cada verano en el delta del Río Mississippi, o en la extensión de 1.600 kilómetros de plástico en descomposición en el Pacífico Norte para darse cuenta de que esta ideología de la \"dilución\" ha contribuido a llevar al borde del colapso lo que tiempo atrás fue un ecosistema oceánico próspero.",
-       text:"¿Cuál de los siguientes enunciados puede considerarse la antítesis del argumento central del texto?",
-       opts:["A. La respuesta al problema de la contaminación es la dilución.","B. Las iniciativas dirigidas a la protección marítima son casi inexistentes.","C. Los océanos han sido contaminados por los humanos durante miles de años.","D. Los humanos han comenzado a advertir la insostenibilidad de la filosofía de la dilución."],
-       correct:0,hint:"La antítesis sería lo opuesto al argumento principal del texto.",
-       comp:"Reflexión · Evalúa el contenido de un texto.",
-       nivel:3,
-       explain:"El texto argumenta que la idea de la dilución ha llevado a causar daños cada vez mayores a los océanos. La antítesis sería la posición opuesta: que la dilución es la solución al problema de la contaminación."},
-      {id:3,
-       context:"LA CONTAMINACIÓN MARINA\n\nLos científicos han descubierto 400 zonas muertas con estas características por todo el planeta.",
-       text:"El enunciado \"Los científicos han descubierto 400 zonas muertas con estas características por todo el planeta\"",
-       opts:["A. refuerza la postura de aquellos que promueven la ideología de la \"dilución\".","B. controvierte la tesis sobre el incremento de la contaminación marina.","C. contribuye a probar que la devastación reciente de los océanos es responsabilidad de los vertimientos industriales.","D. refuta la creencia de que la contaminación marítima es un fenómeno reciente."],
-       correct:2,hint:"Las zonas muertas prueban que la contaminación tiene consecuencias reales.",
-       comp:"Comprensión · Identifica y caracteriza las ideas de un texto.",
-       nivel:2,
-       explain:"Las zonas muertas descubiertas contribuyen a probar que la devastación reciente de los océanos es responsabilidad de los vertimientos industriales y la contaminación humana."},
-      {id:4,
-       context:"LA CONTAMINACIÓN MARINA\n\nEl texto utiliza evidencia científica para probar su tesis.",
-       text:"¿Qué recurso emplean los autores del texto para reforzar su tesis principal?",
-       opts:["A. Evidencia científica.","B. Un estudio de caso.","C. Datos gubernamentales.","D. Investigaciones propias."],
-       correct:0,hint:"El texto cita estudios y datos científicos.",
-       comp:"Reflexión · Reconoce estrategias discursivas.",
-       nivel:2,
-       explain:"Los autores utilizan evidencia científica para probar que la filosofía de la dilución no tiene mayor sentido, especialmente en el segundo párrafo donde se explica el efecto de los contaminantes más comunes en el océano."},
-      {id:5,
-       context:"POR QUÉ NUESTRA MENTE ES MÁS CONOCIDA QUE EL CUERPO\n\nPor otra parte, para saber que conocemos nuestra mente no sólo antes y más certamente, sino también más evidentemente que el cuerpo, hay que observar que es evidente por luz natural que no hay afecciones o cualidades de la nada; y por tanto donde quiera que observemos algunas, debe hallarse necesariamente una cosa o una sustancia a la que pertenezcan. Y es evidente que observamos más en nuestra mente que en ninguna otra cosa, porque todo lo que nos permite conocer algo nos lleva también con mucha mayor certeza al conocimiento de nuestra mente. Como cuando juzgo que existe la tierra, porque la toco o la veo: con más razón debo juzgar, por eso mismo, que existe mi mente, pues es posible, quizá, que juzgue que toco la tierra aunque no haya tierra, pero no es posible que yo juzgue esto y que mi mente, que lo juzga, no sea nada.",
-       text:"Cuando el autor afirma \"es posible, quizá, que juzgue que toco la tierra aunque no haya tierra, pero no es posible que yo juzgue esto y que mi mente, que lo juzga, no sea nada\", pretende",
-       opts:["A. probar que no hay certeza sobre la existencia de la mente.","B. señalar que no hay certeza de la existencia de la tierra.","C. mostrar que es posible equivocarse en un juicio.","D. demostrar la existencia de quien juzga."],
-       correct:3,hint:"El enunciado busca probar algo sobre la mente.",
-       comp:"Reflexión · Inferir la intención comunicativa de un enunciado.",
-       nivel:4,
-       explain:"Por medio del enunciado, Descartes busca probar que, aunque la mente se equivoque a la hora de hacer un juicio, necesariamente existe pues está haciendo un juicio. Es decir, incluso si la mente emite un juicio sobre algo que no está ahí, la mente tiene que estar ahí para poder hacer ese juicio."},
-      {id:6,
-       context:"POR QUÉ NUESTRA MENTE ES MÁS CONOCIDA QUE EL CUERPO\n\nHay que observar que es evidente por luz natural que no hay afecciones o cualidades de la nada; y por tanto donde quiera que observemos algunas, debe hallarse necesariamente una cosa o una sustancia a la que pertenezcan.",
-       text:"La afirmación \"no hay afecciones o cualidades de la nada\" permite",
-       opts:["A. sostener que si observamos algunas cualidades, entonces existe algo a lo que pertenecen.","B. afirmar que aunque existe una sustancia no podemos conocer sus cualidades.","C. sostener que si existe una sustancia, entonces podemos observar sus cualidades.","D. demostrar que si conocemos algo, entonces existen sus cualidades."],
-       correct:0,hint:"La nada no puede tener cualidades, por lo tanto debe haber algo.",
-       comp:"Comprensión · Identifica la función de un enunciado en un argumento.",
-       nivel:3,
-       explain:"Descartes afirma que la nada no tiene cualidades para probar que, si hay cualidades, entonces debe haber algo a lo que pertenezcan esas cualidades."},
-      {id:7,
-       context:"POR QUÉ NUESTRA MENTE ES MÁS CONOCIDA QUE EL CUERPO\n\nEs evidente que observamos más en nuestra mente que en ninguna otra cosa. Es posible que yo juzgue que toco la tierra aunque no haya tierra, pero no es posible que yo juzgue esto y que mi mente, que lo juzga, no sea nada.",
-       text:"De acuerdo con los argumentos expuestos por Descartes, nuestra mente existe porque",
-       opts:["A. cuanto más observemos algo, más claramente la conoceremos.","B. no es posible que yo juzgue algo y que mi mente, que lo juzga, no sea nada.","C. no existen los cuerpos, aunque los toque y los vea.","D. conocemos nuestra mente más certamente que el cuerpo."],
-       correct:1,hint:"La mente debe existir porque está haciendo un juicio.",
-       comp:"Reflexión · Establece la validez de un enunciado.",
-       nivel:4,
-       explain:"Como la mente emite juicios incluso sobre aquello que no está percibiendo, no es posible que la mente no sea nada, pues tiene la cualidad de emitir esos juicios. Por tanto, la mente existe."},
-      {id:8,
-       context:"POR QUÉ NUESTRA MENTE ES MÁS CONOCIDA QUE EL CUERPO\n\nHay que observar que es evidente por luz natural que no hay afecciones o cualidades de la nada.",
-       text:"Con la expresión \"luz natural\", el autor se refiere a una",
-       opts:["A. facultad de la nada.","B. cualidad del cuerpo.","C. facultad de la mente.","D. cualidad divina."],
-       correct:2,hint:"La \"luz natural\" permite concluir algo sobre la nada.",
-       comp:"Comprensión · Identifica sinónimos en contexto.",
-       nivel:2,
-       explain:"La razón, o una facultad de la mente, es la que nos permite concluir que la nada no tiene cualidades. \"Luz natural\" se refiere a la capacidad de raciocinio de la mente."},
-      {id:9,
-       context:"MAFALDA (Cómic)\n\nEn la historieta, Mafalda dice: \"¿De quién es el discurso que hay que masticar pero no hay que tragárselo?\"",
-       text:"Cuando Mafalda pregunta de quién es el discurso que hay que masticar \"pero no hay que tragárselo\", quiere decir que el discurso debe",
-       opts:["A. analizarse pero no hay que creerlo.","B. aprobarse pero no hay que admitirlo.","C. criticarse pero hay que creerlo.","D. aprobarse pero hay que reformularlo."],
-       correct:0,hint:"Juega con el doble sentido de masticar y tragar.",
-       comp:"Comprensión · Identifica paráfrasis de un enunciado.",
-       nivel:2,
-       explain:"Lo que quiere decir Mafalda es que los discursos deben analizarse (\"masticarse\"), pero no deben creerse (\"tragarse\"). El enunciado juega con una acepción común de las palabras masticar y tragar."},
-      {id:10,
-       context:"MAFALDA (Cómic)\n\nMafalda: \"¿De quién es el discurso que hay que masticar pero no hay que tragárselo?\"\nPadre (con expresión de resignación): \"Mmm...\"\nEn la caricatura se observa al padre de Mafalda con expresión de resignación.",
-       text:"La expresión en la cara del padre al oír la pregunta de Mafalda se debe a que",
-       opts:["A. no está de acuerdo con lo que dice Mafalda.","B. no entendió lo que Mafalda quería decir.","C. le disgustó que Mafalda lo interrumpiera tan súbitamente.","D. no esperaba la interpretación que hizo Mafalda de sus palabras."],
-       correct:3,hint:"La expresión es de resignación, no de desacuerdo.",
-       comp:"Comprensión · Establece relaciones en texto discontinuo.",
-       nivel:3,
-       explain:"El papá le está explicando a su hijo que debe masticar el chicle, pero no tragárselo. Su expresión en el segundo recuadro se relaciona con la interpretación irónica que hizo Mafalda de sus palabras."},
-      {id:11,
-       context:"MAFALDA (Cómic)\n\nMafalda: \"¿De quién es el discurso que hay que masticar pero no hay que tragárselo?\"",
-       text:"¿Cuál de las siguientes afirmaciones describe un supuesto implícito en el cómic?",
-       opts:["A. Los discursos de los políticos son engañosos.","B. Los chicles son malos para la salud de los niños.","C. Los padres no entienden a sus hijos.","D. Los discursos de los políticos son difíciles."],
-       correct:0,hint:"La crítica se dirige al discurso político.",
-       comp:"Reflexión · Identifica supuestos implícitos.",
-       nivel:4,
-       explain:"La caricatura critica el discurso político. Si es necesario analizar el discurso y no creerlo, es porque los discursos políticos suelen ser engañosos. Si no lo fueran, la advertencia de Mafalda sería innecesaria."},
-      {id:12,
-       context:"MAFALDA (Cómic)\n\nMafalda: \"¿De quién es el discurso que hay que masticar pero no hay que tragárselo?\"",
-       text:"Con este cómic el autor pretende",
-       opts:["A. criticar la manera como los políticos hacen sus discursos.","B. llamar la atención sobre cómo debemos tomar los discursos políticos.","C. mostrar la relación entre comer chicle y los discursos de los políticos.","D. disuadir a las personas de escuchar los discursos de los políticos."],
-       correct:0,hint:"El chicle es una excusa para criticar algo.",
-       comp:"Reflexión · Infiere el propósito comunicativo.",
-       nivel:4,
-       explain:"La caricatura critica los discursos engañosos de los políticos. El chicle es solo una excusa ingeniosa para criticar el discurso de los políticos."},
-      {id:13,
-       context:"LA NIEVE DEL ALMIRANTE\n\nSiempre me ha sucedido lo mismo: las empresas en las que me lanzo tienen el estigma de lo indeterminado, la maldición de una artera mudanza. Y aquí voy, río arriba, como un necio, sabiendo de antemano en lo que irá a parar todo. En la selva, en donde nada me espera, cuya monotonía y clima de cueva de iguanas, me hace mal y me entristece.\n\nLejos del mar, sin hembras y hablando un idioma de tarados. Y, entretanto, mi querido Abdul Bashur, camarada de tantas noches a orillas del Bósforo, de tantos intentos inolvidables por hacer dinero fácil en Valencia y Toulon; esperándome y pensando que tal vez haya muerto. Me intriga sobremanera la forma como se repiten en mi vida estas caídas, estas decisiones erróneas desde su inicio, estos callejones sin salida cuya suma vendría a ser la historia de mi existencia.",
-       text:"De las siguientes razones, ¿cuál NO explica el desasosiego del personaje?",
-       opts:["A. La insatisfacción con su vida en general.","B. El terreno agreste en el que se encuentra.","C. Los negocios pendientes con Abdul Bashur.","D. La creencia de haber tomado malas decisiones."],
-       correct:2,hint:"Los negocios con Abdul Bashur no le generan preocupación.",
-       comp:"Comprensión · Identifica las ideas de un texto.",
-       nivel:2,
-       explain:"Los negocios con Abdul Bashur no son motivo de desasosiego para el personaje. Le inquieta saber que quizás su camarada piense que esté muerto, pero no los negocios que tiene con él."},
-      {id:14,
-       context:"LA NIEVE DEL ALMIRANTE\n\nY aquí voy, río arriba, como un necio, sabiendo de antemano en lo que irá a parar todo. En la selva, en donde nada me espera, cuya monotonía y clima de cueva de iguanas, me hace mal y me entristece.",
-       text:"La narración ocurre en",
-       opts:["A. una cueva de iguanas.","B. un navío en el río Bósforo.","C. un lugar desértico lejos del mar.","D. una embarcación, en algún río."],
-       correct:3,hint:"El personaje va \"río arriba\".",
-       comp:"Comprensión · Ubica información explícita sobre lugar.",
-       nivel:1,
-       explain:"El personaje afirma: \"Y aquí voy, río arriba\". La narración ocurre en una embarcación subiendo por un río, en la selva."},
-      {id:15,
-       context:"LA NIEVE DEL ALMIRANTE\n\nMe intriga sobremanera la forma como se repiten en mi vida estas caídas, estas decisiones erróneas desde su inicio, estos callejones sin salida cuya suma vendría a ser la historia de mi existencia.",
-       text:"El autor utiliza",
-       opts:["A. eufemismos, para expresar el disgusto del narrador sin ofender al lector.","B. reflexiones, para presentar la experiencia y el estado de ánimo del narrador.","C. juegos de palabras, para asociar conceptos y recalcar el hastío del narrador.","D. redundancias, para generar un tono triste y sombrío en el discurso del narrador."],
-       correct:1,hint:"El personaje reflexiona sobre su vida.",
-       comp:"Reflexión · Reconoce recursos retóricos.",
-       nivel:3,
-       explain:"En el texto, el personaje reflexiona sobre su pasado. Mientras lo hace, cuenta algunas de sus experiencias y detalla su melancolía y su tristeza."},
-      {id:16,
-       context:"LA NIEVE DEL ALMIRANTE\n\nY aquí voy, río arriba, como un necio, sabiendo de antemano en lo que irá a parar todo. En la selva, en donde nada me espera, cuya monotonía y clima de cueva de igganas, me hace mal y me entristece.",
-       text:"La narración ocurre durante",
-       opts:["A. una temporada de artera mudanza.","B. un periodo de monotonía de la selva.","C. un viaje hacia una zona selvática.","D. una época lejana en Valencia y Toulon."],
-       correct:1,hint:"El personaje ya está en la selva.",
-       comp:"Comprensión · Ubica información sobre el tiempo.",
-       nivel:2,
-       explain:"El personaje ya se encuentra en la selva, navegando río arriba. La historia ocurre durante su monótono viaje por el río, no durante una época en Valencia y Toulon (que son recuerdos del pasado)."},
-      {id:17,
-       context:"EL RÍO (Yagé)\n\nLo que asombró más a Schultes fue menos el efecto puro de las drogas –para ese entonces, después de todo, se estaba acostumbrando a la inmersión de su consciencia en el color– que el implícito problema intelectual planteado por esos complejos preparados. La flora amazónica contiene, literalmente, decenas de miles de especies. ¿Cómo aprendieron los indios a identificar y combinar en forma tan refinada estas plantas morfológicamente distintas, que poseían propiedades químicas tan peculiares y complementarias? La explicación científica tradicional es el tanteo –término razonable que puede bien dar razón de ciertas innovaciones–, pero en otro nivel, como comprobó Schultes después de pasar más tiempo en la selva, es un eufemismo que esconde el hecho de que los etnobotánicos tienen una idea muy vaga de cómo los indios hicieron sus descubrimientos en primer lugar.\n\nEl problema del tanteo, de la prueba por eliminación, es que la elaboración de los preparados a menudo implica procedimientos muy complejos o rinde resultados de escaso o ningún valor. El yagé es un bejuco incomible y sin características definidas que rara vez florece. Es cierto que su corteza es amarga, lo cual a menudo es indicio de sus propiedades medicinales, pero no lo es más que cientos de otras lianas de la selva. La infusión de la corteza causa severos vómitos y diarrea, condiciones que desalentarían cualquier experimentación adicional.",
-       text:"¿Cuál de los siguientes fragmentos sería la continuación más coherente del texto en términos de estilo y contenido?",
-       opts:["A. \"Pero los indios no solo persistieron sino que se hicieron tan hábiles en la manipulación de los diferentes ingredientes que los chamanes desarrollaron individualmente docenas de recetas\".","B. \"Ingeridos oralmente, sin embargo, estos potentes compuestos no producen ningún efecto, pues una enzima propia del intestino humano, la monoamina oxidasa (MAO), los neutraliza\".","C. \"En el caso del curare, Schultes descubrió que la corteza raspada se coloca debajo de una hoja en forma de embudo, colgada entre dos lanzas\".","D. \"Los indios tenían, como es natural, sus propias explicaciones, ricos relatos cosmológicos que desde su punto de vista eran perfectamente lógicos\"."],
-       correct:0,hint:"El texto termina hablando del tanteo y la corteza del yagé.",
-       comp:"Reflexión · Establece relaciones entre un texto y su continuación.",
-       nivel:4,
-       explain:"Dado que el último párrafo trata sobre el problema del tanteo y los efectos de la corteza del yagé, es de esperar que la continuación afirme que, a pesar de las dificultades, los indígenas lograron producir la mezcla."},
-      {id:18,
-       context:"EL RÍO (Yagé)\n\nEl problema del tanteo, de la prueba por eliminación, es que la elaboración de los preparados a menudo implica procedimientos muy complejos o rinde resultados de escaso o ningún valor. La infusión de la corteza causa severos vómitos y diarrea, condiciones que desalentarían cualquier experimentación adicional.",
-       text:"El autor concluye que",
-       opts:["A. la ciencia tradicional es infalible, pero no es suficiente para explicar las prácticas indígenas.","B. el tanteo no es una explicación adecuada para dar cuenta del origen de las complejas preparaciones del yagé.","C. el vómito y la diarrea que produce el yagé prueban que el tanteo no explica el origen del uso de esta planta.","D. las teorías de Schultes sobre el origen de las complejas preparaciones del yagé eran acertadas, pero insuficientes."],
-       correct:1,hint:"El tanteo no explica bien cómo los indígenas descubrieron las combinaciones.",
-       comp:"Comprensión · Infiere la conclusión de un texto.",
-       nivel:3,
-       explain:"Si la corteza causa efectos que desalentarían la experimentación y a menudo los procedimientos son complejos o rinden resultados de escaso valor, entonces el tanteo no es una explicación adecuada para las combinaciones a las que llegaron los indígenas."},
-      {id:19,
-       context:"EL RÍO (Yagé)\n\nCuando el yagé se combina con alguna de las dos plantas agregadas, el resultado es un potente efecto sinérgico, una versión bioquímica de una totalidad mayor que la suma de sus partes.",
-       text:"La palabra \"alguna\" indica que del yagé resulta un potente efecto sinérgico cuando se le agregan",
-       opts:["A. la Psychotria virids y la Dyplopterys cabrerana.","B. la Psychotria virids o la Dyplopterys cabrerana.","C. solo la Psychotria virids.","D. solo la Dyplopterys cabrerana."],
-       correct:1,hint:"\"Alguna\" indica que puede ser una u otra.",
-       comp:"Comprensión · Comprende el significado de cuantificadores.",
-       nivel:2,
-       explain:"La palabra \"alguna\" se refiere tanto a la Psychotria virids como a la Dyplopterys cabrerana. Cuando la una o la otra se mezcla con el yagé, se produce el efecto sinérgico."},
-      {id:20,
-       context:"EL RÍO (Yagé)\n\nDio la casualidad de que Schultes había tropezado con un hecho de alquimia chamánica sin paralelo en el Amazonas. Los ingredientes psicoactivos de la corteza del yagé son los beta-carbolíneos harmine y harmaline. Hace mucho tiempo, sin embargo, los chamanes del noroeste amazónico descubrieron que se podían ampliar dramáticamente sus efectos añadiendo unas cuantas plantas secundarias.\n\n[...] Cuando el yagé se combina con alguna de las dos plantas agregadas, el resultado es un potente efecto sinérgico.",
-       text:"De lo expresado en los dos primeros párrafos, es acertado afirmar que",
-       opts:["A. el primero presenta la tesis del autor y el segundo la complementa con ejemplos.","B. el primero introduce el tema y el segundo presenta la tesis con ejemplos.","C. el primero presenta la estructura del texto y el segundo la desarrolla con ejemplos.","D. el primero introduce el tema y el segundo lo desarrolla con ejemplos."],
-       correct:3,hint:"El primer párrafo presenta el tema general.",
-       comp:"Comprensión · Comprende la estructura formal de un texto.",
-       nivel:3,
-       explain:"En el primer párrafo se introduce el tema del yagé y sus añadidos, y en el segundo párrafo se exponen ejemplos concretos sobre añadidos al yagé como la Psychotria virids y la Dyplopterys cabrerana."}
-    ]
-  }
-};
+
 
 /* ════════════ NIVEL INFO ════════════ */
 const NIVEL_INFO = {
@@ -1356,8 +799,8 @@ function getNivel(pct, subject) {
   return 1;
 }
 
-/* ════════════ STATE ════════════ */
-let state={subject:null,questions:[],current:0,answers:[],hintsUsed:0,immediateFeedback:false,timedMode:true,timeRemaining:0,timerInterval:null,timeExpired:false};
+/* ════════════ STATE - Now in shared/js/app.js ════════════ */
+// let state is defined in ../shared/js/app.js
 const CORRECT=q=>q.correct;
 
 function shuffleOpts(q){
@@ -1554,6 +997,7 @@ function selectOpt(idx){
 }
 
 function nextQuestion(){
+  if(state.immediateFeedback) hideCuyAvatars();
   if(state.current<state.questions.length-1){state.current++;showQuestion();}
   else{showResults();}
 }
@@ -1707,9 +1151,41 @@ document.addEventListener('DOMContentLoaded',()=>{
   selectSubject('mat');
 });
 if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-document.addEventListener('click',function(e){
-  if(e.target.closest('#btnNext')){
-    if(state.immediateFeedback) hideCuyAvatars();
+</script>
+
+<script>
+// ==============================================
+// INTEGRACIÓN: Inicialización del simulacro
+// ==============================================
+const SIMULACRO_ID = 2;
+
+// QB se carga desde questions.js y se completa aquí
+const QB = {};
+
+// Inicializar cuando todo esté listo
+window.addEventListener('DOMContentLoaded', function() {
+  // Si hay preguntas centralizadas, usarlas para actualizar QB
+  if (typeof QUESTIONS !== 'undefined') {
+    const simulacroQuestions = QUESTIONS.filter(q => q.simulacros && q.simulacros.includes(SIMULACRO_ID));
+    if (simulacroQuestions.length > 0) {
+      const subjects = ['lc', 'mat'];
+      const SUBJ_INFO = {
+        lc: { name: 'Lectura Crítica', icon: '📖', tag: 'tag-lc', color: '#6c4bc0', desc: 'Evalúa tu capacidad de interpretar, analizar y reflexionar sobre textos.', competencias: ['Identificar y entender los contenidos locales', 'Comprender cómo se articulan las partes de un texto', 'Reflexionar a partir de un texto y evaluar su contenido'] },
+        mat: { name: 'Matemáticas', icon: '📐', tag: 'tag-mat', color: '#1a3a5c', desc: 'Evalúa competencias matemáticas.', competencias: ['Interpretación y representación', 'Formulación y ejecución', 'Argumentación'] }
+      };
+      subjects.forEach(subj => {
+        const subjQuestions = simulacroQuestions.filter(q => q.subject === subj);
+        if (subjQuestions.length > 0) {
+          QB[subj] = { ...SUBJ_INFO[subj], questions: subjQuestions };
+        }
+      });
+      console.log('QB actualizado con preguntas centralizadas para simulacro', SIMULACRO_ID);
+    }
+  }
+  
+  // Inicializar la app
+  if (typeof initApp === 'function') {
+    initApp(SIMULACRO_ID);
   }
 });
 </script>

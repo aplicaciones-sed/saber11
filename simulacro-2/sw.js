@@ -1,10 +1,16 @@
-const CACHE = 'saber11-sim-2020-v3';
+const CACHE = 'simulacro-2-v3';
 const ASSETS = [
   './index.html',
   './manifest.json',
-  './icon-192.png',
-  './icon-512.png',
-  './icon-escudo.svg'
+  './sw.js',
+  '../shared/css/exam.css',
+  '../shared/js/app.js',
+  '../shared/js/data.js',
+  '../js/config.js',
+  '../js/questions.js',
+  '../icon-192.png',
+  '../icon-512.png',
+  '../icon-escudo.svg',
 ];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
