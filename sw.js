@@ -1,11 +1,11 @@
-const CACHE = 'portal-sed-narino-v10';
+const CACHE = 'portal-sed-narino-v11';
 
 const ASSETS = [
   './',
   './index.html',
-  './css/portal.css',
-  './js/portal.js',
-  './js/config.js',
+  './shared/css/portal.css',
+  './shared/css/exam.css',
+  './js/simulacros.js',
   './js/questions.js',
   './manifest.json',
   './assets/img/icon-192.png',
@@ -14,13 +14,17 @@ const ASSETS = [
   './assets/img/splash.png',
   './assets/img/banner_web.png',
   './assets/img/banner_movil.png',
-  './shared/css/exam.css',
-  './shared/js/app.js',
-  './shared/js/data.js',
+  './assets/img/logo.svg',
   './simulacro/index.html',
   './simulacro/manifest.json',
   './simulacro/sw.js',
-  './js/simulacros.js',
+  './shared/js/exam.js',
+  './shared/js/nivel.js',
+  './shared/js/meta.js',
+  './shared/img/test_triangulo_eq.png',
+  './shared/img/test_triangulo_recto.png',
+  './shared/img/test_triangulo_acut.png',
+  './shared/img/test_cuadrilatero.png',
 ];
 
 self.addEventListener('install', e => {

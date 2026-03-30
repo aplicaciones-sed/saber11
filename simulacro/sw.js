@@ -1,10 +1,9 @@
-const CACHE = 'simulacro-v4';
+const CACHE = 'simulacro-v5';
 const ASSETS = [
   './index.html',
   './manifest.json',
   './sw.js',
   '../shared/css/exam.css',
-  '../shared/js/app.js',
   '../shared/js/exam.js',
   '../shared/js/meta.js',
   '../shared/js/nivel.js',
@@ -16,6 +15,10 @@ const ASSETS = [
   '../assets/img/logo.svg',
   '../assets/img/cuy_correcto_ok.png',
   '../assets/img/cuy_incorrecto_ok.png',
+  '../shared/img/test_triangulo_eq.png',
+  '../shared/img/test_triangulo_recto.png',
+  '../shared/img/test_triangulo_acut.png',
+  '../shared/img/test_cuadrilatero.png',
 ];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
