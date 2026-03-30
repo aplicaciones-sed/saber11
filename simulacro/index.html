@@ -17,7 +17,6 @@
 <script src="../js/questions.js"></script>
 <script src="../shared/js/nivel.js"></script>
 <script src="../shared/js/meta.js"></script>
-<script src="../shared/js/app.js"></script>
 <script src="../shared/js/exam.js"></script>
 </head>
 <body>
@@ -174,6 +173,7 @@ function getSimulacroFromURL() {
 
 function configureSimulacro() {
   SIMULACRO_ID = getSimulacroFromURL();
+  state.simulacroId = SIMULACRO_ID;
   SIMULACRO_CONFIG = SIMULACROS[SIMULACRO_ID] || SIMULACROS[1];
   
   document.getElementById('simulacroBadge').textContent = SIMULACRO_CONFIG.shortName;
@@ -239,6 +239,7 @@ window.addEventListener('DOMContentLoaded', function() {
   
   if (typeof QUESTIONS !== 'undefined') {
     detectActiveSubjects();
+    renderSubjects();
     
     const simulacroQuestions = QUESTIONS.filter(q => q.simulacros && q.simulacros.includes(SIMULACRO_ID));
     if (simulacroQuestions.length > 0) {
@@ -252,10 +253,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
   } else {
     detectActiveSubjects();
-  }
-  
-  if (typeof initApp === 'function') {
-    initApp(SIMULACRO_ID);
+    renderSubjects();
   }
 });
 </script>

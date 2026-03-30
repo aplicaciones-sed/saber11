@@ -1,6 +1,24 @@
 // ════════════ SHARED EXAM LOGIC ════════════
 // Common functions for both simulacro-1 and simulacro-2
 
+/* ════════════ STATE ════════════ */
+let state = {
+  simulacroId: null,
+  subject: null,
+  questions: [],
+  current: 0,
+  answers: [],
+  hintsUsed: 0,
+  allSubjects: false,
+  allQueue: [],
+  allAnswers: {},
+  immediateFeedback: false,
+  timedMode: true,
+  timeRemaining: 0,
+  timerInterval: null,
+  timeExpired: false
+};
+
 /* ════════════ SHUFFLE ════════════ */
 function shuffleOpts(q){
   if(!q._origOpts){
