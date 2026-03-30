@@ -11,7 +11,8 @@ const QB = {};
 function getSimulacroFromURL() {
   const params = new URLSearchParams(window.location.search);
   const id = parseInt(params.get('simulacro'), 10);
-  return (id === 1 || id === 2) ? id : 1;
+  const validIds = Object.keys(SIMULACROS).map(Number);
+  return validIds.includes(id) ? id : validIds[0] || 1;
 }
 
 function configureSimulacro() {
@@ -29,12 +30,6 @@ function configureSimulacro() {
   document.querySelector('meta[name="apple-mobile-web-app-title"]').setAttribute('content', 
     SIMULACRO_CONFIG.shortName + ' Nariño');
   
-  const btnStartAll = document.getElementById('btnStartAll');
-  if (SIMULACRO_ID === 2) {
-    btnStartAll.style.display = 'none';
-  } else {
-    btnStartAll.style.display = '';
-  }
 }
 
 function detectActiveSubjects() {
@@ -70,9 +65,9 @@ function renderSubjects() {
 function getSubjectQuestionCount(subject) {
   if (typeof QUESTIONS !== 'undefined') {
     const count = QUESTIONS.filter(q => q.subject === subject && q.simulacros && q.simulacros.includes(SIMULACRO_ID)).length;
-    return count > 0 ? count : (SIMULACRO_ID === 2 ? 20 : 5);
+    return count > 0 ? count : 5;
   }
-  return SIMULACRO_ID === 2 ? 20 : 5;
+  return 5;
 }
 
 /* ════════════ STATE ════════════ */
@@ -120,12 +115,15 @@ function selectSubject(key){
 }
 
 function startAllSubjects(){
-  state.allSubjects=true;state.allQueue=['lc','mat','soc','cn','ing'];
+  state.allSubjects=true;state.allQueue=[...ACTIVE_SUBJECTS];
   state.allAnswers={};
+  state.subject=state.allQueue.shift();
   if(state.timedMode){
-    state.timeRemaining=state.allQueue.reduce((acc,key)=>acc+QB[key].questions.length*60,0);
+    const currentTime=QB[state.subject].questions.length*60;
+    const remainingTime=state.allQueue.reduce((acc,key)=>acc+QB[key].questions.length*60,0);
+    state.timeRemaining=currentTime+remainingTime;
   }
-  state.subject=state.allQueue.shift();beginSubject();
+  beginSubject();
 }
 
 function startQuiz(){stopTimer();state.allSubjects=false;beginSubject();}

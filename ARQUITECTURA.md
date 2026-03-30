@@ -44,36 +44,39 @@ geotest/
 ├── sw.js                        # Service Worker PWA (portal)
 ├── manifest.json               # Manifiesto PWA (portal)
 │
-├── js/
-│   ├── portal.js               # Lógica del portal
-│   ├── questions.js            # Banco de preguntas centralizado (78 preguntas)
-│   └── simulacros.js          # Configuración de simulacros
-│
 ├── shared/
-│   ├── css/
-│   │   └── exam.css            # CSS compartido
+│   ├── js/
+│   │   ├── questions.js       # Banco de preguntas
+│   │   ├── data.js            # SUBJ_INFO, SIMULACROS, META_QB, NIVEL_INFO
+│   │   ├── exam.js            # Lógica del examen
+│   │   └── portal.js          # Funciones del portal
 │   │
-│   └── js/
-│       ├── app.js              # Definición de state
-│       ├── nivel.js            # NIVEL_INFO, getNivel()
-│       ├── meta.js             # META_QB (metadatos de preguntas)
-│       └── exam.js             # Funciones compartidas
+│   ├── css/
+│   │   ├── portal.css         # Estilos del portal
+│   │   └── exam.css           # Estilos del examen
+│   │
+│   └── img/
+│       ├── portal/             # Imágenes del portal
+│       │   ├── icon-192.png
+│       │   ├── icon-512.png
+│       │   ├── icon-escudo.svg
+│       │   ├── logo.svg
+│       │   ├── splash.png
+│       │   ├── banner_web.png
+│       │   ├── banner_movil.png
+│       │   ├── cuy_correcto_ok.png
+│       │   └── cuy_incorrecto_ok.png
+│       │
+│       └── questions/          # Imágenes de preguntas
+│           └── test_*.png
 │
 ├── simulacro/                  # Simulacro unificado
 │   ├── index.html              # Detecta ?simulacro=1 o =2
-│   ├── manifest.json
-│   └── sw.js
+│   ├── sw.js                   # Service worker
+│   └── manifest.json
 │
 └── assets/
-    ├── img/
-    │   ├── logo.svg           # Logo SED Nariño
-    │   ├── icon-192.png       # Icono PWA
-    │   ├── icon-512.png       # Icono PWA
-    │   ├── icon-escudo.svg    # Escudo SVG
-    │   ├── cuy_correcto_ok.png
-    │   └── cuy_incorrecto_ok.png
-    │
-    └── docs/                  # PDFs de referencia
+    └── docs/                  # PDFs de referencia (ICFES)
 ```
 
 ---
@@ -81,7 +84,7 @@ geotest/
 ## 3. Configuración de Simulacros
 
 ```javascript
-// js/simulacros.js
+// shared/js/data.js
 const SIMULACROS = {
   1: {
     id: 1,
@@ -126,11 +129,8 @@ const SIMULACROS = {
 │                                    │                                    │
 │  2. JavaScript (carga secuencial)                                     │
 │     ┌──────────────────────────────────────────────────────────────┐    │
-│     │ <script src="../js/simulacros.js"></script>                │    │
-│     │ <script src="../js/questions.js"></script>                 │    │
-│     │ <script src="../shared/js/nivel.js"></script>               │    │
-│     │ <script src="../shared/js/meta.js"></script>                │    │
-│     │ <script src="../shared/js/app.js"></script>                 │    │
+│     │ <script src="../shared/js/questions.js"></script>           │    │
+│     │ <script src="../shared/js/data.js"></script>                │    │
 │     │ <script src="../shared/js/exam.js"></script>                │    │
 │     └──────────────────────────────────────────────────────────────┘    │
 │                                                                          │
@@ -238,7 +238,7 @@ function configureSimulacro() {
 ## 6. Estructura del Estado (State)
 
 ```javascript
-// Definido en shared/js/app.js
+// Definido en shared/js/exam.js
 let state = {
   simulacroId: null,        // 1 o 2
   subject: null,            // 'lc', 'mat', 'soc', 'cn', 'ing'
@@ -400,9 +400,10 @@ const QUESTIONS = [
 │  │ ASSETS DEL PORTAL                                                │   │
 │  ├──────────────────────────────────────────────────────────────────┤   │
 │  │   - index.html, manifest.json, sw.js                            │   │
-│  │   - js/portal.js, js/questions.js, js/simulacros.js             │   │
-│  │   - assets/img/*                                                 │   │
-│  │   - shared/css/exam.css, shared/js/*.js                         │   │
+│  │   - shared/js/questions.js, shared/js/data.js                    │   │
+│  │   - shared/js/portal.js                                         │   │
+│  │   - shared/css/portal.css                                       │   │
+│  │   - shared/img/portal/*                                          │   │
 │  │   - simulacro/index.html, simulacro/sw.js                       │   │
 │  └──────────────────────────────────────────────────────────────────┘   │
 │                                                                          │
@@ -410,9 +411,10 @@ const QUESTIONS = [
 │  │ ASSETS DEL SIMULACRO                                             │   │
 │  ├──────────────────────────────────────────────────────────────────┤   │
 │  │   - index.html, manifest.json, sw.js                            │   │
-│  │   - ../js/simulacros.js, ../js/questions.js                     │   │
-│  │   - ../shared/css/exam.css, ../shared/js/*.js                    │   │
-│  │   - ../assets/img/*                                              │   │
+│  │   - ../shared/js/questions.js, ../shared/js/data.js             │   │
+│  │   - ../shared/js/exam.js                                        │   │
+│  │   - ../shared/css/exam.css                                      │   │
+│  │   - ../shared/img/*                                              │   │
 │  └──────────────────────────────────────────────────────────────────┘   │
 │                                                                          │
 │  Estrategia: Cache-first with network fallback                          │
@@ -600,9 +602,9 @@ s-results  → Resultados y revisión de respuestas
 ```
 
 ### Imágenes Centralizadas
-- Logo: `assets/img/logo.svg`
-- Iconos PWA: `assets/img/icon-192.png`, `icon-512.png`, `icon-escudo.svg`
-- Avatares: `assets/img/cuy_correcto_ok.png`, `cuy_incorrecto_ok.png`
+- Logo: `shared/img/portal/logo.svg`
+- Iconos PWA: `shared/img/portal/icon-192.png`, `icon-512.png`, `icon-escudo.svg`
+- Avatares: `shared/img/portal/cuy_correcto_ok.png`, `cuy_incorrecto_ok.png`
 
 ---
 

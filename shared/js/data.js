@@ -14,17 +14,25 @@ const SIMULACROS = {
   1: {
     id: 1,
     nombre: "Simulacro 1",
-    titulo: "Simulador SABER 11°",
+    titulo: "SABER 11°",
     descripcion: "Examen completo - Todas las materias",
-    shortName: "SABER 11",
+    shortName: "Sim1",
     cacheName: "simulacro-v1"
   },
   2: {
     id: 2,
     nombre: "Simulacro 2",
-    titulo: "SABER 11° · Simulacro 2020",
-    descripcion: "Matemáticas y Lectura Crítica",
-    shortName: "Sim 2020",
+    titulo: "SABER 11°",
+    descripcion: "Matemáticas, Lectura Crítica e Inglés",
+    shortName: "Sim2",
+    cacheName: "simulacro-v1"
+  },
+  3: {
+    id: 3,
+    nombre: "Simulacro 3",
+    titulo: "SABER 11°",
+    descripcion: "Prueba",
+    shortName: "Sim3",
     cacheName: "simulacro-v1"
   }
 };
@@ -39,6 +47,11 @@ function getSimulacroSubjects(simId) {
     name: SUBJ_INFO[key].name,
     icon: SUBJ_INFO[key].icon
   }));
+}
+
+function getSimulacroQuestionCount(simId) {
+  if (typeof QUESTIONS === 'undefined') return 0;
+  return QUESTIONS.filter(q => q.simulacros && q.simulacros.includes(simId)).length;
 }
 
 /* ════════════ META_QB - Question Metadata ════════════ */

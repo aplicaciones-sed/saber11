@@ -72,59 +72,9 @@
          <div class="section-title">Simulacros disponibles</div>
          <div class="section-sub">Cada simulacro incluye preguntas e imágenes reales del examen ICFES con
             retroalimentación inmediata.</div>
-         <div class="simulacros-grid">
-
-            <!-- Simulacro 1 -->
-            <div class="sim-card">
-               <div class="sim-card-header">
-                  <div class="sim-year">Simulacro 1</div>
-                  <div class="sim-title">SABER 11° </div>
-               </div>
-                <div class="sim-body">
-                   <div class="sim-badges" id="sim-badges-1"></div>
-                   <p class="sim-desc">Simulacro completo con 38 preguntas reales del ICFES, imágenes originales y reporte detallado de resultados.</p>
-                </div>
-                <div class="sim-footer">
-                   <a class="btn btn-primary" href="simulacro/index.html?simulacro=1" style="flex:1">Iniciar simulacro ➜</a>
-                </div>
-             </div>
-
-              <!-- SIMULACRO 2020 (MATEMÁTICAS + LECTURA CRÍTICA) -->
-              <div class="sim-card">
-                 <div class="sim-card-header" style="background:#1a3a5c">
-                    <div class="sim-year">Simulacro 2</div>
-                    <div class="sim-title">SABER 11° </div>
-                 </div>
-                 <div class="sim-body">
-                    <div class="sim-badges" id="sim-badges-2"></div>
-                    <p class="sim-desc">Simulacro completo con 20 preguntas de Matemáticas y 20 de Lectura Crítica reales del ICFES con explicaciones detalladas.</p>
-                </div>
-                <div class="sim-footer">
-                   <a class="btn btn-primary" href="simulacro/index.html?simulacro=2" style="flex:1">Iniciar simulacro ➜</a>
-                </div>
-             </div>
-
-             <!-- SABER 11 2018-1 — PRÓXIMAMENTE -->
-            <div class="sim-card">
-               <div class="sim-card-header" style="background:#374151">
-                  <div class="sim-year" style="color:#9ca3af">2018-1</div>
-                  <div class="sim-title" style="color:rgba(255,255,255,.4)">SABER 11° · Versión 1</div>
-               </div>
-               <div class="sim-body">
-                  <div class="sim-badges">
-                     <span class="sim-badge">📖 Lectura Crítica</span>
-                     <span class="sim-badge">📐 Matemáticas</span>
-                     <span class="sim-badge">🌎 Sociales</span>
-                     <span class="sim-badge">🔬 Ciencias</span>
-                     <span class="sim-badge">🇬🇧 Inglés</span>
-                  </div>
-                  <p class="sim-desc">Simulacro basado en el examen ICFES del primer semestre de 2018. En desarrollo.
-                  </p>
-               </div>
-               <div class="sim-footer">
-                  <span class="btn btn-disabled" style="flex:1">🕐 Próximamente</span>
-               </div>
-            </div>
+         <div class="simulacros-grid" id="simulacros-grid">
+            <!-- Cards rendered dynamically by renderSimulacroCards() -->
+         </div>
 
             <!-- SABER 11 2019-1 — PRÓXIMAMENTE -->
             <div class="sim-card">

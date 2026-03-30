@@ -20,16 +20,36 @@ function showPage(name) {
 
 function renderSimulacroBadges() {
    if (typeof getSimulacroSubjects !== 'function') return;
-   [1, 2].forEach(simId => {
-      const container = document.getElementById('sim-badges-' + simId);
-      if (!container) return;
-      const subjects = getSimulacroSubjects(simId);
-      if (subjects.length > 0) {
-         container.innerHTML = subjects.map(s =>
-            '<span class="sim-badge">' + s.icon + ' ' + s.name + '</span>'
-         ).join('');
-      }
-   });
+   renderSimulacroCards();
+}
+
+function renderSimulacroCards() {
+   if (typeof SIMULACROS === 'undefined' || typeof QUESTIONS === 'undefined') return;
+   
+   const grid = document.getElementById('simulacros-grid');
+   if (!grid) return;
+   
+   grid.innerHTML = Object.values(SIMULACROS).map(sim => {
+      const subjects = getSimulacroSubjects(sim.id);
+      const count = getSimulacroQuestionCount(sim.id);
+      const badges = subjects.map(s => 
+         '<span class="sim-badge">' + s.icon + ' ' + s.name + '</span>'
+      ).join('');
+      
+      return '<div class="sim-card">' +
+         '<div class="sim-card-header">' +
+            '<div class="sim-year">' + sim.nombre + '</div>' +
+            '<div class="sim-title">' + sim.titulo.replace('·', '<br>') + '</div>' +
+         '</div>' +
+         '<div class="sim-body">' +
+            '<div class="sim-badges">' + badges + '</div>' +
+            '<p class="sim-desc">' + count + ' preguntas · ' + sim.descripcion + '</p>' +
+         '</div>' +
+         '<div class="sim-footer">' +
+            '<a class="btn btn-primary" href="simulacro/index.html?simulacro=' + sim.id + '" style="flex:1">Iniciar simulacro ➜</a>' +
+         '</div>' +
+      '</div>';
+   }).join('');
 }
 
 if ('serviceWorker' in navigator) {

@@ -16,7 +16,7 @@
 
 const QUESTIONS = [
   {
-    id: 101, simulacros: [1], subject: 'lc',
+    id: 101, simulacros: [1,3], subject: 'lc',
     context: '<div style="margin-bottom:6px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#7a5010;padding:3px 0">Responda la pregunta 1 de acuerdo con la siguiente información:</div><div style="font-size:14px;line-height:1.75;color:#1a1a1a;text-align:justify">Aunque las comodidades de esta vida pueden aumentarse con la ayuda mutua, sin embargo, como eso se puede conseguir dominando a los demás mejor que asociándose con ellos, nadie debe dudar de que los hombres por su naturaleza, si no existiera el miedo, se verían inclinados más al dominio que a la sociedad. Por lo tanto, hay que afirmar que el origen de las sociedades grandes y duraderas no se ha debido a la mutua benevolencia de los hombres sino al miedo mutuo.</div><div style="margin-top:10px;font-size:11px;color:#888;font-style:italic;text-align:center">Tomado de: Hobbes, T. (1999). <em>Tratado sobre el ciudadano</em>. trad. Joaquín Rodríguez Feo. Madrid: Trotta.</div>',
     text: 'De acuerdo con las ideas expresadas en el texto, si "los hombres por su naturaleza están más inclinados al dominio que a la sociedad", ¿por qué aparecieron sociedades grandes y duraderas?',
     opts: ["A. Es natural para el hombre asociarse con otros para ejercer su dominio con seguridad.", "B. Para ampliar su capacidad de dominio, al hombre le resulta más efectivo vivir en sociedad.", "C. Es propio del hombre evitar todo tipo de dominio a través de las relaciones confiables que le brinda la vida en sociedad.", "D. El hombre busca la seguridad y es más seguro para él vivir en comunidad que estar expuesto a ser dominado por otro."],
@@ -99,7 +99,7 @@ const QUESTIONS = [
 
   // MAT - Matemáticas (9 preguntas)
   {
-    id: 201, simulacros: [1], subject: 'mat',
+    id: 201, simulacros: [1,3], subject: 'mat',
     contextImg: 'mat_fig1',
     contextImgCaption: 'Figura 1 — Mapa de la ciudad con puntos A, B y C',
     context: 'En la figura se presenta un mapa de la vista aérea de las calles de una ciudad. Cada cuadrilátero corresponde a un cuadrado. La ruta de A a C mide 25 cm. Cada cuadrado tiene lado de 5 cm.',
