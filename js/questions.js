@@ -3,9 +3,11 @@
 // - id: identificador único
 // - simulacros: array de simulacros a los que pertenece (ej: [1] o [1,2])
 // - subject: clave de la materia
-// - context/contexImg: contexto de la pregunta
+// - context/contextImg: contexto de la pregunta
+// - questionImg: imagen de la pregunta
 // - text: enunciado
 // - opts: opciones de respuesta
+// - optsImg: imágenes de opciones (array opcional de 4 elementos, null para sin imagen)
 // - correct: índice de respuesta correcta
 // - hint: pista
 // - explain: explicación/retroalimentación
@@ -79,6 +81,20 @@ const QUESTIONS = [
     comp: "Reflexiona a partir de un texto y evalúa su contenido.",
     nivel: 4,
     explain: "La lectura crítica exige contrastar las afirmaciones con evidencias."
+  },
+
+  // Pregunta de prueba con optsImg
+  {
+    id: 150, simulacros: [1], subject: 'mat',
+    context: 'Observe las siguientes figuras geométricas:',
+    text: '¿Cuál de las opciones corresponde a un triángulo rectángulo?',
+    opts: ["A. Figura con 3 lados iguales", "B. Figura con 1 ángulo recto", "C. Figura con todos los ángulos menores a 90°", "D. Figura con 4 lados"],
+    optsImg: ['test_triangulo_eq', 'test_triangulo_recto', 'test_triangulo_acut', 'test_cuadrilatero'],
+    correct: 1,
+    hint: "Un triángulo rectángulo tiene un ángulo de 90°.",
+    comp: "Interpretación y representación",
+    nivel: 2,
+    explain: "La figura B tiene un ángulo de 90°, característica del triángulo rectángulo."
   },
 
   // MAT - Matemáticas (9 preguntas)

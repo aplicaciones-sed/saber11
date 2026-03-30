@@ -6,14 +6,17 @@ function shuffleOpts(q){
   if(!q._origOpts){
     q._origOpts=[...q.opts];
     q._origCorrect=q.correct;
+    q._origOptsImg=q.optsImg ? [...q.optsImg] : null;
   }
   const origOpts=q._origOpts;
   const origCorrect=q._origCorrect;
+  const origOptsImg=q._origOptsImg;
   const order=[0,1,2,3];
   for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
   const newOpts=order.map(i=>origOpts[i]);
+  const newOptsImg=origOptsImg ? order.map(i=>origOptsImg[i]) : null;
   const newCorrect=order.indexOf(origCorrect);
-  return{...q, opts:newOpts, correct:newCorrect, _origCorrect:origCorrect};
+  return{...q, opts:newOpts, optsImg:newOptsImg, correct:newCorrect, _origCorrect:origCorrect};
 }
 
 /* ════════════ HOME ════════════ */
@@ -163,7 +166,7 @@ function showQuestion(){
   let ctxHtml='';
   if(q.contextImg){
     ctxHtml+=`<div class="q-context">`;
-    ctxHtml+=`<figure class="q-figure"><img src="${IMGS[q.contextImg]}" alt="${q.contextImgCaption||''}" class="q-img" loading="lazy">`;
+    ctxHtml+=`<figure class="q-figure"><img src="${getImg(q.contextImg)}" alt="${q.contextImgCaption||''}" class="q-img" loading="lazy">`;
     if(q.contextImgCaption) ctxHtml+=`<figcaption>${q.contextImgCaption}</figcaption>`;
     ctxHtml+=`</figure>`;
     if(q.context) ctxHtml+=`<div style="margin-top:10px">${q.context}</div>`;
@@ -175,7 +178,7 @@ function showQuestion(){
   document.getElementById('qText').innerHTML=q.text;
   let qImgHtml='';
   if(q.questionImg){
-    qImgHtml=`<figure class="q-figure"><img src="${IMGS[q.questionImg]}" alt="${q.questionImgCaption||''}" class="q-img" loading="lazy">`;
+    qImgHtml=`<figure class="q-figure"><img src="${getImg(q.questionImg)}" alt="${q.questionImgCaption||''}" class="q-img" loading="lazy">`;
     if(q.questionImgCaption) qImgHtml+=`<figcaption>${q.questionImgCaption}</figcaption>`;
     qImgHtml+=`</figure>`;
   }
@@ -183,9 +186,11 @@ function showQuestion(){
   let optsHtml='';
   q.opts.forEach((o,i)=>{
     const letter=['A','B','C','D'][i];
+    const optImg=q.optsImg&&q.optsImg[i]?`<img src="${getImg(q.optsImg[i])}" alt="Opción ${letter}" class="opt-img" loading="lazy">`:'';
     optsHtml+=`<button class="opt" id="opt${i}" onclick="selectOpt(${i})">
       <span class="opt-letter">${letter}</span>
-      <span>${o.replace(/^[A-D]\.\s*/,'')}</span>
+      <span class="opt-text">${o.replace(/^[A-D]\.\s*/,'')}</span>
+      ${optImg}
     </button>`;
   });
   document.getElementById('qOpts').innerHTML=optsHtml;
@@ -465,22 +470,25 @@ function showResults(){
             <span class="review-status ${correct?'status-correct':'status-wrong'}">${correct?'Correcto':'Incorrecto'}</span>
           </div>
           ${q.context?'<div class="review-context">'+q.context+'</div>':''}
-          ${q.contextImg&&IMGS[q.contextImg]?'<div class="review-img"><img src="'+IMGS[q.contextImg]+'" alt="Imagen de contexto" loading="lazy"></div>':''}
+          ${q.contextImg?'<div class="review-img"><img src="'+getImg(q.contextImg)+'" alt="Imagen de contexto" loading="lazy"></div>':''}
           <div class="review-question">${q.text||''}</div>
-          ${q.img&&IMGS[q.img]?'<div class="review-img"><img src="'+IMGS[q.img]+'" alt="Imagen de la pregunta" loading="lazy"></div>':''}
+          ${q.img?'<div class="review-img"><img src="'+getImg(q.img)+'" alt="Imagen de la pregunta" loading="lazy"></div>':''}
           <div class="review-answers">
             ${correct?`
             <div class="review-answer answer-correct">
               <span class="answer-label">Respuesta correcta</span>
               <span class="answer-text">${q.opts[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
+              ${q.optsImg&&q.optsImg[q.correct]?'<img src="'+getImg(q.optsImg[q.correct])+'" class="review-opt-img" alt="Imagen respuesta">':''}
             </div>`:`
             <div class="review-answer answer-wrong">
               <span class="answer-label">Tu respuesta</span>
               <span class="answer-text">${q.opts[userAns]?.replace(/^[A-D]\.\s*/,'') || '<em>Sin responder</em>'}</span>
+              ${q.optsImg&&userAns!==null&&q.optsImg[userAns]?'<img src="'+getImg(q.optsImg[userAns])+'" class="review-opt-img" alt="Tu respuesta">':''}
             </div>
             <div class="review-answer answer-correct">
               <span class="answer-label">Respuesta correcta</span>
               <span class="answer-text">${q.opts[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
+              ${q.optsImg&&q.optsImg[q.correct]?'<img src="'+getImg(q.optsImg[q.correct])+'" class="review-opt-img" alt="Imagen respuesta">':''}
             </div>`}
           </div>
           ${fixedExplain?'<div class="review-explain"><span class="explain-icon">💡</span><span>'+fixedExplain+'</span></div>':''}

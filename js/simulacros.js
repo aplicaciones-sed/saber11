@@ -3,7 +3,7 @@ const SUBJ_INFO = {
   mat: { name: 'Matemáticas', icon: '📐', tag: 'tag-mat', color: '#1a3a5c', desc: 'Evalúa competencias matemáticas.', competencias: ['Interpretación y representación', 'Formulación y ejecución', 'Argumentación'] },
   soc: { name: 'Sociales', icon: '🌎', tag: 'tag-soc', color: '#1e8a4a', desc: 'Evalúa conocimientos en ciencias sociales.', competencias: ['Pensamiento social', 'Interpretación y análisis de perspectivas', 'Pensamiento reflexivo y sistémico'] },
   cn: { name: 'Ciencias Naturales', icon: '🔬', tag: 'tag-cn', color: '#c0392b', desc: 'Evalúa competencias científicas.', competencias: ['Uso comprensivo del conocimiento científico', 'Explicación de fenómenos', 'Indagación'] },
-  ing: { name: 'Inglés', icon: '🌐', tag: 'tag-ing', color: '#e8a020', desc: 'Evalúa competencias en inglés.', competencias: ['Competencia lingüística', 'Competencia pragmática', 'Competencia sociolingüística'] }
+  ing: { name: 'Inglés', icon: '🇬🇧', tag: 'tag-ing', color: '#e8a020', desc: 'Evalúa competencias en inglés.', competencias: ['Competencia lingüística', 'Competencia pragmática', 'Competencia sociolingüística'] }
 };
 
 const SIMULACROS = {
