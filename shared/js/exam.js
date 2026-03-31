@@ -100,6 +100,7 @@ function shuffleOpts(q){
   const origOptsImg=q._origOptsImg;
   const order=[0,1,2,3];
   for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
+  q._shuffleOrder=order;
   const newOpts=order.map(i=>origOpts[i]);
   const newOptsImg=origOptsImg ? order.map(i=>origOptsImg[i]) : null;
   const newCorrect=order.indexOf(origCorrect);
@@ -372,7 +373,12 @@ function selectOpt(idx){
         .replace(new RegExp(`\\bOnly ${orig}\\b`, 'g'), `Only ${rep}`);
     }
     const fixedExplain = fixExplainLetter(q.justification, origLetter, newLetter);
-    document.getElementById('fbText').textContent=fixedExplain;
+    document.getElementById('fbText').innerHTML = fixedExplain ? `<div class="fb-justification">${fixedExplain}</div>` : '';
+    
+    const fbInvalid = document.getElementById('fbInvalid');
+    if (fbInvalid) {
+      fbInvalid.style.display = 'none';
+    }
     const subj=state.allSubjects?state.subject:state.subject;
     const qIdx=state.current;
     const meta=META_QB[subj]?.[qIdx];
@@ -387,23 +393,24 @@ function selectOpt(idx){
     }
     const metaDiv = document.getElementById('fbMeta');
     if(metaDiv){
-      const compFull = q.competency || '';
-      const parts = compFull.split(' · ');
-      const competencia = parts[0] || '';
-      const afirmacion = parts.length > 1 && !parts[1].startsWith('Tipo:') && !parts[1].startsWith('Componente:') ? parts[1] : '';
-      const contenido = parts.find(p => !p.startsWith('Tipo:') && !p.startsWith('Componente:') && p !== competencia && p !== afirmacion) || '';
-      const tipo = (parts.find(p => p.startsWith('Tipo:')) || '').replace('Tipo: ','');
-      const componente = (parts.find(p => p.startsWith('Componente:')) || '').replace('Componente: ','');
-      const nivel = q.nivel || '';
-      const nivelCls = ['','meta-nivel-1','meta-nivel-2','meta-nivel-3','meta-nivel-4'][nivel] || 'meta-nivel-1';
-      let compAfirm = competencia;
-      if(afirmacion) compAfirm += `<br><span style="font-weight:400;color:var(--text-2);font-style:italic">${afirmacion}</span>`;
+      const competency = q.competency || '';
+      const assertion = q.assertion || '';
+      const evidence = q.evidence || '';
+      const component = q.component || '';
+      const standard = q.standard || '';
+      const skill = q.skill || '';
+      const evaluationCriteria = q.evaluationCriteria || '';
+      const level = q.level || '';
+      const nivelCls = ['','meta-nivel-1','meta-nivel-2','meta-nivel-3','meta-nivel-4'][level] || 'meta-nivel-1';
       let rows = '';
-      if(compAfirm) rows += `<tr><td>📌 Competencia/Afirmación</td><td>${compAfirm}</td></tr>`;
-      if(contenido && !contenido.startsWith('Tipo:') && !contenido.startsWith('Componente:')) rows += `<tr><td>📚 Contenido</td><td>${contenido}</td></tr>`;
-      if(componente) rows += `<tr><td>🔖 Componente</td><td>${componente}</td></tr>`;
-      if(tipo) rows += `<tr><td>📄 Tipo de texto</td><td>${tipo}</td></tr>`;
-      if(nivel) rows += `<tr><td>⭐ Nivel de desempeño</td><td><span class="meta-pill meta-nivel ${nivelCls}">${nivel}</span></td></tr>`;
+      if(competency) rows += `<tr><td>📌 Competencia</td><td>${competency}</td></tr>`;
+      if(assertion) rows += `<tr><td>📝 Afirmación</td><td>${assertion}</td></tr>`;
+      if(evidence) rows += `<tr><td>🔍 Evidencia</td><td>${evidence}</td></tr>`;
+      if(component) rows += `<tr><td>🔖 Componente</td><td>${component}</td></tr>`;
+      if(standard) rows += `<tr><td>📚 Estándar asociado</td><td>${standard}</td></tr>`;
+      if(skill) rows += `<tr><td>💭 Pensamiento</td><td>${skill}</td></tr>`;
+      if(evaluationCriteria) rows += `<tr><td>📋 ¿Qué Evalúa?</td><td>${evaluationCriteria}</td></tr>`;
+      if(level) rows += `<tr><td>⭐ Nivel</td><td><span class="meta-pill meta-nivel ${nivelCls}">${level}</span></td></tr>`;
       metaDiv.innerHTML = rows ? `<table class="meta-table">${rows}</table>` : '';
       metaDiv.style.display = rows ? 'block' : 'none';
     }
@@ -538,22 +545,13 @@ function showResults(){
         ${items}
       </div>`;})()}
       ${subjData.questions.map((q,i)=>{
-        const userAns=state.allSubjects?state.allAnswers[key]?.answers[i]:state.answers[i];
-        const correct=userAns===q.correct;
-        const letters=['A','B','C','D'];
-        const origLetter = letters[q._origCorrect ?? q.correct];
-        const newLetter  = letters[q.correct];
-        function fixExplainLetter(text, orig, rep){
-          if(orig === rep) return text;
-          return text
-            .replace(new RegExp(`\\(${orig}\\)`, 'g'), `(${rep})`)
-            .replace(new RegExp(`\\b(opci[oó]n|respuesta|answer is|answer:|option|gr[aá]fica|Solo|solo|es la)\\s+${orig}\\b`, 'gi'),(_, p) => `${p} ${rep}`)
-            .replace(new RegExp(`\\bthe correct answer is ${orig}\\b`, 'gi'), `The correct answer is ${rep}`)
-            .replace(new RegExp(`\\b(Por tanto|Therefore|purpose is)\\s+${orig}\\b`, 'gi'),(_, p) => `${p} ${rep}`)
-            .replace(new RegExp(`\\bSolo ${orig}\\b`, 'g'), `Solo ${rep}`)
-            .replace(new RegExp(`\\bOnly ${orig}\\b`, 'g'), `Only ${rep}`);
-        }
-        const fixedExplain = fixExplainLetter(q.justification, origLetter, newLetter);
+        const storedUserAns=state.allSubjects?state.allAnswers[key]?.answers[i]:state.answers[i];
+        const correct = storedUserAns === q.correct;
+        const origOpts = q._origOpts || q.options;
+        const origOptsImg = q._origOptsImg || q.optionsImg;
+        const origCorrect = q._origCorrect ?? q.correct;
+        const shuffleOrder = q._shuffleOrder;
+        const userAns = (storedUserAns !== null && shuffleOrder) ? shuffleOrder[storedUserAns] : storedUserAns;
         return `<div class="review-card ${correct?'review-correct':'review-wrong'}">
           <div class="review-card-header">
             <span class="review-q-num">${i+1}</span>
@@ -564,24 +562,38 @@ function showResults(){
           <div class="review-question">${q.text||''}</div>
           ${q.img?'<div class="review-img"><img src="'+getImg(q.img)+'" alt="Imagen de la pregunta" loading="lazy"></div>':''}
           <div class="review-answers">
-            ${correct?`
-            <div class="review-answer answer-correct">
-              <span class="answer-label">Respuesta correcta</span>
-              <span class="answer-text">${q.options[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
-              ${q.optionsImg&&q.optionsImg[q.correct]?'<img src="'+getImg(q.optionsImg[q.correct])+'" class="review-opt-img" alt="Imagen respuesta">':''}
-            </div>`:`
-            <div class="review-answer answer-wrong">
-              <span class="answer-label">Tu respuesta</span>
-              <span class="answer-text">${q.options[userAns]?.replace(/^[A-D]\.\s*/,'') || '<em>Sin responder</em>'}</span>
-              ${q.optionsImg&&userAns!==null&&q.optionsImg[userAns]?'<img src="'+getImg(q.optionsImg[userAns])+'" class="review-opt-img" alt="Tu respuesta">':''}
-            </div>
-            <div class="review-answer answer-correct">
-              <span class="answer-label">Respuesta correcta</span>
-              <span class="answer-text">${q.options[q.correct]?.replace(/^[A-D]\.\s*/,'') || ''}</span>
-              ${q.optionsImg&&q.optionsImg[q.correct]?'<img src="'+getImg(q.optionsImg[q.correct])+'" class="review-opt-img" alt="Imagen respuesta">':''}
-            </div>`}
+            ${origOpts.map((opt, idx) => {
+              const isUserAnswer = userAns === idx;
+              const isCorrectAnswer = idx === origCorrect;
+              const userClass = isUserAnswer ? (correct ? 'answer-correct' : 'answer-wrong') : '';
+              const correctClass = isCorrectAnswer ? 'answer-correct' : '';
+              return `<div class="review-answer ${userClass} ${correctClass}">
+                ${isUserAnswer ? '<span class="answer-label">Tu respuesta</span>' : ''}
+                ${isCorrectAnswer && !isUserAnswer ? '<span class="answer-label">Respuesta correcta</span>' : ''}
+                <span class="answer-text">${String.fromCharCode(65+idx)}. ${opt.replace(/^[A-D]\.\s*/,'')}</span>
+                ${origOptsImg&&origOptsImg[idx]?'<img src="'+getImg(origOptsImg[idx])+'" class="review-opt-img" alt="Opción">':''}
+              </div>`;
+            }).join('')}
           </div>
-          ${fixedExplain?'<div class="review-explain"><span class="explain-icon">💡</span><span>'+fixedExplain+'</span></div>':''}
+          ${q.justification ? `<div class="review-section">
+            <div class="review-section-title"><span class="section-icon">💡</span> Justificación de la respuesta correcta</div>
+            <div class="review-section-content">${q.justification}</div>
+          </div>` : ''}
+          ${q.invalidOptions ? `<div class="review-section review-section-invalid">
+            <div class="review-section-title"><span class="section-icon">❌</span> Opciones no válidas</div>
+            <div class="review-section-content">${q.invalidOptions}</div>
+          </div>` : ''}
+          ${(q.competency || q.assertion || q.evidence || q.component || q.standard || q.skill || q.evaluationCriteria || q.level) ? `
+          <table class="meta-table" style="margin-top:12px">
+            ${q.competency ? `<tr><td>📌 Competencia</td><td>${q.competency}</td></tr>` : ''}
+            ${q.assertion ? `<tr><td>📝 Afirmación</td><td>${q.assertion}</td></tr>` : ''}
+            ${q.evidence ? `<tr><td>🔍 Evidencia</td><td>${q.evidence}</td></tr>` : ''}
+            ${q.component ? `<tr><td>🔖 Componente</td><td>${q.component}</td></tr>` : ''}
+            ${q.standard ? `<tr><td>📚 Estándar asociado</td><td>${q.standard}</td></tr>` : ''}
+            ${q.skill ? `<tr><td>💭 Pensamiento</td><td>${q.skill}</td></tr>` : ''}
+            ${q.evaluationCriteria ? `<tr><td>📋 ¿Qué evalúa?</td><td>${q.evaluationCriteria}</td></tr>` : ''}
+            ${q.level ? `<tr><td>⭐ Nivel</td><td><span class="meta-pill meta-nivel meta-nivel-${q.level}">${q.level}</span></td></tr>` : ''}
+          </table>` : ''}
         </div>`;
       }).join('')}
     </div>`;
