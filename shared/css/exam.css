@@ -163,8 +163,8 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 /* ── Revisión de respuestas ── */
 .review-section{margin-top:24px}
 .review-header{text-align:center;margin-bottom:20px}
-.review-header h3{font-size:18px;font-weight:900;color:#fff;margin-bottom:4px}
-.review-header p{font-size:13px;color:var(--text-3)}
+.review-header h3{font-size:20px;font-weight:900;color:var(--primary);margin-bottom:6px}
+.review-header p{font-size:14px;color:var(--text-2)}
 .review-subject{margin-bottom:24px}
 .review-subject-name{font-size:16px;font-weight:800;color:var(--primary);padding:8px 12px;background:var(--surface);border-radius:var(--r-sm);margin-bottom:12px;border-left:4px solid var(--accent)}
 .review-subj-header{background:var(--surface);padding:16px;border-radius:var(--r);margin-bottom:16px;border:1px solid var(--border);display:flex;align-items:center;gap:14px}
@@ -207,13 +207,13 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 .review-opt-img{max-width:100%;max-height:120px;border-radius:6px;margin-top:8px;display:block}
 .answer-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3)}
 .answer-text{font-size:13px;color:var(--text)}
-.review-section{margin-top:12px;border-radius:var(--r-sm);overflow:hidden}
+.review-card-section{margin-top:12px;border-radius:var(--r-sm);overflow:hidden}
 .review-section-title{display:flex;align-items:center;gap:6px;padding:8px 12px;font-size:12px;font-weight:800;color:#fff}
 .review-section-title .section-icon{font-size:14px}
 .review-section-content{padding:12px;font-size:13px;line-height:1.6;color:var(--text-2)}
-.review-section{background:#fffdf7;border:1px solid #f0d88a}
-.review-section .review-section-title{background:#f0d88a;color:#7c5e00}
-.review-section-invalid{background:#fff5f5;border:1px solid #feb2b2}
+.review-card-section{background:#fffdf7;border:1px solid #f0d88a}
+.review-card-section .review-section-title{background:#f0d88a;color:#7c5e00}
+.review-section-invalid{background:#fff5f5;}
 .review-section-invalid .review-section-title{background:#feb2b2;color:#9c2a2a}
 
 /* ── Pantalla de resultados ── */

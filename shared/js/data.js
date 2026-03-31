@@ -71,7 +71,7 @@ const SIMULACROS = {
     nombre: "Simulacro 1",
     titulo: "SABER 11°",
     descripcion: "Examen completo - Todas las materias",
-    shortName: "Sim1",
+    shortName: "Simulacro 1",
     cacheName: "simulacro-v1",
   },
   2: {
@@ -79,7 +79,7 @@ const SIMULACROS = {
     nombre: "Simulacro 2",
     titulo: "SABER 11°",
     descripcion: "Matemáticas, Lectura Crítica e Inglés",
-    shortName: "Sim2",
+    shortName: "Simulacro 2",
     cacheName: "simulacro-v1",
   },
   3: {

@@ -575,11 +575,11 @@ function showResults(){
               </div>`;
             }).join('')}
           </div>
-          ${q.justification ? `<div class="review-section">
+          ${q.justification ? `<div class="review-card-section">
             <div class="review-section-title"><span class="section-icon">💡</span> Justificación de la respuesta correcta</div>
             <div class="review-section-content">${q.justification}</div>
           </div>` : ''}
-          ${q.invalidOptions ? `<div class="review-section review-section-invalid">
+          ${q.invalidOptions ? `<div class="review-card-section review-section-invalid">
             <div class="review-section-title"><span class="section-icon">❌</span> Opciones no válidas</div>
             <div class="review-section-content">${q.invalidOptions}</div>
           </div>` : ''}
