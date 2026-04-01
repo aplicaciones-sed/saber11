@@ -355,6 +355,28 @@ body{font-family:'Nunito',sans-serif;background:var(--primary);color:var(--text)
 .icfes-note p{font-size:11px;color:var(--text-3);line-height:1.6;text-align:center}
 .icfes-note strong{color:var(--text-2)}
 .hr-divider{border:none;border-top:1px solid var(--border);margin:20px 0}
+.config-section{margin-bottom:20px}
+.config-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.config-title{font-size:14px;font-weight:800;color:var(--primary)}
+.config-actions{display:flex;gap:8px}
+.config-alert{padding:10px 14px;background:#fde8e6;border-radius:var(--r-sm);border:1px solid var(--red);color:var(--red);font-size:12px;margin-bottom:12px;display:none}
+.config-alert.show{display:block}
+.config-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:12px}
+.config-subject-card{background:#f7f9fc;border-radius:var(--r);border:1px solid var(--border);padding:14px}
+.config-subject-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.config-subject-icon{font-size:24px}
+.config-subject-name{font-size:14px;font-weight:700;color:var(--text)}
+.config-subject-info{font-size:11px;color:var(--text-3)}
+.config-subject-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.config-field{display:flex;flex-direction:column;gap:4px}
+.config-field label{font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px}
+.config-field input{font-family:var(--font-body);padding:8px 10px;font-size:13px;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface);color:var(--text);width:100%}
+.config-field input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 2px rgba(26,58,92,.1)}
+.config-field input:invalid{border-color:var(--red)}
+.config-global{margin-top:8px}
+.config-checkbox-label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;cursor:pointer;color:var(--text-2)}
+.config-checkbox-label input{width:16px;height:16px}
+.btn-sm{padding:8px 14px;font-size:12px}
 .question-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .btn-back{padding:7px 14px;font-size:13px}
 .stepper-wrap{flex:1;margin-bottom:0}

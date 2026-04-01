@@ -278,6 +278,32 @@
 
     <script src="shared/js/data.js"></script>
     <script src="shared/js/portal.js"></script>
+
+   <!-- CONFIG MODAL -->
+   <div class="config-modal" id="configModal">
+      <div class="config-modal-backdrop" onclick="closeConfigModal()"></div>
+      <div class="config-modal-card">
+         <div class="config-modal-header">
+            <h2>⚙️ Configurar Simulacro</h2>
+            <button class="config-modal-close" onclick="closeConfigModal()">×</button>
+         </div>
+         <div class="config-modal-body">
+            <p class="config-modal-desc">Selecciona el número de preguntas, punto de inicio y orden para cada asignatura</p>
+            <div class="config-modal-grid" id="configModalGrid"></div>
+            <div class="config-modal-global">
+               <label class="config-modal-checkbox">
+                  <input type="checkbox" id="configModalAleatorio" checked onchange="toggleConfigModalAleatorio()">
+                  <span>🔀 Preguntas aleatorias</span>
+               </label>
+            </div>
+         </div>
+         <div class="config-modal-footer">
+            <button class="btn btn-outline" onclick="resetConfigModal()">Restablecer</button>
+            <button class="btn btn-primary" onclick="startSimulacroWithConfig()">Iniciar Simulacro ➜</button>
+         </div>
+      </div>
+   </div>
+
 </body>
 
 </html>

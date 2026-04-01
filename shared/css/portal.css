@@ -295,52 +295,273 @@ body {
 
 .sim-card {
    background: #fff;
-   border-radius: var(--r);
+   border-radius: 16px;
    border: 1px solid var(--border);
-   box-shadow: var(--shadow);
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
    overflow: hidden;
-   transition: transform .25s, box-shadow .25s;
+   transition: transform 0.25s, box-shadow 0.25s;
    display: flex;
    flex-direction: column
 }
 
 .sim-card:hover {
-   transform: translateY(-4px);
-   box-shadow: 0 12px 40px rgba(26, 58, 92, .16)
+   transform: translateY(-2px);
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 16px 40px rgba(26, 58, 92, 0.12)
 }
 
 .sim-card-header {
-   background: var(--navy);
-   padding: 20px 22px 16px;
+   background: linear-gradient(135deg, var(--navy) 0%, #0d2840 100%);
+   padding: 28px 28px 24px;
    position: relative;
    overflow: hidden
+}
+
+.sim-card-header::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   height: 3px;
+   background: linear-gradient(90deg, var(--gold), var(--gold2))
 }
 
 .sim-card-header::after {
    content: '';
    position: absolute;
-   right: -20px;
-   top: -20px;
-   width: 90px;
-   height: 90px;
+   right: -40px;
+   top: -40px;
+   width: 160px;
+   height: 160px;
    border-radius: 50%;
-   background: rgba(232, 160, 32, .12)
+   background: radial-gradient(circle, rgba(232, 160, 32, 0.12) 0%, transparent 70%)
 }
 
 .sim-year {
-   font-family: 'Space Mono', monospace;
-   font-size: 28px;
-   font-weight: 700;
-   color: var(--gold);
-   line-height: 1
+   font-family: var(--font-display);
+   font-size: 26px;
+   font-weight: 800;
+   color: #fff;
+   line-height: 1;
+   position: relative;
+   z-index: 1;
+   letter-spacing: -0.5px
 }
 
 .sim-title {
    font-size: 13px;
-   color: rgba(255, 255, 255, .7);
-   margin-top: 4px;
+   color: rgba(255, 255, 255, 0.55);
+   margin-top: 6px;
+   font-weight: 500;
+   letter-spacing: 0.5px;
+   position: relative;
+   z-index: 1
+}
+
+.sim-body {
+   padding: 24px 28px;
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 6px
+}
+
+.sim-body .sim-desc {
+   margin: 0;
+   font-size: 15px;
+   color: var(--text-2);
+   line-height: 1.5
+}
+
+.sim-badges {
+   display: flex;
+   gap: 8px;
+   flex-wrap: wrap;
+   margin-top: 4px
+}
+
+.sim-badge {
+   background: var(--primary-lt);
+   border: none;
+   border-radius: 20px;
+   padding: 5px 12px;
+   font-size: 12px;
+   font-weight: 600;
+   color: var(--primary)
+}
+
+.sim-footer {
+   padding: 0 28px 24px;
+   display: flex;
+   gap: 12px
+}
+
+.sim-footer .btn {
+   padding: 14px 24px;
+   font-size: 15px
+}
+
+/* ════════════ SIMULACRO CONFIG INLINE ════════════ */
+.sim-config-inline {
+   padding: 20px 24px;
+   background: var(--surface);
+   border-bottom: 1px solid var(--border)
+}
+
+.sim-config-title {
+   font-size: 12px;
+   font-weight: 800;
+   color: var(--text);
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+   margin-bottom: 16px;
+   display: flex;
+   align-items: center;
+   gap: 8px
+}
+
+.sim-config-title::before {
+   content: '⚙️';
+   font-size: 14px
+}
+
+.sim-subjects-config {
+   display: flex;
+   flex-direction: column;
+   gap: 12px
+}
+
+.sim-subject-config {
+   display: grid;
+   grid-template-columns: 44px 1fr 90px;
+   align-items: center;
+   gap: 14px;
+   background: var(--bg);
+   border: 1px solid var(--border);
+   border-radius: 10px;
+   padding: 10px 16px
+}
+
+.sim-subject-config-icon {
+   font-size: 26px;
+   text-align: center
+}
+
+.sim-subject-config-name {
+   font-size: 14px;
+   font-weight: 600;
+   color: var(--text)
+}
+
+.sim-spinner {
+   display: flex;
+   align-items: center;
+   gap: 0;
+   background: var(--surface);
+   border: 1.5px solid var(--border);
+   border-radius: 8px;
+   overflow: hidden
+}
+
+.sim-spinner-btn {
+   width: 28px;
+   height: 32px;
+   border: none;
+   background: var(--bg);
+   color: var(--primary);
+   font-size: 16px;
    font-weight: 700;
-   letter-spacing: .5px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: background 0.15s, color 0.15s
+}
+
+.sim-spinner-btn:hover {
+   background: var(--primary);
+   color: #fff
+}
+
+.sim-spinner-btn:active {
+   background: var(--navy2)
+}
+
+.sim-spinner-input {
+   width: 34px;
+   height: 32px;
+   padding: 0;
+   font-size: 14px;
+   font-weight: 700;
+   font-family: var(--font-body);
+   text-align: center;
+   border: none;
+   border-left: 1px solid var(--border);
+   border-right: 1px solid var(--border);
+   background: var(--surface);
+   color: var(--primary);
+   -moz-appearance: textfield
+}
+
+.sim-spinner-input:disabled {
+   background: var(--bg);
+   color: var(--text-3)
+}
+
+.sim-spinner-input::-webkit-outer-spin-button,
+.sim-spinner-input::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0
+}
+
+.sim-spinner-input:focus {
+   outline: none
+}
+
+.sim-config-options {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-top: 16px;
+   padding-top: 16px;
+   border-top: 1px solid var(--border)
+}
+
+.sim-config-toggle {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   font-size: 14px;
+   font-weight: 600;
+   color: var(--text-2);
+   cursor: pointer
+}
+
+.sim-config-toggle input {
+   width: 20px;
+   height: 20px;
+   cursor: pointer;
+   accent-color: var(--primary)
+}
+
+.sim-config-toggle-label {
+   display: flex;
+   align-items: center;
+   gap: 6px
+}
+
+.sim-total-questions {
+   font-size: 14px;
+   font-weight: 700;
+   color: var(--navy);
+   background: var(--accent-lt);
+   padding: 8px 16px;
+   border-radius: 24px
+}
+
+.sim-total-questions span {
+   color: var(--accent)
+}
    text-transform: uppercase
 }
 
@@ -349,7 +570,11 @@ body {
    flex: 1;
    display: flex;
    flex-direction: column;
-   gap: 12px
+   gap: 8px
+}
+
+.sim-body .sim-desc {
+   margin: 0
 }
 
 .sim-badges {
@@ -721,5 +946,220 @@ footer strong {
 @keyframes spSpin {
    to {
       transform: rotate(360deg)
+   }
+}
+
+/* ════════════ CONFIG MODAL ════════════ */
+.config-modal {
+   display: none;
+   position: fixed;
+   inset: 0;
+   z-index: 1000;
+   align-items: center;
+   justify-content: center;
+   padding: 20px
+}
+
+.config-modal.open {
+   display: flex
+}
+
+.config-modal-backdrop {
+   position: absolute;
+   inset: 0;
+   background: rgba(0, 0, 0, 0.5);
+   backdrop-filter: blur(4px)
+}
+
+.config-modal-card {
+   position: relative;
+   background: var(--surface);
+   border-radius: 16px;
+   width: 100%;
+   max-width: 640px;
+   max-height: 90vh;
+   display: flex;
+   flex-direction: column;
+   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+   animation: configModalIn 0.3s ease
+}
+
+@keyframes configModalIn {
+   from {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px)
+   }
+   to {
+      opacity: 1;
+      transform: scale(1) translateY(0)
+   }
+}
+
+.config-modal-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 20px 24px;
+   border-bottom: 1px solid var(--border)
+}
+
+.config-modal-header h2 {
+   font-family: var(--font-display);
+   font-size: 20px;
+   font-weight: 700;
+   color: var(--primary);
+   margin: 0
+}
+
+.config-modal-close {
+   width: 36px;
+   height: 36px;
+   border: none;
+   background: var(--bg);
+   border-radius: 50%;
+   font-size: 24px;
+   color: var(--text-2);
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: all 0.2s
+}
+
+.config-modal-close:hover {
+   background: var(--border);
+   color: var(--text)
+}
+
+.config-modal-body {
+   padding: 24px;
+   overflow-y: auto;
+   flex: 1
+}
+
+.config-modal-desc {
+   font-size: 14px;
+   color: var(--text-2);
+   margin-bottom: 20px;
+   line-height: 1.5
+}
+
+.config-modal-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+   gap: 16px;
+   margin-bottom: 20px
+}
+
+.config-modal-subject {
+   background: var(--bg);
+   border: 1px solid var(--border);
+   border-radius: 12px;
+   padding: 16px
+}
+
+.config-modal-subject-header {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   margin-bottom: 14px;
+   padding-bottom: 10px;
+   border-bottom: 1px solid var(--border)
+}
+
+.config-modal-subject-icon {
+   font-size: 28px
+}
+
+.config-modal-subject-name {
+   font-size: 15px;
+   font-weight: 700;
+   color: var(--text)
+}
+
+.config-modal-subject-info {
+   font-size: 11px;
+   color: var(--text-3)
+}
+
+.config-modal-fields {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 12px
+}
+
+.config-modal-field {
+   display: flex;
+   flex-direction: column;
+   gap: 4px
+}
+
+.config-modal-field label {
+   font-size: 10px;
+   font-weight: 700;
+   color: var(--text-3);
+   text-transform: uppercase;
+   letter-spacing: 0.5px
+}
+
+.config-modal-field input[type="number"] {
+   font-family: var(--font-body);
+   padding: 10px 12px;
+   font-size: 14px;
+   border: 1.5px solid var(--border);
+   border-radius: 8px;
+   background: var(--surface);
+   color: var(--text);
+   width: 100%;
+   transition: border-color 0.2s
+}
+
+.config-modal-field input[type="number"]:focus {
+   outline: none;
+   border-color: var(--primary)
+}
+
+.config-modal-field input[type="checkbox"] {
+   width: 20px;
+   height: 20px;
+   cursor: pointer
+}
+
+.config-modal-global {
+   padding: 14px 16px;
+   background: var(--primary-lt);
+   border-radius: 10px
+}
+
+.config-modal-checkbox {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   font-size: 14px;
+   font-weight: 600;
+   color: var(--text);
+   cursor: pointer
+}
+
+.config-modal-footer {
+   display: flex;
+   justify-content: flex-end;
+   gap: 12px;
+   padding: 20px 24px;
+   border-top: 1px solid var(--border)
+}
+
+@media(max-width: 640px) {
+   .config-modal-card {
+      max-height: 95vh
+   }
+   .config-modal-grid {
+      grid-template-columns: 1fr
+   }
+   .config-modal-fields {
+      grid-template-columns: 1fr 1fr
+   }
+   .config-modal-field:last-child {
+      grid-column: span 2
    }
 }

@@ -1,35 +1,31 @@
 # Arquitectura del Proyecto SABER 11 PWA
 
-## 1. Visión General del Proyecto
+## 1. Visión General
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                         SABER 11 SIMULADOR PWA                         │
-│                    Secretaría de Educación Nariño                       │
+│                    SABER 11 SIMULADOR PWA                               │
+│               Secretaría de Educación Nariño                            │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
-│  ┌──────────────┐    ┌──────────────────────────────┐               │
-│  │   PORTAL    │    │         SIMULACRO             │               │
-│  │  (index)    │    │   (Unificado con URL params)  │               │
-│  └──────┬───────┘    │  ?simulacro=1 → Full exam    │               │
-│         │             │  ?simulacro=2 → Math + Read  │               │
-│         └─────────────┴──────────────┬───────────────┘               │
-│                                     │                                  │
-│                    ┌────────────────┴────────────────┐                 │
-│                    │    SHARED RESOURCES            │                 │
-│                    │  ┌────────────────────────┐   │                 │
-│                    │  │  CSS (exam.css)         │   │                 │
-│                    │  │  JS (app.js, nivel.js,  │   │                 │
-│                    │  │        exam.js, meta.js) │   │                 │
-│                    │  └────────────────────────┘   │                 │
-│                    └─────────────────────────────────┘                 │
-│                                     │                                  │
-│                    ┌────────────────┴────────────────┐                 │
-│                    │    CENTRALIZED DATA            │                 │
-│                    │  ┌────────────────────────┐     │                 │
-│                    │  │  questions.js (78 Q)   │     │                 │
-│                    │  └────────────────────────┘     │                 │
-│                    └─────────────────────────────────┘                 │
+│  ┌──────────────┐          ┌──────────────────────────────┐            │
+│  │   PORTAL     │          │         SIMULACRO            │            │
+│  │  (index)     │          │   (Unificado con params)     │            │
+│  └──────┬───────┘          └──────────────┬───────────────┘            │
+│         │                               │                              │
+│    ┌────┴────┐                    ┌───────┴───────┐                    │
+│    │ Config │                    │ Dynamic/Static│                    │
+│    │ Modal  │                    │   Simulacros   │                    │
+│    └────────┘                    └────────────────┘                    │
+│         │                               │                              │
+│  ┌──────┴───────────────────────────────┴──────────────────────────┐  │
+│  │                    SHARED RESOURCES                           │  │
+│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────────┐   │  │
+│  │  │   CSS    │ │   JS     │ │  DATA    │ │    IMAGES       │   │  │
+│  │  │portal.css│ │exam.js   │ │questions │ │  portal/        │   │  │
+│  │  │exam.css  │ │portal.js │ │data.js   │ │  questions/    │   │  │
+│  │  └──────────┘ └──────────┘ └──────────┘ └──────────────────┘   │  │
+│  └─────────────────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -39,346 +35,301 @@
 
 ```
 geotest/
-├── index.html                    # Portal principal
-│
-├── sw.js                        # Service Worker PWA (portal)
-├── manifest.json               # Manifiesto PWA (portal)
+├── index.html                    # Portal principal (configuración)
+├── sw.js                         # Service Worker PWA (portal)
+├── manifest.json                 # Manifiesto PWA
 │
 ├── shared/
 │   ├── js/
-│   │   ├── questions.js       # Banco de preguntas
-│   │   ├── data.js            # SUBJ_INFO, SIMULACROS, META_QB, NIVEL_INFO
-│   │   ├── exam.js            # Lógica del examen
-│   │   └── portal.js          # Funciones del portal
+│   │   ├── questions.js          # Banco de preguntas
+│   │   ├── data.js               # SUBJ_INFO, SIMULACROS, config
+│   │   ├── exam.js               # Lógica del examen
+│   │   └── portal.js              # UI del portal + config inline
 │   │
 │   ├── css/
-│   │   ├── portal.css         # Estilos del portal
-│   │   └── exam.css           # Estilos del examen
+│   │   ├── portal.css            # Estilos del portal
+│   │   └── exam.css              # Estilos del examen
 │   │
 │   └── img/
-│       ├── portal/             # Imágenes del portal
+│       ├── portal/               # Imágenes del portal
 │       │   ├── icon-192.png
 │       │   ├── icon-512.png
 │       │   ├── icon-escudo.svg
 │       │   ├── logo.svg
-│       │   ├── splash.png
 │       │   ├── banner_web.png
-│       │   ├── banner_movil.png
-│       │   ├── cuy_correcto_ok.png
-│       │   └── cuy_incorrecto_ok.png
+│       │   └── banner_movil.png
 │       │
-│       └── questions/          # Imágenes de preguntas
-│           └── test_*.png
+│       └── questions/             # Imágenes de preguntas
 │
-├── simulacro/                  # Simulacro unificado
-│   ├── index.html              # Detecta ?simulacro=1 o =2
-│   ├── sw.js                   # Service worker
+├── simulacro/                    # Simulacro unificado
+│   ├── index.html                # ?simulacro=1 (dinámico) o =2 (estático)
+│   ├── sw.js                     # Service worker
 │   └── manifest.json
 │
-└── assets/
-    └── docs/                  # PDFs de referencia (ICFES)
+└── assets/docs/                  # PDFs de referencia (ICFES)
 ```
 
 ---
 
-## 3. Configuración de Simulacros
+## 3. Tipos de Simulacro
+
+### Simulacro 1 - Dinámico
+- Configurable desde el portal
+- Selección de número de preguntas por materia (0-n)
+- Punto de inicio configurable
+- Opción aleatoria (mezcla todo el pool)
+- Configuración guardada en localStorage (portal) y sessionStorage (simulacro)
+
+### Simulacro 2 - Estático
+- Usa todas las preguntas disponibles del simulacro 1
+- No tiene UI de configuración
+- Pool de preguntas fijo
 
 ```javascript
 // shared/js/data.js
 const SIMULACROS = {
   1: {
     id: 1,
-    nombre: "Simulacro 1",
-    titulo: "Simulador SABER 11°",
-    descripcion: "Examen completo - Todas las materias",
-    shortName: "SABER 11",
-    cacheName: "simulacro-v1",
-    subjects: ['lc', 'mat', 'soc', 'cn', 'ing']  // 5 materias
+    nombre: "Simulacro Dinámico",
+    titulo: "SABER 11°",
+    descripcion: "Configura tu examen...",
+    shortName: "Simulacro",
+    dinamico: true
   },
   2: {
     id: 2,
     nombre: "Simulacro 2",
-    titulo: "SABER 11° · Simulacro 2020",
-    descripcion: "Matemáticas y Lectura Crítica",
-    shortName: "Sim 2020",
-    cacheName: "simulacro-v1",
-    subjects: ['mat', 'lc']  // Solo 2 materias
+    titulo: "SABER 11°",
+    descripcion: "Matemáticas, Lectura Crítica e Inglés",
+    shortName: "Sim2",
+    dinamico: false
   }
 };
 ```
 
-### URL Configuration:
-- `simulacro/index.html?simulacro=1` → Simulacro completo (5 materias)
-- `simulacro/index.html?simulacro=2` → Simulacro 2020 (2 materias)
-
 ---
 
-## 4. Diagrama de Carga de Scripts
-
-### Orden de carga en simulacro/index.html:
+## 4. Flujo de Datos
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                        HEAD SECTION                                    │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  1. CSS                                                                 │
-│     ┌──────────────────────────────────────────────────────────────┐    │
-│     │ <link rel="stylesheet" href="../shared/css/exam.css">      │    │
-│     └──────────────────────────────────────────────────────────────┘    │
-│                                    │                                    │
-│  2. JavaScript (carga secuencial)                                     │
-│     ┌──────────────────────────────────────────────────────────────┐    │
-│     │ <script src="../shared/js/questions.js"></script>           │    │
-│     │ <script src="../shared/js/data.js"></script>                │    │
-│     │ <script src="../shared/js/exam.js"></script>                │    │
-│     └──────────────────────────────────────────────────────────────┘    │
-│                                                                          │
+│                        FLUJO DEL EXAMEN                                  │
 └─────────────────────────────────────────────────────────────────────────┘
+
+USUARIO                              PORTAL (index.html)
+   │                                      │
+   │  1. Configura spinners              │
+   │     - Número de preguntas           │
+   │     - Aleatorio sí/no                │
+   │                                      │
+   │  2. Click "Iniciar Simulacro"       │
+   │     ↓                                │
+   │  3. sessionStorage.setItem()         │
+   │     {simulacroId, subjects: {...}}  │
+   │                                      │
+   │  4. Redirige a simulacro/           │
+   └──────────────────────────────────────┘
+                                        │
+                                        ▼
+                              SIMULACRO (index.html)
+                                        │
+                                        │ 1. DOMContentLoaded
+                                        │    ↓
+                                        │ 2. configureSimulacro()
+                                        │    ↓
+                                        │ 3. Cargar config desde sessionStorage
+                                        │    ↓
+                                        │ 4. detectActiveSubjects()
+                                        │    ↓
+                                        │ 5. buildQBFromConfig() o load all
+                                        │    ↓
+                                        │ 6. renderSubjects()
+                                        │    ↓
+                                        │ 7. Usuario selecciona materia
+                                        │    ↓
+                                        │ 8. startQuiz() / startAllSubjects()
+                                        │    ↓
+                                        │ 9. beginSubject() → showIntro()
+                                        │    ↓
+                                        │ 10. showQuestion() ← shuffleOpts()
+                                        │    ↓
+                                        │ 11. nextQuestion() ← repeat
+                                        │    ↓
+                                        │ 12. showResults()
+                                        ▼
+                              FIN
 ```
 
-### Lógica de inicialización en simulacro/index.html:
+---
+
+## 5. Configuración de Simulacro Dinámico
+
+### Desde el Portal
 
 ```javascript
-// Detectar simulacro desde URL
-function getSimulacroFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  const id = parseInt(params.get('simulacro'), 10);
-  return (id === 1 || id === 2) ? id : 1;
-}
+// portal.js - Config guardada en localStorage
+PORTAL_CONFIG[simId] = {
+  lc: { preguntas: 3, inicio: 1, aleatorio: true },
+  mat: { preguntas: 5, inicio: 1, aleatorio: false },
+  ...
+};
 
-// Configurar según simulacro
-function configureSimulacro() {
-  SIMULACRO_ID = getSimulacroFromURL();
-  SIMULACRO_CONFIG = SIMULACROS[SIMULACRO_ID];
-  
-  ACTIVE_SUBJECTS = SIMULACRO_ID === 1 
-    ? ['lc', 'mat', 'soc', 'cn', 'ing']
-    : ['mat', 'lc'];
-  
-  // Actualizar UI dinámicamente
-  renderSubjects();
-}
+// Al iniciar simulacro
+sessionStorage.setItem('simulacroConfig', JSON.stringify({
+  simulacroId: 1,
+  subjects: { ... }
+}));
 ```
 
----
-
-## 5. Flujo de Datos del Examen
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                      FLUJO DEL EXAMEN                                   │
-└─────────────────────────────────────────────────────────────────────────┘
-
-    ┌─────────────┐
-    │  USUARIO   │
-    │  ABRE APP  │
-    └──────┬──────┘
-           │
-           ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│ 1. INICIALIZACIÓN                                                     │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│   DOMContentLoaded                                                     │
-│        │                                                                │
-│        ▼                                                                │
-│   configureSimulacro() → Detecta ?simulacro=N                           │
-│        │                                                                │
-│        ▼                                                                │
-│   QUESTIONS.filter(q => q.simulacros.includes(SIMULACRO_ID))           │
-│        │                                                                │
-│        ▼                                                                │
-│   QB = { lc: { questions: [...] }, mat: {...}, ... }                  │
-│        │                                                                │
-│        ▼                                                                │
-│   renderSubjects() → Renderiza tarjetas de materias según simulacro     │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-           │
-           ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│ 2. SELECCIÓN DE MATERIA                                               │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│   selectSubject(key)                                                    │
-│        │                                                                │
-│        ▼                                                                │
-│   state.subject = key                                                   │
-│   renderHomeScreen()                                                    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-           │
-           ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│ 3. PRUEBA (BUCLE)                                                     │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│   showQuestion()                                                        │
-│        ├──► Mostrar contexto                                            │
-│        ├──► shuffleOpts() → Mezclar opciones                            │
-│        └──► selectOpt(idx) → Procesar respuesta                        │
-│                                                                          │
-│   nextQuestion() → Repite hasta última pregunta                        │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-           │
-           ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│ 4. RESULTADOS                                                          │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│   showResults() → Calcular scores y mostrar resultados                  │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 6. Estructura del Estado (State)
+### En el Simulacro
 
 ```javascript
-// Definido en shared/js/exam.js
+// exam.js - Cargar al inicio
+const configData = sessionStorage.getItem('simulacroConfig');
+SUBJECT_CONFIG = parsed.subjects;
+
+// Build QB dinámico
+function buildDynamicQuestions(subject, config, simulacroId) {
+  const allQuestions = QUESTIONS.filter(
+    q => q.subject === subject && q.simulators.includes(simulacroId)
+  );
+  
+  if (config.aleatorio) {
+    // Mezclar TODO el pool y tomar X
+    const shuffled = [...allQuestions];
+    shuffleArray(shuffled);
+    return shuffled.slice(0, config.preguntas);
+  } else {
+    // Tomar desde inicio
+    return allQuestions.slice(config.inicio - 1, config.inicio - 1 + config.preguntas);
+  }
+}
+```
+
+---
+
+## 6. Estructura del Estado
+
+```javascript
+// exam.js
 let state = {
-  simulacroId: null,        // 1 o 2
-  subject: null,            // 'lc', 'mat', 'soc', 'cn', 'ing'
-  questions: [],            // Preguntas mezcladas
-  current: 0,              // Índice de pregunta actual
-  answers: [],              // Respuestas del usuario
-  hintsUsed: 0,            // Pistas usadas
-  allSubjects: false,      // Modo examen completo
-  allQueue: [],            // Cola de materias (full exam)
-  allAnswers: {},          // Respuestas de todas las materias
-  immediateFeedback: true, // Feedback inmediato
-  timedMode: true,         // Modo cronometrado
-  timeRemaining: 0,        // Segundos restantes
-  timerInterval: null,     // Referencia del interval
-  timeExpired: false       // Tiempo agotado
+  simulacroId: null,
+  subject: null,
+  questions: [],
+  current: 0,
+  answers: [],
+  hintsUsed: 0,
+  allSubjects: false,
+  allQueue: [],
+  allAnswers: {},
+  immediateFeedback: false,
+  timedMode: true,
+  timeRemaining: 0,
+  timerInterval: null,
+  timeExpired: false
+};
+
+// Configuración por materia
+let SUBJECT_CONFIG = {
+  lc: { preguntas: 3, inicio: 1, aleatorio: true },
+  mat: { preguntas: 5, inicio: 1, aleatorio: false },
+  ...
 };
 ```
 
 ---
 
-## 7. Banco de Preguntas (questions.js)
+## 7. Banco de Preguntas
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                  STRUCTURA DE PREGUNTAS                                 │
-└─────────────────────────────────────────────────────────────────────────┘
-
+```javascript
+// questions.js
 const QUESTIONS = [
   {
-    id: 101,                      // ID único
-    simulacros: [1],              // [1] = Simulacro 1, [2] = Simulacro 2
-    subject: 'lc',               // Materia: lc, mat, soc, cn, ing
+    id: 1,
+    simulators: [1, 2],      // Simulacros que incluyen esta pregunta
+    subject: 'lc',          // Materia: lc, mat, soc, cn, ing
     
     // Contexto (opcional)
-    context: '...',               // Texto de contexto HTML
-    contextImg: 'img_key',       // Clave de imagen Base64
+    context: "Texto de contexto...",
+    contextImg: "img_key",
     
     // Pregunta
-    text: '¿Cuál es la respuesta?',
+    text: "¿Cuál es la respuesta?",
     
     // Opciones
-    opts: ['A) Opción', 'B) Opción', 'C) Opción', 'D) Opción'],
-    correct: 0,                 // Índice de respuesta correcta (0-3)
+    options: ["A) Opción", "B) Opción", "C) Opción", "D) Opción"],
+    optionsImg: ["img_a", "img_b", "img_c", "img_d"], // opcional
+    
+    correct: 0,             // Índice 0-3
     
     // Feedback
-    hint: 'Pista para la pregunta',
-    explain: 'Explicación de la respuesta',
+    hint: "Pista...",
+    justification: "Explicación...",
     
     // Metadatos
-    comp: 'Competencia evaluada',
-    nivel: 1-4                 // Nivel de dificultad
-  },
-  // ... más preguntas
+    competency: "Competencia",
+    level: 1-4
+  }
 ];
 ```
 
-### Distribución de preguntas:
-
-| Simulacro | LC  | MAT | SOC | CN  | ING | Total |
-|-----------|-----|-----|-----|-----|-----|-------|
-| 1         | 6   | 9   | 9   | 10  | 4   | 38    |
-| 2         | 20  | 20  | -   | -   | -   | 40    |
-| **Total** | 26  | 29  | 9   | 10  | 4   | **78** |
-
 ---
 
-## 8. CSS Compartido (exam.css)
+## 8. Screens (Estados)
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    ESTRUCTURA CSS (exam.css)                            │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│ 1. VARIABLES (:root)                                                   │
-│    ├── Colores: --primary, --accent, --green, --red                   │
-│    ├── Backgrounds: --bg, --surface                                     │
-│    ├── Texto: --text, --text-2, --text-3                               │
-│    └── Bordes: --border, --r (border-radius)                           │
-│                                                                          │
-│ 2. LAYOUT                                                              │
-│    ├── .top-bar, .top-inner (navbar)                                  │
-│    ├── .container, .card (contenedores)                                │
-│    └── .screen (pantallas: s-home, s-intro, s-question, s-results)    │
-│                                                                          │
-│ 3. COMPONENTES                                                          │
-│    ├── .subj-card (tarjetas de materia)                                │
-│    ├── .btn, .btn-primary, .btn-outline                                │
-│    ├── .opt (opciones de respuesta)                                    │
-│    ├── .feedback (retroalimentación)                                    │
-│    └── .score-bar, .level-pill (resultados)                            │
-│                                                                          │
-│ 4. UTILIDADES                                                           │
-│    ├── .active, .show (estados)                                        │
-│    ├── .timer-warning, .timer-danger (timer)                           │
-│    └── Animaciones y transiciones                                       │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   s-home    │───►│  s-intro    │───►│  s-question │───►│ s-results   │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+     ▲                                          │
+     │            ┌─────────────┐                │
+     └────────────┤  s-results  │◄───────────────┘
+                   │  (review)   │
+                   └─────────────┘
+
+s-home     → Selección de materia
+s-intro    → Info de la prueba antes de iniciar
+s-question → Durante la prueba
+s-results  → Resultados y revisión
 ```
 
 ---
 
-## 9. Funciones Principales (exam.js)
+## 9. Funciones Principales
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                    FUNCIONES POR MÓDULO                                │
+│                        FUNCIONES POR MÓDULO                            │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
-│ SHUFFLE                                                                 │
-│   shuffleOpts(q) ──────────► Mezcla opciones preservando respuesta     │
+│ CONFIGURACIÓN (portal.js)                                               │
+│   renderSimulacroCards() ─────► Renderiza cards con spinners           │
+│   updatePortalConfig() ──────► Actualiza config al cambiar spinner   │
+│   startPortalSimulacro() ────► Guarda config y redirige                │
 │                                                                          │
-│ HOME                                                                    │
-│   selectSubject(key) ──────► Selecciona materia                        │
-│   startQuiz() ─────────────► Inicia quiz individual                    │
-│   startAllSubjects() ───────► Inicia examen completo                    │
-│   beginSubject() ──────────► Prepara preguntas de materia               │
+│ SIMULACRO (exam.js)                                                     │
+│   configureSimulacro() ─────► Configura según URL                       │
+│   loadConfigFromSession() ──► Carga config dinámica                    │
+│   buildQBFromConfig() ───────► Construye QB según config               │
+│   renderSubjects() ──────────► Renderiza materias (filtra 0 preguntas) │
 │                                                                          │
-│ INTRO                                                                   │
-│   showIntro() ────────────► Muestra pantalla de inicio                │
-│   setTimedMode(timed) ────► Alterna modo cronometrado                 │
+│ PREGUNTAS                                                                │
+│   shuffleOpts(q) ──────────► Mezcla opciones de respuesta              │
+│   shuffleArray(arr) ────────► Fisher-Yates shuffle                     │
+│   buildDynamicQuestions() ──► Selecciona según config                  │
 │                                                                          │
-│ TIMER                                                                   │
-│   startTimer() ───────────► Inicia contador                            │
-│   stopTimer() ────────────► Detiene contador                           │
-│   updateTimerDisplay() ────► Actualiza mostrar timer                   │
-│   expireTime() ────────────► Maneja tiempo agotado                      │
+│ EXAMEN                                                                   │
+│   selectSubject() ────────► Selecciona materia                        │
+│   startQuiz() ─────────────► Inicia quiz individual                   │
+│   startAllSubjects() ───────► Inicia examen completo                   │
+│   beginSubject() ──────────► Prepara preguntas                        │
+│   showQuestion() ──────────► Renderiza pregunta actual                │
+│   nextQuestion() ──────────► Avanza a siguiente                       │
+│   showResults() ────────────► Muestra resultados                       │
 │                                                                          │
-│ QUESTION                                                                │
-│   showQuestion() ──────────► Renderiza pregunta actual                 │
-│   selectOpt(idx) ───────────► Procesa selección de opción               │
-│   nextQuestion() ───────────► Avanza a siguiente pregunta               │
-│                                                                          │
-│ RESULTS                                                                 │
-│   showResults() ───────────► Genera y muestra resultados                │
-│   showNivelInfo(nivel, s) ─► Muestra info de nivel (modal)            │
-│                                                                          │
-│ UTILS                                                                   │
-│   goScreen(id) ────────────► Cambia pantalla activa                     │
-│   setProgress(pct) ────────► Actualiza barra de progreso               │
-│   launchConfetti(n) ───────► Efecto confeti                            │
+│ UTILS                                                                    │
+│   goScreen(id) ───────────► Cambia pantalla activa                    │
+│   setProgress(pct) ───────► Actualiza barra de progreso               │
 │   goHome() ─────────────────► Resetea al inicio                        │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
@@ -390,125 +341,84 @@ const QUESTIONS = [
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                    PWA SERVICE WORKER                                  │
+│                         PWA SERVICE WORKER                             │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
-│  Portal Cache: portal-sed-narino-v10                                    │
-│  Simulacro Cache: simulacro-v4                                          │
+│  Cache Names:                                                           │
+│  - Portal:    portal-sed-narino-v11                                     │
+│  - Simulacro: simulacro-v5                                              │
+│                                                                          │
+│  Estrategia: Cache-first with network fallback                         │
 │                                                                          │
 │  ┌──────────────────────────────────────────────────────────────────┐   │
 │  │ ASSETS DEL PORTAL                                                │   │
 │  ├──────────────────────────────────────────────────────────────────┤   │
 │  │   - index.html, manifest.json, sw.js                            │   │
-│  │   - shared/js/questions.js, shared/js/data.js                    │   │
-│  │   - shared/js/portal.js                                         │   │
-│  │   - shared/css/portal.css                                       │   │
-│  │   - shared/img/portal/*                                          │   │
-│  │   - simulacro/index.html, simulacro/sw.js                       │   │
+│  │   - shared/js/questions.js, data.js, portal.js                 │   │
+│  │   - shared/css/portal.css, exam.css                             │   │
+│  │   - shared/img/portal/*                                         │   │
+│  │   - simulacro/index.html, sw.js, manifest.json                  │   │
 │  └──────────────────────────────────────────────────────────────────┘   │
-│                                                                          │
-│  ┌──────────────────────────────────────────────────────────────────┐   │
-│  │ ASSETS DEL SIMULACRO                                             │   │
-│  ├──────────────────────────────────────────────────────────────────┤   │
-│  │   - index.html, manifest.json, sw.js                            │   │
-│  │   - ../shared/js/questions.js, ../shared/js/data.js             │   │
-│  │   - ../shared/js/exam.js                                        │   │
-│  │   - ../shared/css/exam.css                                      │   │
-│  │   - ../shared/img/*                                              │   │
-│  └──────────────────────────────────────────────────────────────────┘   │
-│                                                                          │
-│  Estrategia: Cache-first with network fallback                          │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 11. Diagrama de Componentes
+## 11. Metadatos PWA
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    COMPONENTES Y RELACIONES                            │
-└─────────────────────────────────────────────────────────────────────────┘
+```json
+// manifest.json (portal)
+{
+  "name": "Portal SABER 11° · Nariño",
+  "short_name": "SABER 11 Nariño",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a3a5c",
+  "theme_color": "#1a3a5c",
+  "icons": [...]
+}
 
-                            ┌─────────────────┐
-                            │   index.html    │
-                            │   (Portal)      │
-                            └────────┬────────┘
-                                     │
-           ┌─────────────────────────┴─────────────────────────┐
-           │                                                   │
-           ▼                                                   ▼
-    ┌──────────────────┐                          ┌──────────────────┐
-    │   Portal SW      │                          │  simulacro/      │
-    │   (sw.js)        │                          │  (Unificado)     │
-    └────────┬─────────┘                          └────────┬─────────┘
-             │                                            │
-             │          ┌──────────────────────────────────┘
-             │          │
-             │          ▼
-             │   ┌──────────────────────────────────────────┐
-             │   │         simulacro/index.html             │
-             │   │  URL params: ?simulacro=1 or =2         │
-             │   │                                           │
-             │   │  1. configureSimulacro()                  │
-             │   │  2. Filter QUESTIONS by simulacro ID     │
-             │   │  3. Render subjects dynamically          │
-             │   └────────────────────┬─────────────────────┘
-             │                        │
-             └────────────────────────┼─────────────────────┘
-                                      ▼
-    ┌─────────────────────────────────────────────────────────────┐
-    │                    JavaScript Runtime                        │
-    ├─────────────────────────────────────────────────────────────┤
-    │                                                              │
-    │  QUESTIONS ──────► Filter by simulacro ──────► QB           │
-    │      │                       │                    │          │
-    │      │                       ▼                    ▼          │
-    │      │               ┌─────────────┐      ┌───────────┐    │
-    │      │               │   nivel.js  │      │  meta.js  │    │
-    │      │               │ NIVEL_INFO  │      │ META_QB   │    │
-    │      │               └─────────────┘      └───────────┘    │
-    │      │                       │                    │          │
-    │      └───────────────────────┼────────────────────┘          │
-    │                              ▼                                │
-    │                      ┌─────────────┐                          │
-    │                      │  exam.js    │                          │
-    │                      │  app.js    │                          │
-    │                      │  FUNCTIONS │                          │
-    │                      └──────┬──────┘                          │
-    │                             │                                 │
-    │                             ▼                                 │
-    │                      ┌─────────────┐                          │
-    │                      │    DOM      │                          │
-    │                      │  (UI)      │                          │
-    │                      └─────────────┘                          │
-    │                                                              │
-    └──────────────────────────────────────────────────────────────┘
+// manifest.json (simulacro)
+{
+  "name": "Simulador SABER 11° · Nariño",
+  "short_name": "SABER 11",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1a3a5c",
+  "theme_color": "#1a3a5c",
+  "icons": [...]
+}
 ```
 
 ---
 
-## 12. Screens (Estados de Pantalla)
+## 12. Tecnologías
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                    ESTADOS / PANTALLAS                                 │
+│                         STACK TECNOLÓGICO                               │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  FRONTEND                                                               │
+│  ├── HTML5 (semántico, sin frameworks)                                 │
+│  ├── CSS3 (variables, flexbox, grid, clamp())                         │
+│  ├── JavaScript ES6+ (vanilla, sin librerías)                          │
+│  └── PWA (Service Worker, Manifest)                                      │
+│                                                                          │
+│  TIPOGRAFÍA                                                             │
+│  ├── Display: Fraunces (serif, académico)                              │
+│  └── Body: Work Sans (sans-serif, legible)                             │
+│                                                                          │
+│  EXTERNAL RESOURCES                                                     │
+│  └── Google Fonts                                                       │
+│                                                                          │
+│  BROWSER SUPPORT                                                        │
+│  ├── Chrome/Edge, Firefox, Safari                                      │
+│  └── Requiere HTTPS o localhost                                         │
+│                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
-
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   s-home    │───►│  s-intro    │───►│  s-question │───►│ s-results   │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-     ▲                                          │
-     │            ┌─────────────┐                │
-     └────────────┤  s-results  │◄───────────────┘
-                  │  (review)   │
-                  └─────────────┘
-
-s-home     → Pantalla de selección de materia
-s-intro    → Información de la prueba antes de iniciar
-s-question → Durante la prueba (preguntas)
-s-results  → Resultados y revisión de respuestas
 ```
 
 ---
@@ -517,105 +427,13 @@ s-results  → Resultados y revisión de respuestas
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                    NIVELES DE DESEMPEÑO                                │
+│                        NIVELES DE DESEMPEÑO                             │
 ├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Lectura Crítica (lc)                                                  │
-│  ┌────────┬────────────────────────────────────────────────────────┐   │
-│  │ Nivel  │ Rango de Puntaje                                        │   │
-│  ├────────┼────────────────────────────────────────────────────────┤   │
-│  │   4   │ 66 - 100  (Reflexiona, evalúa y argumenta)            │   │
-│  │   3   │ 51 - 65   (Interpreta, infiere y relaciona)           │   │
-│  │   2   │ 36 - 50   (Identifica y comprende)                    │   │
-│  │   1   │  0 - 35   (Reconoce información explícita)            │   │
-│  └────────┴────────────────────────────────────────────────────────┘   │
-│                                                                          │
-│  Matemáticas (mat)                                                     │
-│  ┌────────┬────────────────────────────────────────────────────────┐   │
-│  │ Nivel  │ Rango de Puntaje                                        │   │
-│  ├────────┼────────────────────────────────────────────────────────┤   │
-│  │   4   │ 71 - 100                                                │   │
-│  │   3   │ 51 - 70                                                 │   │
-│  │   2   │ 36 - 50                                                 │   │
-│  │   1   │  0 - 35                                                 │   │
-│  └────────┴────────────────────────────────────────────────────────┘   │
-│                                                                          │
-│  Inglés (ing)                                                           │
-│  ┌────────┬────────────────────────────────────────────────────────┐   │
-│  │ Nivel  │ Rango de Puntaje                                        │   │
-│  ├────────┼────────────────────────────────────────────────────────┤   │
-│  │  B+    │ 79 - 100 (Dominio avanzado)                           │   │
-│  │  B1    │ 68 - 78  (Intermedio alto)                            │   │
-│  │  A2    │ 58 - 67  (Intermedio)                                 │   │
-│  │  A1    │ 48 - 57  (Básico)                                      │   │
-│  │  A-    │  0 - 47  (Por debajo del nivel básico)               │   │
-│  └────────┴────────────────────────────────────────────────────────┘   │
-│                                                                          │
+│  LC, MAT, SOC, CN:  Nivel 1-4                                          │
+│  ING: A-, A1, A2, B1, B+                                                │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 14. Tecnologías y Dependencias
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    STACK TECNOLÓGICO                                     │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  FRONTEND                                                               │
-│  ├── HTML5 (semántico, sin frameworks)                                 │
-│  ├── CSS3 (variables, flexbox, grid, media queries)                    │
-│  ├── JavaScript ES6+ (vanilla, sin librerías)                          │
-│  └── PWA (Service Worker, Manifest)                                     │
-│                                                                          │
-│  EXTERNAL RESOURCES                                                     │
-│  ├── Google Fonts: Nunito, Space Mono                                  │
-│  └── (Sin dependencias npm/build)                                       │
-│                                                                          │
-│  BROWSER SUPPORT                                                        │
-│  ├── Chrome/Edge (modern)                                             │
-│  ├── Firefox (modern)                                                   │
-│  ├── Safari iOS/macOS                                                   │
-│  └── Requiere HTTPS o localhost                                        │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 15. Cambios Recientes
-
-### Unificación de Simulacros
-- **Antes**: `simulacro-1/` y `simulacro-2/` como carpetas separadas
-- **Ahora**: `simulacro/` unificado con parámetro URL
-
-### Portal Links Actualizados
-```html
-<!-- Antes -->
-<a href="simulacro-1/index.html">Simulacro 1</a>
-<a href="simulacro-2/index.html">Simulacro 2</a>
-
-<!-- Ahora -->
-<a href="simulacro/index.html?simulacro=1">Simulacro 1</a>
-<a href="simulacro/index.html?simulacro=2">Simulacro 2</a>
-```
-
-### Imágenes Centralizadas
-- Logo: `shared/img/portal/logo.svg`
-- Iconos PWA: `shared/img/portal/icon-192.png`, `icon-512.png`, `icon-escudo.svg`
-- Avatares: `shared/img/portal/cuy_correcto_ok.png`, `cuy_incorrecto_ok.png`
-
----
-
-## 16. Próximos Pasos / Mejoras Futuras
-
-- [ ] Extraer IMGS de Base64 a archivos PNG reales
-- [ ] Unificar completamente app.js con exam.js
-- [ ] Agregar más preguntas al banco centralizado
-- [ ] Implementar persistencia de progreso localStorage
-- [ ] Agregar analytics para seguimiento de uso
-
----
-
-*Documento generado para el proyecto SABER 11 - Secretaría de Educación Departamental de Nariño*
+*Documento actualizado para SABER 11 - Secretaría de Educación Departamental de Nariño*

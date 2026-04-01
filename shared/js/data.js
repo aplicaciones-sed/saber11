@@ -68,29 +68,101 @@ const SUBJ_INFO = {
 const SIMULACROS = {
   1: {
     id: 1,
-    nombre: "Simulacro 1",
+    nombre: "Simulacro Dinámico",
     titulo: "SABER 11°",
-    descripcion: "Examen completo - Todas las materias",
-    shortName: "Simulacro 1",
+    descripcion: "Configura tu examen - Selecciona materias, cantidad de preguntas y orden",
+    shortName: "Simulacro",
     cacheName: "simulacro-v1",
+    dinamico: true,
   },
   2: {
     id: 2,
     nombre: "Simulacro 2",
     titulo: "SABER 11°",
-    descripcion: "Matemáticas, Lectura Crítica e Inglés",
-    shortName: "Simulacro 2",
+    descripcion: "Primer simulacro SED",
+    shortName: "Sim2",
     cacheName: "simulacro-v1",
+    dinamico: false,
   },
   3: {
     id: 3,
     nombre: "Simulacro 3",
     titulo: "SABER 11°",
-    descripcion: "Prueba",
-    shortName: "Sim3",
-    cacheName: "simulacro-v1",
+    descripcion: "prueba",
+    shortName: "Simulacro 3",
+    cacheName: "simulacro3",
+    dinamico: false,
   },
 };
+
+const DEFAULT_SUBJECT_CONFIG = {
+  lc: { preguntas: 3, inicio: 1, aleatorio: true },
+  mat: { preguntas: 3, inicio: 1, aleatorio: true },
+  soc: { preguntas: 3, inicio: 1, aleatorio: true },
+  cn: { preguntas: 3, inicio: 1, aleatorio: true },
+  ing: { preguntas: 3, inicio: 1, aleatorio: true },
+};
+
+function getSubjectDefaultConfig(subject) {
+  return DEFAULT_SUBJECT_CONFIG[subject] || { preguntas: 3, inicio: 1, aleatorio: true };
+}
+
+function getSubjectMaxQuestions(subject, simulacroId = 1) {
+  if (typeof QUESTIONS === "undefined") return 0;
+  return QUESTIONS.filter(
+    (q) => q.subject === subject && q.simulators && q.simulators.includes(simulacroId)
+  ).length;
+}
+
+function validateSubjectConfig(subject, config, simulacroId = 1) {
+  const maxQuestions = getSubjectMaxQuestions(subject, simulacroId);
+  const errors = [];
+  
+  if (config.preguntas < 1) {
+    errors.push("El número mínimo de preguntas es 1");
+  }
+  if (config.preguntas > maxQuestions) {
+    errors.push(`Máximo ${maxQuestions} preguntas disponibles para ${SUBJ_INFO[subject]?.name || subject}`);
+  }
+  if (config.inicio < 1) {
+    errors.push("El número de inicio debe ser al menos 1");
+  }
+  if (config.inicio > maxQuestions) {
+    errors.push(`El inicio no puede superar el total de preguntas (${maxQuestions})`);
+  }
+  if (config.inicio + config.preguntas - 1 > maxQuestions) {
+    errors.push(`El rango excede el total de preguntas disponibles (inicio ${config.inicio} + ${config.preguntas - 1} > ${maxQuestions})`);
+  }
+  
+  return errors;
+}
+
+function buildDynamicQuestions(subject, config, simulacroId = 1) {
+  if (typeof QUESTIONS === "undefined") return [];
+  
+  const allQuestions = QUESTIONS.filter(
+    (q) => q.subject === subject && q.simulators && q.simulators.includes(simulacroId)
+  );
+  
+  let selectedQuestions;
+  
+  if (config.aleatorio) {
+    // Mezclar TODO el pool y tomar las primeras X
+    const shuffled = [...allQuestions];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    selectedQuestions = shuffled.slice(0, config.preguntas);
+  } else {
+    // Sin aleatorio: tomar desde inicio
+    const startIndex = config.inicio - 1;
+    const endIndex = startIndex + config.preguntas;
+    selectedQuestions = allQuestions.slice(startIndex, endIndex);
+  }
+  
+  return selectedQuestions;
+}
 
 function getSimulacroSubjects(simId) {
   if (typeof QUESTIONS === "undefined") return [];

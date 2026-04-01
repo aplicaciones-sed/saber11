@@ -6,7 +6,8 @@
 let SIMULACRO_ID = 1;
 let SIMULACRO_CONFIG = null;
 let ACTIVE_SUBJECTS = [];
-const QB = {};
+let QB = {};
+let SUBJECT_CONFIG = {};
 
 function getSimulacroFromURL() {
   const params = new URLSearchParams(window.location.search);
@@ -29,7 +30,180 @@ function configureSimulacro() {
     'Simulador SABER 11 - ' + SIMULACRO_CONFIG.descripcion + ' - Secretaría de Educación de Nariño');
   document.querySelector('meta[name="apple-mobile-web-app-title"]').setAttribute('content', 
     SIMULACRO_CONFIG.shortName + ' Nariño');
+}
+
+function loadConfigFromSession() {
+  const configData = sessionStorage.getItem('simulacroConfig');
+  if (configData) {
+    try {
+      const parsed = JSON.parse(configData);
+      if (parsed.simulacroId === SIMULACRO_ID) {
+        SUBJECT_CONFIG = parsed.subjects;
+        sessionStorage.removeItem('simulacroConfig');
+        return;
+      }
+    } catch (e) {
+      console.error('Error:', e);
+    }
+  }
+  initSubjectConfig();
+}
+
+function initSubjectConfig() {
+  ACTIVE_SUBJECTS.forEach(subj => {
+    const defaultConfig = getSubjectDefaultConfig(subj);
+    const maxQuestions = getSubjectMaxQuestions(subj, SIMULACRO_ID);
+    SUBJECT_CONFIG[subj] = {
+      preguntas: Math.min(defaultConfig.preguntas, maxQuestions),
+      inicio: Math.min(defaultConfig.inicio, maxQuestions),
+      aleatorio: defaultConfig.aleatorio
+    };
+  });
+  renderConfigSection();
+}
+
+function renderConfigSection() {
+  const grid = document.getElementById('configGrid');
+  if (!grid) return;
   
+  grid.innerHTML = '';
+  
+  ACTIVE_SUBJECTS.forEach(subj => {
+    const info = SUBJ_INFO[subj];
+    const config = SUBJECT_CONFIG[subj];
+    const maxQuestions = getSubjectMaxQuestions(subj, SIMULACRO_ID);
+    
+    const div = document.createElement('div');
+    div.className = 'config-subject-card';
+    div.innerHTML = `
+      <div class="config-subject-header">
+        <span class="config-subject-icon">${info.icon}</span>
+        <div>
+          <div class="config-subject-name">${info.name}</div>
+          <div class="config-subject-info">${maxQuestions} preguntas disponibles</div>
+        </div>
+      </div>
+      <div class="config-subject-fields">
+        <div class="config-field">
+          <label>Preguntas</label>
+          <input type="number" id="cfg-preg-${subj}" 
+            value="${config.preguntas}" 
+            min="1" max="${maxQuestions}"
+            onchange="updateSubjectConfig('${subj}', 'preguntas', this.value)">
+        </div>
+        <div class="config-field">
+          <label>Iniciar desde</label>
+          <input type="number" id="cfg-ini-${subj}" 
+            value="${config.inicio}" 
+            min="1" max="${maxQuestions}"
+            onchange="updateSubjectConfig('${subj}', 'inicio', this.value)">
+        </div>
+        <div class="config-field">
+          <label>Aleatorio</label>
+          <input type="checkbox" id="cfg-ale-${subj}" 
+            ${config.aleatorio ? 'checked' : ''}
+            onchange="updateSubjectConfig('${subj}', 'aleatorio', this.checked)">
+        </div>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+  
+  const globalAleatorio = document.getElementById('configAleatorioGlobal');
+  if (globalAleatorio) {
+    const allAleatorio = ACTIVE_SUBJECTS.every(subj => SUBJECT_CONFIG[subj].aleatorio);
+    globalAleatorio.checked = allAleatorio;
+  }
+}
+
+function updateSubjectConfig(subject, field, value) {
+  const maxQuestions = getSubjectMaxQuestions(subject, SIMULACRO_ID);
+  
+  if (field === 'preguntas' || field === 'inicio') {
+    value = parseInt(value, 10) || 1;
+  }
+  
+  SUBJECT_CONFIG[subject][field] = value;
+  
+  validateConfig();
+}
+
+function toggleAleatorioGlobal() {
+  const globalAleatorio = document.getElementById('configAleatorioGlobal');
+  const value = globalAleatorio.checked;
+  
+  ACTIVE_SUBJECTS.forEach(subj => {
+    SUBJECT_CONFIG[subj].aleatorio = value;
+  });
+  
+  renderConfigSection();
+}
+
+function validateConfig() {
+  const alertDiv = document.getElementById('configAlert');
+  const allErrors = [];
+  
+  const subjectsToValidate = ACTIVE_SUBJECTS.filter(subj => 
+    SUBJECT_CONFIG[subj] && SUBJECT_CONFIG[subj].preguntas > 0
+  );
+  
+  subjectsToValidate.forEach(subj => {
+    const errors = validateSubjectConfig(subj, SUBJECT_CONFIG[subj], SIMULACRO_ID);
+    errors.forEach(err => allErrors.push(`${SUBJ_INFO[subj].name}: ${err}`));
+  });
+  
+  if (allErrors.length > 0) {
+    if (alertDiv) {
+      alertDiv.innerHTML = allErrors.join('<br>');
+      alertDiv.classList.add('show');
+    } else {
+      alert(allErrors.join('\n'));
+    }
+    return false;
+  } else {
+    if (alertDiv) alertDiv.classList.remove('show');
+    return true;
+  }
+}
+
+function resetConfig() {
+  ACTIVE_SUBJECTS.forEach(subj => {
+    const defaultConfig = getSubjectDefaultConfig(subj);
+    const maxQuestions = getSubjectMaxQuestions(subj, SIMULACRO_ID);
+    SUBJECT_CONFIG[subj] = {
+      preguntas: Math.min(defaultConfig.preguntas, maxQuestions),
+      inicio: Math.min(defaultConfig.inicio, maxQuestions),
+      aleatorio: defaultConfig.aleatorio
+    };
+  });
+  renderConfigSection();
+}
+
+function applyConfig() {
+  if (!validateConfig()) {
+    return;
+  }
+  
+  const btn = document.querySelector('#configSection .btn-primary');
+  btn.textContent = '✓ Aplicado';
+  setTimeout(() => btn.textContent = 'Aplicar configuración', 2000);
+}
+
+function buildQBFromConfig() {
+  QB = {};
+  
+  const subjectsToBuild = ACTIVE_SUBJECTS.filter(subj => 
+    SUBJECT_CONFIG[subj] && SUBJECT_CONFIG[subj].preguntas > 0
+  );
+  
+  subjectsToBuild.forEach(subj => {
+    const config = SUBJECT_CONFIG[subj];
+    const questions = buildDynamicQuestions(subj, config, SIMULACRO_ID);
+    
+    if (questions.length > 0) {
+      QB[subj] = { ...SUBJ_INFO[subj], questions: questions };
+    }
+  });
 }
 
 function detectActiveSubjects() {
@@ -51,9 +225,35 @@ function renderSubjects() {
   const grid = document.getElementById('subjectGrid');
   grid.innerHTML = '';
   
-  ACTIVE_SUBJECTS.forEach(subj => {
+  // Para simulacros dinámicos con config, usar esa config
+  // Para simulacros estáticos, mostrar todas las materias disponibles
+  let subjectsToShow;
+  
+  if (SIMULACRO_CONFIG && SIMULACRO_CONFIG.dinamico && Object.keys(SUBJECT_CONFIG).length > 0) {
+    subjectsToShow = ACTIVE_SUBJECTS.filter(subj => {
+      const config = SUBJECT_CONFIG[subj];
+      return config && config.preguntas > 0;
+    });
+  } else {
+    // Simulacro estático - mostrar todas las materias disponibles
+    subjectsToShow = ACTIVE_SUBJECTS.filter(subj => {
+      return QB[subj] && QB[subj].questions && QB[subj].questions.length > 0;
+    });
+  }
+  
+  if (subjectsToShow.length === 0) {
+    grid.innerHTML = '<p style="padding:20px;text-align:center;color:var(--text-3)">No hay materias disponibles.</p>';
+    return;
+  }
+  
+  subjectsToShow.forEach(subj => {
     const info = SUBJ_INFO[subj];
-    const count = getSubjectQuestionCount(subj);
+    let count;
+    if (SIMULACRO_CONFIG && SIMULACRO_CONFIG.dinamico && SUBJECT_CONFIG[subj]) {
+      count = SUBJECT_CONFIG[subj].preguntas || 0;
+    } else {
+      count = QB[subj]?.questions?.length || 0;
+    }
     const div = document.createElement('div');
     div.className = `subj-card s-${subj}`;
     div.onclick = () => selectSubject(subj);
@@ -127,11 +327,40 @@ function startAllSubjects(){
   beginSubject();
 }
 
-function startQuiz(){stopTimer();state.allSubjects=false;beginSubject();}
+function startQuiz() {
+  stopTimer();
+  state.allSubjects = false;
+  beginSubject();
+}
+
+function startAllSubjects() {
+  const activeSubjects = ACTIVE_SUBJECTS.filter(subj => 
+    SUBJECT_CONFIG[subj] && SUBJECT_CONFIG[subj].preguntas > 0
+  );
+  
+  if (activeSubjects.length === 0) {
+    alert('No hay materias configuradas');
+    return;
+  }
+  
+  state.allSubjects = true;
+  state.allQueue = [...activeSubjects];
+  state.allAnswers = {};
+  state.subject = state.allQueue.shift();
+  if(state.timedMode){
+    const currentTime = QB[state.subject].questions.length * 60;
+    const remainingTime = state.allQueue.reduce((acc, key) => acc + QB[key].questions.length * 60, 0);
+    state.timeRemaining = currentTime + remainingTime;
+  }
+  beginSubject();
+}
 
 function beginSubject(){
   const s=QB[state.subject];
-  state.questions=s.questions.map(q=>shuffleOpts(q));
+  
+  let questionsToUse = s.questions.map(q => shuffleOpts(q));
+  
+  state.questions = questionsToUse;
   state.current=0;
   state.answers=new Array(s.questions.length).fill(null);state.hintsUsed=0;
   state.timeExpired=false;
@@ -645,20 +874,50 @@ function launchConfetti(n){
 window.addEventListener('DOMContentLoaded', function() {
   configureSimulacro();
   
+  // Cargar configuración antes de todo
+  if (SIMULACRO_CONFIG && SIMULACRO_CONFIG.dinamico) {
+    const configData = sessionStorage.getItem('simulacroConfig');
+    if (configData) {
+      try {
+        const parsed = JSON.parse(configData);
+        if (parsed.simulacroId === SIMULACRO_ID) {
+          SUBJECT_CONFIG = parsed.subjects;
+          sessionStorage.removeItem('simulacroConfig');
+        }
+      } catch (e) {
+        console.error('Error:', e);
+      }
+    }
+  }
+  
   if (typeof QUESTIONS !== 'undefined') {
     detectActiveSubjects();
-    renderSubjects();
     
     const simulacroQuestions = QUESTIONS.filter(q => q.simulators && q.simulators.includes(SIMULACRO_ID));
     if (simulacroQuestions.length > 0) {
-      ACTIVE_SUBJECTS.forEach(subj => {
-        const subjQuestions = simulacroQuestions.filter(q => q.subject === subj);
-        if (subjQuestions.length > 0) {
-          QB[subj] = { ...SUBJ_INFO[subj], questions: subjQuestions };
-        }
-      });
-      console.log('QB actualizado con preguntas para simulacro', SIMULACRO_ID, '- Materias:', ACTIVE_SUBJECTS);
+      if (SIMULACRO_CONFIG && SIMULACRO_CONFIG.dinamico) {
+        // Usar solo las materias que tienen config
+        Object.keys(SUBJECT_CONFIG).forEach(subj => {
+          const config = SUBJECT_CONFIG[subj];
+          if (config && config.preguntas > 0) {
+            const questions = buildDynamicQuestions(subj, config, SIMULACRO_ID);
+            if (questions.length > 0) {
+              QB[subj] = { ...SUBJ_INFO[subj], questions: questions };
+            }
+          }
+        });
+        console.log('QB construido dinámico:', Object.keys(QB).map(k => k + ':' + QB[k].questions.length));
+      } else {
+        ACTIVE_SUBJECTS.forEach(subj => {
+          const subjQuestions = simulacroQuestions.filter(q => q.subject === subj);
+          if (subjQuestions.length > 0) {
+            QB[subj] = { ...SUBJ_INFO[subj], questions: subjQuestions };
+          }
+        });
+      }
     }
+    
+    renderSubjects();
   } else {
     detectActiveSubjects();
     renderSubjects();

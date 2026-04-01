@@ -1,8 +1,10 @@
 {
   "name": "Simulador SABER 11° · Nariño",
   "short_name": "SABER 11",
+  "id": "/simulacro/",
   "description": "Simulador oficial de pruebas SABER 11° - Secretaría de Educación de Nariño",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#1a3a5c",
   "theme_color": "#1a3a5c",

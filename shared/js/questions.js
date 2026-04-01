@@ -1267,8 +1267,54 @@ const QUESTIONS = [
   // MAT - Matemáticas (9 preguntas)
   {
     id: 201,
-    simulators: [1],
+    simulators: [1,2,3],
     subject: "mat",
+    contextImg: "mat_fig1",
+    contextImgCaption: "Figura 1 — Mapa de la ciudad con puntos A, B y C",
+    context:
+      "En la figura se presenta un mapa de la vista aérea de las calles de una ciudad. Cada cuadrilátero corresponde a un cuadrado. La ruta de A a C mide 25 cm. Cada cuadrado tiene lado de 5 cm.",
+    questionImg: "mat_fig2",
+    questionImgCaption: "Figura 2 — Tres rutas posibles de A a B",
+    text: "Una persona debe ir del punto A al punto B. ¿Cuál(es) de las rutas presentadas tiene(n) longitud igual a la mostrada en la figura 1?",
+    options: [
+      "A. Solamente I.",
+      "B. Solamente I y III.",
+      "C. Solamente II.",
+      "D. Solamente II y III.",
+    ],
+    correct: 1,
+    competency: "Interpretación y representación",
+    level: 3,
+    justification:
+      "Ruta I: 5 cuadrados × 5 cm = 25 cm. Ruta III: 5 cuadrados × 5 cm = 25 cm.",
+  },
+  {
+    id: 202,
+    simulators: [1,2],
+    subject: "cn",
+    contextImg: "mat_fig1",
+    contextImgCaption: "Figura 1 — Mapa de la ciudad con puntos A, B y C",
+    context:
+      "En la figura se presenta un mapa de la vista aérea de las calles de una ciudad. Cada cuadrilátero corresponde a un cuadrado. La ruta de A a C mide 25 cm. Cada cuadrado tiene lado de 5 cm.",
+    questionImg: "mat_fig2",
+    questionImgCaption: "Figura 2 — Tres rutas posibles de A a B",
+    text: "Una persona debe ir del punto A al punto B. ¿Cuál(es) de las rutas presentadas tiene(n) longitud igual a la mostrada en la figura 1?",
+    options: [
+      "A. Solamente I.",
+      "B. Solamente I y III.",
+      "C. Solamente II.",
+      "D. Solamente II y III.",
+    ],
+    correct: 1,
+    competency: "Interpretación y representación",
+    level: 3,
+    justification:
+      "Ruta I: 5 cuadrados × 5 cm = 25 cm. Ruta III: 5 cuadrados × 5 cm = 25 cm.",
+  },
+  {
+    id: 203,
+    simulators: [1],
+    subject: "ing",
     contextImg: "mat_fig1",
     contextImgCaption: "Figura 1 — Mapa de la ciudad con puntos A, B y C",
     context:
