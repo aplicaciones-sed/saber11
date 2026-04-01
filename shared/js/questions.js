@@ -1240,7 +1240,7 @@ const QUESTIONS = [
   },
   {
     id: 42,
-    simulators: [1, 2, 3],
+    simulators: [1, 3],
     subject: "mat",
     context: `
   <p>
@@ -1274,44 +1274,9 @@ const QUESTIONS = [
     id: 43,
     simulators: [1, 3],
     subject: "mat",
-    context: `<p>La torre de Pisa en Toscana es uno de los sitios turísticos más representativos de Italia. En la tabla se relaciona la cantidad de personas que ingresó cada día durante una semana, según el tipo de entrada que pagó.</p>
-<p>Se pagan 17 euros de entrada y 5,5 más si se realiza reserva.</p>
-<table border="1" cellpadding="4" cellspacing="0">
-<thead>
-  <tr>
-    <th>Tipo de entrada</th>
-    <th>Lunes</th>
-    <th>Martes</th>
-    <th>Miércoles</th>
-    <th>Jueves</th>
-    <th>Viernes</th>
-    <th>Sábado</th>
-    <th>Domingo</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Sin reserva</td>
-    <td>300</td>
-    <td>300</td>
-    <td>500</td>
-    <td>700</td>
-    <td>300</td>
-    <td>300</td>
-    <td>700</td>
-  </tr>
-  <tr>
-    <td>Con reserva</td>
-    <td>700</td>
-    <td>800</td>
-    <td>200</td>
-    <td>600</td>
-    <td>500</td>
-    <td>500</td>
-    <td>600</td>
-  </tr>
-</tbody>
-</table>`,
+    context: `  <p>
+                <img style="width:100%" src="../shared/img/questions/mat1.png" alt='' loading="lazy">  
+              </p>`,
     text: "Aproximadamente, ¿qué porcentaje del total de personas que visitaron la torre esa semana entraron sin hacer reserva?",
     options: ["56 %.", "50 %.", "44 %.", "40 %."],
     correct: 2,
@@ -1336,49 +1301,14 @@ const QUESTIONS = [
     id: 44,
     simulators: [1, 3],
     subject: "mat",
-    context: `<p>La torre de Pisa en Toscana es uno de los sitios turísticos más representativos de Italia. En la tabla se relaciona la cantidad de personas que ingresó cada día durante una semana, según el tipo de entrada que pagó.</p>
-<p>Se pagan 17 euros de entrada y 5,5 más si se realiza reserva.</p>
-<table border="1" cellpadding="4" cellspacing="0">
-<thead>
-  <tr>
-    <th>Tipo de entrada</th>
-    <th>Lunes</th>
-    <th>Martes</th>
-    <th>Miércoles</th>
-    <th>Jueves</th>
-    <th>Viernes</th>
-    <th>Sábado</th>
-    <th>Domingo</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Sin reserva</td>
-    <td>300</td>
-    <td>300</td>
-    <td>500</td>
-    <td>700</td>
-    <td>300</td>
-    <td>300</td>
-    <td>700</td>
-  </tr>
-  <tr>
-    <td>Con reserva</td>
-    <td>700</td>
-    <td>800</td>
-    <td>200</td>
-    <td>600</td>
-    <td>500</td>
-    <td>500</td>
-    <td>600</td>
-  </tr>
-</tbody>
-</table>
+    context: `<p>
+                <img style="width:100%" src="../shared/img/questions/mat1.png" alt='' loading="lazy">  
+              </p>
 <p>El proceso que muestra cómo se obtiene el dinero recaudado en la semana, de cada forma de venta, es:</p>
-<p><strong>Paso 1:</strong> Sumar la cantidad de personas que entraron con reserva durante la semana. / Sumar la cantidad de personas que entraron sin reserva durante la semana.<br>
-<strong>Paso 2:</strong> Multiplicar la cantidad obtenida en el paso 1 por 22,5. / Multiplicar la cantidad obtenida en el paso 1 por 17.<br>
-<strong>Paso 3:</strong> Comparar los resultados.</p>`,
-    text: "¿Cuál de las siguientes preguntas NO se puede resolver empleando una parte del proceso anterior?",
+<p>
+                <img style="width:100%" src="../shared/img/questions/mat3.png" alt='' loading="lazy">  
+              </p>`,
+    text: "¿Cuál de las siguientes preguntas <strong>NO</strong> se puede resolver empleando una parte del proceso anterior?",
     options: [
       "¿Con cuál tipo de entrada se recaudó más dinero?",
       "¿Cuántas personas ingresaron en la semana?",
@@ -1407,44 +1337,9 @@ const QUESTIONS = [
     id: 45,
     simulators: [1, 3],
     subject: "mat",
-    context: `<p>La torre de Pisa en Toscana es uno de los sitios turísticos más representativos de Italia. En la tabla se relaciona la cantidad de personas que ingresó cada día durante una semana, según el tipo de entrada que pagó.</p>
-<p>Se pagan 17 euros de entrada y 5,5 más si se realiza reserva.</p>
-<table border="1" cellpadding="4" cellspacing="0">
-<thead>
-  <tr>
-    <th>Tipo de entrada</th>
-    <th>Lunes</th>
-    <th>Martes</th>
-    <th>Miércoles</th>
-    <th>Jueves</th>
-    <th>Viernes</th>
-    <th>Sábado</th>
-    <th>Domingo</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Sin reserva</td>
-    <td>300</td>
-    <td>300</td>
-    <td>500</td>
-    <td>700</td>
-    <td>300</td>
-    <td>300</td>
-    <td>700</td>
-  </tr>
-  <tr>
-    <td>Con reserva</td>
-    <td>700</td>
-    <td>800</td>
-    <td>200</td>
-    <td>600</td>
-    <td>500</td>
-    <td>500</td>
-    <td>600</td>
-  </tr>
-</tbody>
-</table>`,
+    context: `<p>
+                <img style="width:100%" src="../shared/img/questions/mat1.png" alt='' loading="lazy">  
+              </p>`,
     text: "El recaudo total de la semana, registrada en la tabla, fue aproximadamente de",
     options: [
       "14 mil euros.",
@@ -1474,44 +1369,9 @@ const QUESTIONS = [
     id: 46,
     simulators: [1, 3],
     subject: "mat",
-    context: `<p>La torre de Pisa en Toscana es uno de los sitios turísticos más representativos de Italia. En la tabla se relaciona la cantidad de personas que ingresó cada día durante una semana, según el tipo de entrada que pagó.</p>
-<p>Se pagan 17 euros de entrada y 5,5 más si se realiza reserva.</p>
-<table border="1" cellpadding="4" cellspacing="0">
-<thead>
-  <tr>
-    <th>Tipo de entrada</th>
-    <th>Lunes</th>
-    <th>Martes</th>
-    <th>Miércoles</th>
-    <th>Jueves</th>
-    <th>Viernes</th>
-    <th>Sábado</th>
-    <th>Domingo</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Sin reserva</td>
-    <td>300</td>
-    <td>300</td>
-    <td>500</td>
-    <td>700</td>
-    <td>300</td>
-    <td>300</td>
-    <td>700</td>
-  </tr>
-  <tr>
-    <td>Con reserva</td>
-    <td>700</td>
-    <td>800</td>
-    <td>200</td>
-    <td>600</td>
-    <td>500</td>
-    <td>500</td>
-    <td>600</td>
-  </tr>
-</tbody>
-</table>`,
+    context: `<p>
+                <img style="width:100%" src="../shared/img/questions/mat1.png" alt='' loading="lazy">  
+              </p>`,
     text: "La mediana de la cantidad de turistas sin reserva que ingresan a la torre es 300; la de los que ingresan con reserva es 600. Solamente teniendo esto en cuenta, ¿es correcto afirmar que entran el doble de turistas con reserva que sin ella?",
     options: [
       "No, la mediana es una medida de localización central.",
@@ -1542,7 +1402,9 @@ const QUESTIONS = [
     simulators: [1, 3],
     subject: "mat",
     context: `<p>El dueño de un parque recreativo planea construir tres piscinas y decorar sus bordes con baldosas blancas y azules, tal como se muestra en las figuras 1, 2 y 3.</p>
-<p>Piscina de niños. Figura 1 &nbsp;&nbsp;&nbsp; Piscina de recreación. Figura 2 &nbsp;&nbsp;&nbsp; Piscina de entrenamiento. Figura 3</p>`,
+<p>
+                <img style="width:100%" src="../shared/img/questions/mat4.png" alt='' loading="lazy">  
+              </p>`,
     text: "Según la observación de las figuras 1, 2 y 3, puede afirmarse correctamente que el número de baldosas",
     options: [
       "azules se incrementa en seis de una piscina a la del siguiente tamaño.",
@@ -1564,7 +1426,30 @@ const QUESTIONS = [
     evaluationCriteria:
       "La capacidad para identificar un patrón a partir de un conjunto de figuras dadas.",
     justification:
-      "A partir de las figuras mostradas, se observa que: Figura 1: 12 baldosas azules; Figura 2: 18 = 12 + 6; Figura 3: 24 = 18 + 6. De lo anterior, se puede concluir que el número de baldosas azules aumenta en 6 de una piscina a la del siguiente tamaño.",
+      `A partir de las figuras mostradas, se observa que: 
+      <table border="1" cellpadding="4" cellspacing="0" >
+  <thead>
+    <tr>
+      <th style="padding: 2px;">Figura</th>
+      <th style="padding: 2px;">Baldosas azules</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align='center'>1</td>
+     <td>12</td>
+    </tr>
+    <tr>
+     <td align='center'>2</td>
+      <td>18 = 12 + 6</td>   
+    </tr>
+    <tr>
+     <td align='center'>3</td>
+      <td>24 = 18 + 6</td>
+    </tr>
+  </tbody>
+</table>
+       De lo anterior, se puede concluir que el número de baldosas azules aumenta en 6 de una piscina a la del siguiente tamaño.`,
     invalidOptions:
       "Es posible que los estudiantes que elijan la opción B cuenten las baldosas blancas en la figura 1 (8) y consideren que en las siguientes figuras el número de baldosas blancas aumentará en esta cantidad. <br> Es posible que los estudiantes que elijan la opción C comparen únicamente la cantidad de baldosas azules y blancas en la última figura (24 y 12), concluyendo que la cantidad de baldosas azules es el doble de la cantidad de baldosas blancas en cada piscina. <br> Es posible que los estudiantes que elijan la opción D únicamente comparen la cantidad de baldosas azules de la última figura con la cantidad de baldosas blancas de la primera figura (24 y 8), concluyendo que la cantidad de baldosas blancas es la tercera parte de la cantidad de baldosas azules.",
   },
@@ -1600,25 +1485,31 @@ const QUESTIONS = [
   },
   {
     id: 49,
-    simulators: [1, 3],
+    simulators: [1, 2, 3],
     subject: "mat",
     context: `<p>El costo de la boleta en un cinema depende de la edad de la persona, como lo muestra la tabla.</p>
-<table border="1" cellpadding="4" cellspacing="0">
+<table style="text-align='center'" border="1" cellpadding="4" cellspacing="0">
 <thead>
   <tr>
     <th>Edad en años (X)</th>
-    <th>Costo en pesos (Y)</th>
+    <th style="padding:5px">Costo en pesos (Y)</th>
   </tr>
 </thead>
 <tbody>
-  <tr><td>Desde 0 y hasta 8</td><td>5.000</td></tr>
-  <tr><td>Más de 8 y hasta 16</td><td>7.000</td></tr>
-  <tr><td>Más de 16 y hasta 56</td><td>10.000</td></tr>
-  <tr><td>Más de 56</td><td>6.000</td></tr>
+  <tr align='center'><td >Desde 0 y hasta 8</td><td>5.000</td></tr>
+  <tr align='center'><td>Más de 8 y hasta 16</td><td>7.000</td></tr>
+  <tr align='center'><td style="padding:5px">Más de 16 y hasta 56</td><td>10.000</td></tr>
+  <tr align='center'><td>Más de 56</td><td>6.000</td></tr>
 </tbody>
 </table>`,
     text: "La gráfica que representa esta función es",
     options: ["A.", "B.", "C.", "D."],
+    optionsImg: [
+           "mat4-A",
+           "mat4-B",
+          "mat4-C",
+           "mat4-D",
+         ],
     correct: 0,
     competency: "Interpretación.",
     level: "",
@@ -1633,7 +1524,15 @@ const QUESTIONS = [
     evaluationCriteria:
       "La capacidad para construir la gráfica asociada a una función a trozos descrita en una tabla.",
     justification:
-      "Con la información de la tabla se puede construir la gráfica de la función a trozos: desde 0 y hasta 8 el costo es 5.000; más de 8 y hasta 16 es 7.000; más de 16 y hasta 56 es 10.000; más de 56 es 6.000. La gráfica correcta es la que representa cada intervalo con un segmento horizontal a la altura correspondiente, con los extremos abiertos y cerrados correctamente.",
+      `Con la información de la tabla se puede construir la gráfica de la función a trozos así: 
+      <p>
+  <img style="width:50%" src="../shared/img/questions/mat4-j1.png" alt='' loading="lazy">  
+ </p>
+   <p>
+  <img style="width:50%" src="../shared/img/questions/mat4-j2.png" alt='' loading="lazy">  
+ </p>
+      desde 0 y hasta 8 el costo es 5.000; más de 8 y hasta 16 es 7.000; más de 16 y hasta 56 es 10.000; más de 56 es 6.000. 
+      La gráfica correcta es la que representa cada intervalo con un segmento horizontal a la altura correspondiente, con los extremos abiertos y cerrados correctamente.`,
     invalidOptions:
       "Es posible que los estudiantes que elijan la opción B identifiquen correctamente los costos de las boletas para los extremos inferiores de cada intervalo de edad (0, 8, 16, 56), obteniendo los puntos (0, 5.000), (8, 7.000), (16, 10.000), (56, 6.000), y ubiquen estos puntos en el plano y los unan con segmentos. <br> Es posible que los estudiantes que elijan la opción C identifiquen y grafiquen los intervalos en la gráfica, pero consideren que la función debe ser continua y, por tanto, la curva no puede tener saltos. <br> Es posible que los estudiantes que elijan la opción D identifiquen correctamente los costos de las boletas para los extremos inferior y superior de cada intervalo de edad, obteniendo los puntos (0, 5.000), (8, 5.000), (8, 7.000), (8, 16.000), (16, 10.000), (56, 10.000), (56, 6.000), y ubiquen estos puntos en el plano.",
   },
