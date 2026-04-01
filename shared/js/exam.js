@@ -508,10 +508,12 @@ function showQuestion(){
   let optsHtml='';
   q.options.forEach((o,i)=>{
     const letter=['A','B','C','D'][i];
-    const optImg=q.optionsImg&&q.optionsImg[i]?`<img src="${getImg(q.optionsImg[i])}" alt="Opción ${letter}" class="opt-img" loading="lazy">`:'';
+    const optImg=q.optionsImg&&q.optionsImg[i]?`<img src="${getImg(q.optionsImg[i])}" alt="Opción ${letter}" class="opt-img" loading="lazy" onclick="event.stopPropagation();selectOpt(${i})">`:'';
     optsHtml+=`<button class="opt" id="opt${i}" onclick="selectOpt(${i})">
-      <span class="opt-letter">${letter}</span>
-      <span class="opt-text">${o.replace(/^[A-D]\.\s*/,'')}</span>
+      <div class="opt-row">
+        <span class="opt-letter">${letter}</span>
+        <span class="opt-text">${o.replace(/^[A-D]\.\s*/,'')}</span>
+      </div>
       ${optImg}
     </button>`;
   });
