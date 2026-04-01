@@ -1178,7 +1178,7 @@ const QUESTIONS = [
   },
   {
     id: 40,
-    simulators: [1,3],
+    simulators: [1, 3],
     subject: "soc",
     context: `<p>Un periódico colombiano publicó la siguiente noticia: "Luego de que la autoridad nacional a cargo de las licencias ambientales autorizara la construcción de un hotel ecoturístico dentro del parque Tayrona, territorio ancestral indígena, el ministro de Ambiente y Desarrollo Sostenible puso en duda la viabilidad de esa obra. De acuerdo con el ministro, la licencia que tiene este hotel no es viable porque permite talar una porción de bosque seco, ecosistema que está casi extinto en Colombia".</p><div style="margin-top:10px;font-size:11px;color:#888;font-style:italic;text-align:center"><p><em>Tomado y adaptado de: Redacción Vida de Hoy (2013, 10 de enero). Gobierno considera inviable hotel en el Tayrona. El Tiempo. Recuperado de http://www.eltiempo.com/archivo/dcumento/CMS-12505333</em></p></div>`,
     text: "En esta noticia, el narrador está dándole un mayor énfasis a",
@@ -1207,133 +1207,904 @@ const QUESTIONS = [
       "No es correcta la opción A porque solo hace mención al efecto político del proyecto, desconociendo la perspectiva ambiental. No es la opción C porque la dimensión central es la viabilidad económica y no habla del énfasis de la noticia que se refiere a lo ambiental. No es la opción D ya que en esta opción se hace referencia a la dimensión cultural, el énfasis central de la noticia es la dimensión ambiental.",
   },
 
+  // mat - Matemáticas (20 preguntas)
+  {
+    id: 41,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>En una bolsa hay 3 bolas rojas, 3 negras y 12 blancas. Una persona afirma que al sacar una bola al azar, los tres colores tienen la misma probabilidad de salir.</p>`,
+    text: "Esta afirmación es",
+    options: [
+      "verdadera, pues el número de bolas de cada color no importa.",
+      "falsa, pues no se sabe el número total de bolas en la bolsa.",
+      "falsa, pues hay más bolas de un color que de los otros dos.",
+      "verdadera, pues las bolas están repartidas de igual manera.",
+    ],
+    correct: 2,
+    competency: "Argumentación.",
+    level: "",
+    assertion:
+      "Valida procedimientos y estrategias matemáticas utilizadas para dar solución a problemas.",
+    evidence:
+      "Plantea afirmaciones que sustentan o refutan una interpretación dada a la información disponible en el marco de la solución de un problema.",
+    component: "",
+    standard:
+      "Justifico o refuto inferencias basadas en razonamientos estadísticos a partir de resultados de estudios publicados en los medios o diseñados en el ámbito escolar.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para justificar la validez de una afirmación sobre una probabilidad a partir de la descripción de los elementos de un conjunto.",
+    justification:
+      "En la bolsa hay en total 18 bolas y, por tanto, la probabilidad de seleccionar al azar una roja es de 3/18; una negra, de 3/18; una blanca, de 12/18. Luego, como 3 < 12 entonces el color blanco tiene una mayor probabilidad de ser elegido al azar.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A consideren que, al haber bolas de 3 colores en la bolsa, la probabilidad de sacar una bola de cualquier color es de 1/3. <br> Es posible que los estudiantes que elijan la opción B consideren que las 3 bolas rojas, las 3 negras y las 12 blancas son solo una muestra del total de bolas que hay en la bolsa, por lo que se desconoce el número total de bolas. <br> Es posible que los estudiantes que elijan la opción D consideren que, como las bolas están mezcladas dentro de la bolsa, y no se puede ver el color, entonces están repartidas de igual manera.",
+  },
+  {
+    id: 42,
+    simulators: [1, 2, 3],
+    subject: "mat",
+    context: `
+  <p>
+  <img style="width:100%" src="../shared/img/questions/mat1.png" alt='' loading="lazy">  
+ </p>
+<p>
+  <img style="width:50%" src="../shared/img/questions/mat2.png" alt='' loading="lazy">  
+ </p>
+<p>Con respecto a la vertical, la torre se ha inclinado 4° como se muestra en la gráfica.</p>`,
+    text: "¿Cuánto mide el otro ángulo?",
+    options: ["4º", "14º", "86º", "90º"],
+    correct: 2,
+    competency: "Interpretación.",
+    level: "",
+    assertion:
+      "Comprende y transforma la información cuantitativa y esquemática presentada en distintos formatos.",
+    evidence:
+      "Da cuenta de las características básicas de la información presentada en diferentes formatos como series, gráficas, tablas y esquemas.",
+    component: "",
+    standard:
+      "Identifico características de localización de objetos geométricos en sistemas de representación cartesiana y otros (polares, cilíndricos y esféricos) y en particular de las curvas y figuras cónicas.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para identificar el ángulo complementario a un ángulo dado.",
+    justification:
+      "La suma de los dos ángulos debe ser igual a 90°. Como el ángulo de inclinación de la torre es de 4°, entonces el otro ángulo mide 90° – 4° = 86°.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A solamente identifique el ángulo de inclinación (4°). <br> Es posible que los estudiantes que elijan la opción B consideren que la suma de los dos ángulos debe ser igual a 18°. Por tanto, el otro ángulo mide 18° – 4° = 14°. <br> Es posible que los estudiantes que elijan la opción D solamente consideren que la suma de los dos ángulos debe ser igual a 90°.",
+  },
+  {
+    id: 43,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>La torre de Pisa en Toscana es uno de los sitios turísticos más representativos de Italia. En la tabla se relaciona la cantidad de personas que ingresó cada día durante una semana, según el tipo de entrada que pagó.</p>
+<p>Se pagan 17 euros de entrada y 5,5 más si se realiza reserva.</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<thead>
+  <tr>
+    <th>Tipo de entrada</th>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miércoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sábado</th>
+    <th>Domingo</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Sin reserva</td>
+    <td>300</td>
+    <td>300</td>
+    <td>500</td>
+    <td>700</td>
+    <td>300</td>
+    <td>300</td>
+    <td>700</td>
+  </tr>
+  <tr>
+    <td>Con reserva</td>
+    <td>700</td>
+    <td>800</td>
+    <td>200</td>
+    <td>600</td>
+    <td>500</td>
+    <td>500</td>
+    <td>600</td>
+  </tr>
+</tbody>
+</table>`,
+    text: "Aproximadamente, ¿qué porcentaje del total de personas que visitaron la torre esa semana entraron sin hacer reserva?",
+    options: ["56 %.", "50 %.", "44 %.", "40 %."],
+    correct: 2,
+    competency: "Interpretación.",
+    level: "",
+    assertion:
+      "Comprende y transforma la información cuantitativa y esquemática presentada en distintos formatos.",
+    evidence:
+      "Da cuenta de las características básicas de la información presentada en diferentes formatos como series, gráficas, tablas y esquemas.",
+    component: "",
+    standard:
+      "Comparo y contrasto las propiedades de los números (naturales, enteros, racionales y reales) y las de sus relaciones y operaciones para construir, manejar y utilizar apropiadamente los distintos sistemas numéricos.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para identificar el porcentaje asociado a la suma de un conjunto de números dados en una tabla.",
+    justification:
+      "El total de personas que entraron sin reserva fue de: 300 + 300 + 500 + 700 + 300 + 300 + 700 = 3.100, y el total de personas que entran con reserva fue de: 700 + 800 + 200 + 600 + 500 + 500 + 600 = 3.900, para un total de 3.100 + 3.900 = 7.000 visitantes a la torre. Por tanto, el porcentaje del total de personas que visitaron la torre esa semana sin hacer reserva fue de 3.100/7.000 × 100 = 31/70 × 100, que es aproximadamente igual a 44 %.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A consideren el porcentaje de personas que entraron con reserva, es decir, 3.900/7.000 × 100 = 39/70 × 100, que es aproximadamente igual a 56 %. <br> Es posible que los estudiantes que elijan la opción B consideren que en cada grupo (los que entraron con reserva, y los que no hicieron reserva), hay la misma cantidad de personas y, por tanto, el porcentaje de personas que entró sin reserva es del 50 %. <br> Es posible que los estudiantes que elijan la opción D únicamente consideren la cantidad de personas que entraron con o sin reserva entre semana: 300 + 300 + 500 + 700 + 300 = 2.100 sin reserva y, 700 + 800 + 200 + 600 + 500 = 2.800 con reserva, para un total de 2.100 + 2.800 = 4.900 visitantes. Por tanto, el porcentaje del total de personas que visitaron la torre entre semana sin hacer reserva fue de 2.100/4.900 × 100 = 21/49 × 100, que es aproximadamente igual a 40 %.",
+  },
+  {
+    id: 44,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>La torre de Pisa en Toscana es uno de los sitios turísticos más representativos de Italia. En la tabla se relaciona la cantidad de personas que ingresó cada día durante una semana, según el tipo de entrada que pagó.</p>
+<p>Se pagan 17 euros de entrada y 5,5 más si se realiza reserva.</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<thead>
+  <tr>
+    <th>Tipo de entrada</th>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miércoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sábado</th>
+    <th>Domingo</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Sin reserva</td>
+    <td>300</td>
+    <td>300</td>
+    <td>500</td>
+    <td>700</td>
+    <td>300</td>
+    <td>300</td>
+    <td>700</td>
+  </tr>
+  <tr>
+    <td>Con reserva</td>
+    <td>700</td>
+    <td>800</td>
+    <td>200</td>
+    <td>600</td>
+    <td>500</td>
+    <td>500</td>
+    <td>600</td>
+  </tr>
+</tbody>
+</table>
+<p>El proceso que muestra cómo se obtiene el dinero recaudado en la semana, de cada forma de venta, es:</p>
+<p><strong>Paso 1:</strong> Sumar la cantidad de personas que entraron con reserva durante la semana. / Sumar la cantidad de personas que entraron sin reserva durante la semana.<br>
+<strong>Paso 2:</strong> Multiplicar la cantidad obtenida en el paso 1 por 22,5. / Multiplicar la cantidad obtenida en el paso 1 por 17.<br>
+<strong>Paso 3:</strong> Comparar los resultados.</p>`,
+    text: "¿Cuál de las siguientes preguntas NO se puede resolver empleando una parte del proceso anterior?",
+    options: [
+      "¿Con cuál tipo de entrada se recaudó más dinero?",
+      "¿Cuántas personas ingresaron en la semana?",
+      "¿Cuál es la ganancia total del sitio turístico?",
+      "¿Cuánto dinero se recaudó por tipo de entrada?",
+    ],
+    correct: 2,
+    competency: "Interpretación.",
+    level: "",
+    assertion:
+      "Comprende y transforma la información cuantitativa y esquemática presentada en distintos formatos.",
+    evidence:
+      "Da cuenta de las características básicas de la información presentada en diferentes formatos como series, gráficas, tablas y esquemas.",
+    component: "",
+    standard:
+      "Comparo y contrasto las propiedades de los números (naturales, enteros, racionales y reales) y las de sus relaciones y operaciones para construir, manejar y utilizar apropiadamente los distintos sistemas numéricos.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para identificar el problema que no puede ser resuelto con la información presentada en un esquema.",
+    justification:
+      "Con el proceso solo se puede calcular y comparar el dinero recaudado en la semana por concepto de entradas (con o sin reserva). Sin embargo, otros valores del sitio turístico, como los gastos, son desconocidos, por lo que no es posible calcular la ganancia total del sitio.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A consideren que en el paso se están sumando la cantidad de personas y no la cantidad de entradas. <br> Es posible que los estudiantes que elijan la opción B consideren que al no haber un paso en el procedimiento en donde se sumen la cantidad de personas que ingresaron con reserva y sin ella, entonces, no se puede determinar cuántas personas en total ingresaron en la semana. <br> Es posible que los estudiantes que elijan la opción D consideren que la cantidad de personas que entraron con reserva durante la semana se debe multiplicar por 5,5, por lo que, con el proceso, no se podría determinar cuánto dinero se recaudó por este tipo de entrada.",
+  },
+  {
+    id: 45,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>La torre de Pisa en Toscana es uno de los sitios turísticos más representativos de Italia. En la tabla se relaciona la cantidad de personas que ingresó cada día durante una semana, según el tipo de entrada que pagó.</p>
+<p>Se pagan 17 euros de entrada y 5,5 más si se realiza reserva.</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<thead>
+  <tr>
+    <th>Tipo de entrada</th>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miércoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sábado</th>
+    <th>Domingo</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Sin reserva</td>
+    <td>300</td>
+    <td>300</td>
+    <td>500</td>
+    <td>700</td>
+    <td>300</td>
+    <td>300</td>
+    <td>700</td>
+  </tr>
+  <tr>
+    <td>Con reserva</td>
+    <td>700</td>
+    <td>800</td>
+    <td>200</td>
+    <td>600</td>
+    <td>500</td>
+    <td>500</td>
+    <td>600</td>
+  </tr>
+</tbody>
+</table>`,
+    text: "El recaudo total de la semana, registrada en la tabla, fue aproximadamente de",
+    options: [
+      "14 mil euros.",
+      "140 mil euros.",
+      "120 euros.",
+      "120.000 euros.",
+    ],
+    correct: 1,
+    competency: "Formulación y ejecución.",
+    level: "",
+    assertion:
+      "Frente a un problema que involucre información cuantitativa, plantea e implementa estrategias que lleven a soluciones adecuadas.",
+    evidence:
+      "Resuelve un problema que involucra información cuantitativa o esquemática.",
+    component: "",
+    standard:
+      "Comparo y contrasto las propiedades de los números (naturales, enteros, racionales y reales) y las de sus relaciones y operaciones para construir, manejar y utilizar apropiadamente los distintos sistemas numéricos.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para calcular un valor aproximado a partir de los valores presentados en una tabla.",
+    justification:
+      "Como cada entrada sin reserva vale 17 euros, entonces el total recaudado por personas que ingresaron sin reserva fue de 3.100 × 17 euros = 52.700 euros, y el total recaudado por personas que ingresaron con reserva fue de 3.900 × 22,5 euros = 87.750 y, por tanto, el recaudo total de la semana registrada en la tabla fue de aproximadamente 140 mil euros.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A aproximen las unidades y decenas de mil de los dos totales por tipo de entrada al entero más cercano (52 → 5, 87 → 9) y sumen estos dos valores (5 + 9 = 14), asociándolos con 14 mil euros. <br> Es posible que los estudiantes que elijan la opción C consideren que el total recaudado por personas que ingresaron sin reserva fue de 3.100 × 22,5 euros = 69.750 euros, y el total recaudado por personas que ingresaron con reserva fue de 3.900 × 17 euros = 66.300 y redondeen las unidades y decenas de mil de los dos totales por tipo de entrada como 69 → 60 y 66 → 60, sumando estos dos valores, y asociándolos con 120 euros. <br> Es posible que los estudiantes que elijan la opción D aproximen el valor de las entradas (con reserva: 20 euros; sin reserva, 15 euros) y consideren que el total recaudado por personas que ingresaron sin reserva fue de 3.100 × 15 euros = 46.500 euros, y el total recaudado por personas que ingresaron con reserva fue de 3.900 × 20 euros = 78.000 obteniendo que la suma es aproximadamente igual a 120.000 euros.",
+  },
+  {
+    id: 46,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>La torre de Pisa en Toscana es uno de los sitios turísticos más representativos de Italia. En la tabla se relaciona la cantidad de personas que ingresó cada día durante una semana, según el tipo de entrada que pagó.</p>
+<p>Se pagan 17 euros de entrada y 5,5 más si se realiza reserva.</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<thead>
+  <tr>
+    <th>Tipo de entrada</th>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miércoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sábado</th>
+    <th>Domingo</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Sin reserva</td>
+    <td>300</td>
+    <td>300</td>
+    <td>500</td>
+    <td>700</td>
+    <td>300</td>
+    <td>300</td>
+    <td>700</td>
+  </tr>
+  <tr>
+    <td>Con reserva</td>
+    <td>700</td>
+    <td>800</td>
+    <td>200</td>
+    <td>600</td>
+    <td>500</td>
+    <td>500</td>
+    <td>600</td>
+  </tr>
+</tbody>
+</table>`,
+    text: "La mediana de la cantidad de turistas sin reserva que ingresan a la torre es 300; la de los que ingresan con reserva es 600. Solamente teniendo esto en cuenta, ¿es correcto afirmar que entran el doble de turistas con reserva que sin ella?",
+    options: [
+      "No, la mediana es una medida de localización central.",
+      "No, la mediana muestra la dispersión de los datos.",
+      "Sí, la mediana me da el promedio de los datos.",
+      "Sí, la mediana me da la mitad de los datos.",
+    ],
+    correct: 0,
+    competency: "Argumentación.",
+    level: "",
+    assertion:
+      "Valida procedimientos y estrategias matemáticas utilizadas para dar solución a problemas.",
+    evidence:
+      "Plantea afirmaciones que sustentan o refutan una interpretación dada a la información disponible en el marco de la solución de un problema.",
+    component: "",
+    standard:
+      "Uso comprensivamente algunas medidas de centralización, localización, dispersión y correlación (percentiles, cuartiles, centralidad, distancia, rango, varianza, covarianza y normalidad).",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para justificar la validez de una afirmación sobre la comparación de dos conjuntos de datos a partir de la interpretación de la mediana de cada conjunto.",
+    justification:
+      "La mediana es el valor que está en la posición central cuando los datos están ordenados y, por tanto, no caracteriza necesariamente los totales en la suma de los valores de cada conjunto de datos.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción B consideren que la mediana muestra la dispersión de los datos a través de la diferencia entre el menor y el mayor valor (600 – 300), por lo que no representa los totales en la suma de los valores de cada conjunto de datos. <br> Es posible que los estudiantes que elijan la opción C consideren que para calcular la mediana es necesario conocer el total de turistas por tipo de entrada, por lo que, si una mediana es el doble de la otra, el total de turistas por un tipo de entrada es el doble del total de turistas por el otro tipo de entrada. <br> Es posible que los estudiantes que elijan la opción D consideren que los datos de cada conjunto se distribuyen de la misma manera, por lo que, si la mitad de uno de los conjuntos es el doble de la mitad del otro, el total de los datos del primer conjunto es el doble del total de datos del segundo conjunto.",
+  },
+  {
+    id: 47,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>El dueño de un parque recreativo planea construir tres piscinas y decorar sus bordes con baldosas blancas y azules, tal como se muestra en las figuras 1, 2 y 3.</p>
+<p>Piscina de niños. Figura 1 &nbsp;&nbsp;&nbsp; Piscina de recreación. Figura 2 &nbsp;&nbsp;&nbsp; Piscina de entrenamiento. Figura 3</p>`,
+    text: "Según la observación de las figuras 1, 2 y 3, puede afirmarse correctamente que el número de baldosas",
+    options: [
+      "azules se incrementa en seis de una piscina a la del siguiente tamaño.",
+      "blancas aumenta en ocho a medida que crece el tamaño de las piscinas.",
+      "azules es el doble de la cantidad de baldosas blancas en cada piscina.",
+      "blancas es la tercera parte de la cantidad de las baldosas azules.",
+    ],
+    correct: 0,
+    competency: "Interpretación.",
+    level: "",
+    assertion:
+      "Comprende y transforma la información cuantitativa y esquemática presentada en distintos formatos.",
+    evidence:
+      "Da cuenta de las características básicas de la información presentada en diferentes formatos como series, gráficas, tablas y esquemas.",
+    component: "",
+    standard:
+      "Comparo y contrasto las propiedades de los números (naturales, enteros, racionales y reales) y las de sus relaciones y operaciones para construir, manejar y utilizar apropiadamente los distintos sistemas numéricos.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para identificar un patrón a partir de un conjunto de figuras dadas.",
+    justification:
+      "A partir de las figuras mostradas, se observa que: Figura 1: 12 baldosas azules; Figura 2: 18 = 12 + 6; Figura 3: 24 = 18 + 6. De lo anterior, se puede concluir que el número de baldosas azules aumenta en 6 de una piscina a la del siguiente tamaño.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción B cuenten las baldosas blancas en la figura 1 (8) y consideren que en las siguientes figuras el número de baldosas blancas aumentará en esta cantidad. <br> Es posible que los estudiantes que elijan la opción C comparen únicamente la cantidad de baldosas azules y blancas en la última figura (24 y 12), concluyendo que la cantidad de baldosas azules es el doble de la cantidad de baldosas blancas en cada piscina. <br> Es posible que los estudiantes que elijan la opción D únicamente comparen la cantidad de baldosas azules de la última figura con la cantidad de baldosas blancas de la primera figura (24 y 8), concluyendo que la cantidad de baldosas blancas es la tercera parte de la cantidad de baldosas azules.",
+  },
+  {
+    id: 48,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>Se lanzan cuatro fichas que tienen dos caras cada una. Una de las fichas es azul por sus dos caras, otra es blanca por sus dos caras y las otras fichas tienen una cara azul y una cara blanca.</p>`,
+    text: "¿Cuál de los siguientes eventos es imposible que ocurra?",
+    options: [
+      "Obtener una cara azul y tres caras blancas.",
+      "Obtener dos caras azules y dos caras blancas.",
+      "Obtener tres caras azules y una cara blanca.",
+      "Obtener cuatro caras azules y cero blancas.",
+    ],
+    correct: 3,
+    competency: "Formulación y ejecución.",
+    level: "",
+    assertion:
+      "Frente a un problema que involucre información cuantitativa, plantea e implementa estrategias que lleven a soluciones adecuadas.",
+    evidence:
+      "Resuelve un problema que involucra información cuantitativa o esquemática.",
+    component: "",
+    standard:
+      "Resuelvo y planteo problemas usando conceptos básicos de conteo y probabilidad (combinaciones, permutaciones, espacio muestral, muestreo aleatorio, muestreo con remplazo).",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para determinar un evento imposible a partir de la descripción del experimento aleatorio.",
+    justification:
+      "Dado que hay una ficha con sus dos caras blancas, y son cuatro fichas en total, en cualquier lanzamiento de las cuatro fichas siempre se obtendrá al menos una cara blanca. Por tanto, es imposible obtener cuatro caras azules y cero blancas.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A consideren que solo se puede asegurar que siempre se obtendrá una cara blanca y no tres caras blancas. <br> Es posible que los estudiantes que elijan la opción B consideren que, como solo hay una ficha que tienen sus dos caras azules y solo hay una ficha que tiene sus dos caras blancas, es imposible obtener dos caras azules y dos caras blancas en un solo lanzamiento. <br> Es posible que los estudiantes que elijan la opción C consideren que, como hay la misma cantidad de caras azules y blancas en las cuatro fichas, en el resultado de cada lanzamiento siempre se debe obtener la misma cantidad de caras azules y blancas.",
+  },
+  {
+    id: 49,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>El costo de la boleta en un cinema depende de la edad de la persona, como lo muestra la tabla.</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<thead>
+  <tr>
+    <th>Edad en años (X)</th>
+    <th>Costo en pesos (Y)</th>
+  </tr>
+</thead>
+<tbody>
+  <tr><td>Desde 0 y hasta 8</td><td>5.000</td></tr>
+  <tr><td>Más de 8 y hasta 16</td><td>7.000</td></tr>
+  <tr><td>Más de 16 y hasta 56</td><td>10.000</td></tr>
+  <tr><td>Más de 56</td><td>6.000</td></tr>
+</tbody>
+</table>`,
+    text: "La gráfica que representa esta función es",
+    options: ["A.", "B.", "C.", "D."],
+    correct: 0,
+    competency: "Interpretación.",
+    level: "",
+    assertion:
+      "Comprende y transforma la información cuantitativa y esquemática presentada en distintos formatos.",
+    evidence:
+      "Transforma la representación de una o más piezas de información.",
+    component: "",
+    standard:
+      "Analizo las relaciones y propiedades entre las expresiones algebraicas y las gráficas de funciones polinómicas y racionales y de sus derivadas.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para construir la gráfica asociada a una función a trozos descrita en una tabla.",
+    justification:
+      "Con la información de la tabla se puede construir la gráfica de la función a trozos: desde 0 y hasta 8 el costo es 5.000; más de 8 y hasta 16 es 7.000; más de 16 y hasta 56 es 10.000; más de 56 es 6.000. La gráfica correcta es la que representa cada intervalo con un segmento horizontal a la altura correspondiente, con los extremos abiertos y cerrados correctamente.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción B identifiquen correctamente los costos de las boletas para los extremos inferiores de cada intervalo de edad (0, 8, 16, 56), obteniendo los puntos (0, 5.000), (8, 7.000), (16, 10.000), (56, 6.000), y ubiquen estos puntos en el plano y los unan con segmentos. <br> Es posible que los estudiantes que elijan la opción C identifiquen y grafiquen los intervalos en la gráfica, pero consideren que la función debe ser continua y, por tanto, la curva no puede tener saltos. <br> Es posible que los estudiantes que elijan la opción D identifiquen correctamente los costos de las boletas para los extremos inferior y superior de cada intervalo de edad, obteniendo los puntos (0, 5.000), (8, 5.000), (8, 7.000), (8, 16.000), (16, 10.000), (56, 10.000), (56, 6.000), y ubiquen estos puntos en el plano.",
+  },
+  {
+    id: 50,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>En la figura se muestra la construcción de una cometa triangular, en la que se conoce únicamente la medida del ángulo M = 150º. El ángulo O debe ser menor que 150º para que la cometa vuele.</p>
+<p>Se realiza el siguiente análisis para saber si la cometa volará o no volará:</p>
+<p>I. Tomando en cuenta que M = 150º, N = 180º - 150º.<br>
+II. N = 30º.<br>
+III. La suma de los ángulos de un triángulo debe ser 160º.<br>
+IV. Si N = 30º, O + P = 160º - 30º.<br>
+V. O + P = 130º.<br>
+VI. Así que O debe ser menor que 130º.<br>
+VII. Finalmente, si O &lt; 130º entonces O &lt; 150º.<br>
+VIII. La cometa volará.</p>`,
+    text: "Del anterior análisis, el paso en el que se comete un error es el",
+    options: [
+      "I, porque si M = 150º, N debe ser la resta entre 160º y 150º, es decir, N = 10º.",
+      "III, porque la suma de los ángulos internos de un triángulo debe ser 180º.",
+      "VII, porque O < 130º no quiere decir O < 150º.",
+      "VIII, porque si O < 150º la cometa no volará.",
+    ],
+    correct: 1,
+    competency: "Argumentación.",
+    level: "",
+    assertion:
+      "Valida procedimientos y estrategias matemáticas utilizadas para dar solución a problemas.",
+    evidence:
+      "Argumenta a favor o en contra de un procedimiento para resolver un problema a la luz de criterios presentados o establecidos.",
+    component: "",
+    standard:
+      "Uso argumentos geométricos para resolver y formular problemas en contextos matemáticos y en otras ciencias.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para justificar un error en un procedimiento para determinar si una figura dada cumple con una condición establecida.",
+    justification:
+      "La suma de los ángulos internos de un triángulo debe ser igual a 180°. Por tanto: O + P = 180° – 30° = 150°, de donde O < 150°. La conclusión sigue siendo verdadera, pero en la argumentación había una premisa falsa.",
+    invalidOptions:
+      'Es posible que los estudiantes que elijan la opción A consideren que la suma de dos ángulos suplementarios es igual a 160°. <br> Es posible que los estudiantes que elijan la opción C consideren que si O < 130°, a lo sumo se puede asegurar que O + 20° < 130° + 20° = 150°, pero no se puede establecer una relación únicamente entre O y 150°. <br> Es posible que los estudiantes que elijan la opción D asocien la expresión "O < 150°" con que el ángulo O es mayor que 150°, por lo que la cometa no volaría.',
+  },
+  {
+    id: 51,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>Se realizó una encuesta a 200 clientes de una empresa de telecomunicaciones para saber cómo califican la calidad del servicio que reciben. La siguiente gráfica muestra los porcentajes de las calificaciones dadas por los clientes:</p>
+<p>Porcentajes: Malo 40 % (clientes insatisfechos), Regular 15 % (clientes insatisfechos), Bueno 35 % (clientes satisfechos), Excelente 10 % (clientes satisfechos).</p>`,
+    text: "La afirmación verdadera acerca de los resultados de la encuesta es:",
+    options: [
+      "Más de 30 clientes consideran que la calidad del servicio que ofrece la empresa es excelente.",
+      "Menos de 50 clientes consideran que la calidad del servicio que ofrece la empresa es regular.",
+      "Menos de 55 clientes están satisfechos con el servicio que ofrece la empresa.",
+      "Más de 60 clientes consideran que la calidad del servicio que ofrece la empresa es bueno.",
+    ],
+    correct: 3,
+    competency: "Argumentación.",
+    level: "",
+    assertion:
+      "Valida procedimientos y estrategias matemáticas utilizadas para dar solución a problemas.",
+    evidence:
+      "Plantea afirmaciones que sustentan o refutan una interpretación dada a la información disponible en el marco de la solución de un problema.",
+    component: "",
+    standard:
+      "Propongo inferencias a partir del estudio de muestras probabilísticas.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para establecer una afirmación verdadera a partir de la información presentada en una gráfica.",
+    justification:
+      'Dado que la encuesta se realizó a 200 clientes, y el 35 % de los encuestados calificó como "bueno" el servicio, entonces 35/100 × 200 clientes = 70 clientes calificaron como "bueno" el servicio. Por tanto, es verdadero que más de 60 clientes consideran que la calidad del servicio que ofrece la empresa es buena.',
+    invalidOptions:
+      'Es posible que los estudiantes que elijan la opción A determinen correctamente que el 15 % de 200 clientes son 30 clientes y, por tanto, consideran que es verdadero que más de 30 clientes consideran "excelente" la calidad del servicio. <br> Es posible que los estudiantes que elijan la opción B asocien el valor 40 de la calidad regular del servicio con cantidad de clientes, concluyendo que es verdadero que menos de 50 clientes consideran que la calidad del servicio es regular. <br> Es posible que los estudiantes que elijan la opción C asocien los valores 35 y 10 de las calidades "bueno" y "excelente" del servicio con cantidades de clientes. Como la cantidad de clientes "satisfechos" es igual a la suma de la cantidad de clientes que consideraron el servicio "bueno" o "excelente", consideran que esta cantidad de clientes "satisfechos" es igual a 35 + 10 = 45 clientes, concluyendo que es verdadero que menos de 55 clientes están satisfechos con el servicio que ofrece la empresa.',
+  },
+  {
+    id: 52,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>En una clase de Matemáticas se plantea la siguiente actividad:</p>
+<p><em>"Quisiéramos dividir el segmento MN en dos partes congruentes".</em></p>
+<p>Para su construcción, un estudiante efectuó de manera correcta el siguiente procedimiento:</p>
+<p>Se construyen dos triángulos equiláteros MNP y MNQ. Luego se traza el segmento PQ, intersecando a MN en R, los ángulos MPR y RPN son congruentes entre sí. Como los triángulos MRP y PRN que se forman son congruentes, entonces MR es congruente con RN. Por tanto, MN se ha dividido en dos partes congruentes en el punto R.</p>`,
+    text: "De acuerdo con la información anterior, la construcción geométrica que debió hacer el estudiante para realizar la actividad fue",
+    options: ["A.", "B.", "C.", "D."],
+    correct: 3,
+    competency: "Formulación y ejecución.",
+    level: "",
+    assertion:
+      "Frente a un problema que involucre información cuantitativa, plantea e implementa estrategias que lleven a soluciones adecuadas.",
+    evidence:
+      "Ejecuta un plan de solución para un problema que involucra información cuantitativa o esquemática.",
+    component: "",
+    standard:
+      "Uso argumentos geométricos para resolver y formular problemas en contextos matemáticos y en otras ciencias.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para determinar la figura que representa correctamente un procedimiento geométrico.",
+    justification:
+      "Siguiendo los pasos de la construcción, se tiene que: Se construyen dos triángulos equiláteros MNP y MNQ. Luego se traza el segmento PQ, intersecando a MN en R. La anterior, es la construcción geométrica que debió hacer el estudiante.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A consideren que los segmentos MN y PQ se intersectan en el centro R de la circunferencia y, por tanto, se cortan mutuamente en dos partes congruentes, concluyendo la representación resultante cumple con la construcción descrita. <br> Es posible que los estudiantes que elijan la opción B observen que se han construido dos triángulos congruentes y, por tanto, la representación resultante cumple con la construcción descrita. Sin embargo, no tiene en cuenta que los puntos M y N deben ser vértices de los triángulos. <br> Es posible que los estudiantes que elijan la opción C consideren que M y N deben ser los centros de las circunferencias concluyendo que los triángulos formados son equiláteros y, por tanto, la representación resultante cumple con la construcción descrita. Sin embargo, no tiene en cuenta que el segmento PQ debe intersectar a MN en R.",
+  },
+  {
+    id: 53,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>La gráfica y la tabla muestran parte de la información que recibe la familia Ramírez en su factura telefónica del mes de enero.</p>
+<p><strong>Diagrama de barras de los últimos consumos de voz</strong><br>
+Su plan local actual es de 220 minutos<br>
+Jul: 148 | Ago: 171 | Sep: 321 | Oct: 205 | Nov: 214 | Dic: 389 | Ene: 331 minutos consumidos</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<thead><tr><th colspan="2">Estado de cuenta mes de enero</th></tr></thead>
+<tbody>
+  <tr><td>Saldo anterior</td><td>$49.610,00</td></tr>
+  <tr><td>Gracias por su pago</td><td>$-49.610,00</td></tr>
+  <tr><td><strong>Saldo</strong></td><td><strong>$0</strong></td></tr>
+  <tr><td>Cargos del mes</td><td>$35.416,83</td></tr>
+  <tr><td>IVA</td><td>$6.378,70</td></tr>
+  <tr><td><strong>Subtotal</strong></td><td><strong>$41.795,53</strong></td></tr>
+  <tr><td>Crédito por ajuste a la decena</td><td>$-5,53</td></tr>
+  <tr><td><strong>Total a pagar</strong></td><td><strong>$41.790,00</strong></td></tr>
+  <tr><td colspan="2"><strong>Cargos del mes</strong></td></tr>
+  <tr><td>Plan local</td><td>$20.086,21</td></tr>
+  <tr><td>Consumo adicional</td><td>$14.065,92</td></tr>
+  <tr><td>Llamada en espera</td><td>$1.264,70</td></tr>
+  <tr><td><strong>Total cargos del mes</strong></td><td><strong>$35.416,83</strong></td></tr>
+</tbody>
+</table>`,
+    text: "El tiempo adicional consumido por la familia Ramírez en enero fue:",
+    options: [
+      "1 hora y 11 minutos.",
+      "1 hora y 51 minutos.",
+      "3 horas y 40 minutos.",
+      "5 horas y 31 minutos.",
+    ],
+    correct: 1,
+    competency: "Formulación y ejecución.",
+    level: "",
+    assertion:
+      "Frente a un problema que involucre información cuantitativa, plantea e implementa estrategias que lleven a soluciones adecuadas.",
+    evidence:
+      "Resuelve un problema que involucra información cuantitativa o esquemática.",
+    component: "",
+    standard:
+      "Interpreto y comparo resultados de estudios con información estadística provenientes de medios de comunicación.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para obtener un dato implícito a partir de la información presentada en una gráfica de barras.",
+    justification:
+      "Dado que el plan local actual de la familia Ramírez es de 220 minutos, y en el mes de enero el consumo fue de 331 minutos, entonces, se registró un consumo adicional de 111 minutos, que son equivalentes a 1 hora y 51 minutos.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A asocien el consumo adicional de 111 minutos con 1: 11 horas. <br> Es posible que los estudiantes que elijan la opción C consideren el equivalente en horas del plan local actual de 220 minutos, que son equivalentes a 3 horas y 40 minutos. <br> Es posible que los estudiantes que elijan la opción D consideren el equivalente en horas del consumo de enero de 331 minutos, que son equivalentes a 5 horas y 31 minutos.",
+  },
+  {
+    id: 54,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>La gráfica y la tabla muestran parte de la información que recibe la familia Ramírez en su factura telefónica del mes de enero.</p>
+<p><strong>Diagrama de barras de los últimos consumos de voz</strong><br>
+Su plan local actual es de 220 minutos<br>
+Jul: 148 | Ago: 171 | Sep: 321 | Oct: 205 | Nov: 214 | Dic: 389 | Ene: 331 minutos consumidos</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<thead><tr><th colspan="2">Estado de cuenta mes de enero</th></tr></thead>
+<tbody>
+  <tr><td>Saldo anterior</td><td>$49.610,00</td></tr>
+  <tr><td>Gracias por su pago</td><td>$-49.610,00</td></tr>
+  <tr><td><strong>Saldo</strong></td><td><strong>$0</strong></td></tr>
+  <tr><td>Cargos del mes</td><td>$35.416,83</td></tr>
+  <tr><td>IVA</td><td>$6.378,70</td></tr>
+  <tr><td><strong>Subtotal</strong></td><td><strong>$41.795,53</strong></td></tr>
+  <tr><td>Crédito por ajuste a la decena</td><td>$-5,53</td></tr>
+  <tr><td><strong>Total a pagar</strong></td><td><strong>$41.790,00</strong></td></tr>
+  <tr><td colspan="2"><strong>Cargos del mes</strong></td></tr>
+  <tr><td>Plan local</td><td>$20.086,21</td></tr>
+  <tr><td>Consumo adicional</td><td>$14.065,92</td></tr>
+  <tr><td>Llamada en espera</td><td>$1.264,70</td></tr>
+  <tr><td><strong>Total cargos del mes</strong></td><td><strong>$35.416,83</strong></td></tr>
+</tbody>
+</table>`,
+    text: "El señor Ramírez considera que el valor del minuto adicional del mes de enero fue excesivo. Su hija asegura que la diferencia entre el valor del minuto del plan y el valor del minuto adicional es de $35,42. ¿Cuál de los siguientes datos NO se necesita para hallar esta diferencia?",
+    options: [
+      "La cantidad de minutos del plan.",
+      "El valor del consumo adicional.",
+      "El total de cargos del mes.",
+      "El valor del plan local.",
+    ],
+    correct: 2,
+    competency: "Formulación y ejecución.",
+    level: "",
+    assertion:
+      "Frente a un problema que involucre información cuantitativa, plantea e implementa estrategias que lleven a soluciones adecuadas.",
+    evidence:
+      "Diseña planes para la solución de problemas que involucran información cuantitativa o esquemática.",
+    component: "",
+    standard:
+      "Comparo y contrasto las propiedades de los números (naturales, enteros, racionales y reales) y las de sus relaciones y operaciones para construir, manejar y utilizar apropiadamente los distintos sistemas numéricos.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para determinar datos innecesarios para solucionar un problema.",
+    justification:
+      "Para determinar el valor por minuto del plan local se debe dividir el costo del plan local entre la cantidad de minutos del plan local; para determinar el valor por minuto adicional se debe dividir el costo del consumo adicional entre la cantidad de minutos adicionales consumidos en el mes de enero. Por tanto, para determinar la diferencia entre el valor por minuto del plan local y el del minuto adicional, solo se requieren estos cuatro datos, y no es necesario utilizar el total de cargos del mes para hallar dicha diferencia.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A consideren que solo es necesario determinar el costo por minuto del consumo adicional, concluyendo que es innecesario utilizar la cantidad de minutos del plan. <br> Es posible que los estudiantes que elijan la opción B consideren que solo es necesario determinar el costo por minuto del plan local, concluyendo que es innecesario utilizar el valor del consumo adicional. <br> Es posible que los estudiantes que elijan la opción D consideren que solo es necesario determinar la diferencia entre los minutos del plan local y los del consumo adicional, concluyendo que es innecesario utilizar el valor del plan local.",
+  },
+  {
+    id: 55,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>En el servicio de urgencias de un hospital se sigue este procedimiento para clasificar a un paciente: en el momento de su llegada recibe un número de turno con la hora de llegada; cuando el tablero digital muestra ese número, el paciente pasa a valoración y se clasifica; luego regresa a la sala a esperar el llamado para ser atendido.</p>
+<p>La tabla muestra los niveles de clasificación, el tiempo de espera en sala desde que el paciente recibe el turno y el porcentaje de personas clasificadas diariamente en cada nivel.</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<thead>
+  <tr>
+    <th>Nivel</th>
+    <th>Tiempo en sala de espera</th>
+    <th>Distribución diaria de los pacientes por niveles (%)</th>
+  </tr>
+</thead>
+<tbody>
+  <tr><td>I</td><td>Atención inmediata</td><td>1 %</td></tr>
+  <tr><td>II</td><td>Entre 5 minutos y 2 horas</td><td>5 %</td></tr>
+  <tr><td>III</td><td>Entre 4 y 6 horas</td><td>74 %</td></tr>
+  <tr><td>IV</td><td>Debe solicitar atención por consulta externa</td><td>20 %</td></tr>
+</tbody>
+</table>`,
+    text: "Isabel llegó a este hospital y recibió el turno 180. Fue clasificada en Nivel III y al cabo del máximo tiempo indicado para ese nivel es llamada para ser atendida; en ese momento observa que el tablero digital va en el número 240. ¿Aproximadamente cuántas personas por hora llegaron a la sala de espera mientras Isabel estuvo allí?",
+    options: [
+      "60 personas por hora.",
+      "40 personas por hora.",
+      "15 personas por hora.",
+      "10 personas por hora.",
+    ],
+    correct: 3,
+    competency: "Formulación y ejecución.",
+    level: "",
+    assertion:
+      "Frente a un problema que involucre información cuantitativa, plantea e implementa estrategias que lleven a soluciones adecuadas.",
+    evidence:
+      "Resuelve un problema que involucra información cuantitativa o esquemática.",
+    component: "",
+    standard:
+      "Interpreto la noción de derivada como razón de cambio y como valor de la pendiente de la tangente a una curva y desarrollo métodos para hallar las derivadas de algunas funciones básicas en contextos matemáticos y no matemáticos.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para determina la razón de cambio que satisface las condiciones dadas.",
+    justification:
+      "Como Isabel fue clasificada en el Nivel III, recibió el turno 180 cuando llegó, y fue atendida en el tiempo máximo de espera que es de 6 horas, entonces, cuando observa el número 240 al momento de ser atendida han llegado 240 personas – 180 personas = 60 personas adicionales y, por tanto, han llegado 60 personas/6 horas = 10 personas.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A solamente consideren la cantidad adicional de personas que llegó al hospital después de que Isabel llegó, es decir 240 – 180 = 60. <br> Es posible que los estudiantes que elijan la opción B consideren que en las 6 horas en que estuvo Isabel en sala de espera llegaron 240 personas y, por tanto, han llegado 240 personas/6 horas = 40 personas por hora. <br> Es posible que los estudiantes que elijan la opción C consideren que Isabel estuvo solo 4 horas en la sala de espera (tiempo mínimo de espera) y, por tanto, han llegado 60 personas/4 horas = 15 personas por hora.",
+  },
+  {
+    id: 56,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>Cada uno de los lados del cuadrilátero de la figura se traslada una unidad hacia la izquierda; luego se amplía esta al doble de su tamaño, manteniéndose fijo el vértice inferior. Dos de los vértices del cuadrilátero ampliado son (-5,7) y (-1,1).</p>
+<p>El cuadrilátero original tiene vértices en (-2,4) y (2,4) [entre otros].</p>`,
+    text: "¿Cuáles son las coordenadas de los otros dos vértices?",
+    options: [
+      "(-1,5) y (3,7).",
+      "(5,-1) y (7,3).",
+      "(5,7) y (1,1).",
+      "(1,5) y (-5,-7).",
+    ],
+    correct: 0,
+    competency: "Formulación y ejecución.",
+    level: "",
+    assertion:
+      "Frente a un problema que involucre información cuantitativa, plantea e implementa estrategias que lleven a soluciones adecuadas.",
+    evidence:
+      "Ejecuta un plan de solución para un problema que involucra información cuantitativa o esquemática.",
+    component: "",
+    standard:
+      "Identifico características de localización de objetos geométricos en sistemas de representación cartesiana y otros (polares, cilíndricos y esféricos) y en particular de las curvas y figuras cónicas.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para determinar las coordenadas de los vértices de una figura a la que se le realiza una transformación.",
+    justification:
+      "Si el cuadrilátero de la figura se traslada una unidad hacia la izquierda y luego se amplía hasta el doble de su tamaño, manteniendo fijo el vértice inferior, se obtiene: Por tanto, conocidos los vértices (–5, 7) y (–1, 1) del cuadrilátero ampliado, los otros dos vértices tienen coordenadas (–1, 5) y (3, 7).",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción B consideren que en las coordenadas de un punto primero se indica la posición respecto al eje vertical y después respecto al eje horizontal, obteniendo como coordenadas de los otros dos vértices los puntos (5, –1) y (7, 3). <br> Es posible que los estudiantes que elijan la opción C consideren que al ser el cuadrilátero una figura simétrica respecto a la recta vertical que pasa por el punto (–1, 1), entonces, si se conocen los vértices (–5, 7) y (–1, 1), los otros dos vértices deben tener coordenadas (5, 7) y (1, 1). <br> Es posible que los estudiantes que elijan la opción D consideren que el cuadrilátero se trasladó una unidad a la derecha, y se amplía hasta el doble de su tamaño: Identificando que uno de los vértices está en el punto (1, 5) y el otro en el punto (5, 7). Sin embargo, este último punto lo asocia con el (–5, –7).",
+  },
+  {
+    id: 57,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>Un empresario compra un apartamento de $80.000.000 (incluidos los intereses), y acuerda pagarlo en cuotas mensuales de igual valor. Para ello, le ofrecen las siguientes opciones de pago que se muestran en la tabla.</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<thead>
+  <tr>
+    <th>N.° de cuotas</th>
+    <th>Valor cuota ($)</th>
+  </tr>
+</thead>
+<tbody>
+  <tr><td>50</td><td>1.600.000</td></tr>
+  <tr><td>40</td><td>2.000.000</td></tr>
+  <tr><td>32</td><td>2.500.000</td></tr>
+  <tr><td>25</td><td>3.200.000</td></tr>
+  <tr><td>20</td><td>4.000.000</td></tr>
+  <tr><td>16</td><td>5.000.000</td></tr>
+  <tr><td>10</td><td>8.000.000</td></tr>
+  <tr><td>8</td><td>10.000.000</td></tr>
+</tbody>
+</table>`,
+    text: "Respecto a la información de la tabla, es verdadero afirmar que",
+    options: [
+      "el empresario paga más por el apartamento dependiendo de la cantidad de cuotas que decida pagar.",
+      "de manera proporcional, a mayor cantidad de cuotas menor valor se pagará en cada una de ellas.",
+      "el empresario paga solo el valor del apartamento únicamente cuando elige el menor número de cuotas.",
+      "de manera proporcional, a mayor valor pagado por cuota, más tiempo se tardará en pagar la deuda.",
+    ],
+    correct: 1,
+    competency: "Interpretación.",
+    level: "",
+    assertion:
+      "Comprende y transforma la información cuantitativa y esquemática presentada en distintos formatos.",
+    evidence:
+      "Da cuenta de las características básicas de la información presentada en diferentes formatos como series, gráficas, tablas y esquemas.",
+    component: "",
+    standard:
+      "Comparo y contrasto las propiedades de los números (naturales, enteros, racionales y reales) y las de sus relaciones y operaciones para construir, manejar y utilizar apropiadamente los distintos sistemas numéricos.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para identificar una afirmación verdadera sobre la relación entre dos variables representadas en una tabla.",
+    justification:
+      "A partir de la información en la tabla se puede concluir que el número de cuotas y el valor de la cuota son inversamente proporcionales, y que entre mayor sea el número de cuotas, menor valor se pagará en cada una de ellas.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A consideren que entre menor sea el número de cuotas, mayor será el valor de la cuota y, por tanto, mayor será el valor total por pagar por el apartamento. <br> Es posible que los estudiantes que elijan la opción C comprueben que, para 8 cuotas, el valor de cada cuota es de $10.000.000 y, por tanto, pagarán los $80.000.000 que vale el apartamento, concluyendo que esto solo es posible para estos dos valores particulares de número de cuotas y valor de la cuota. <br> Es posible que los estudiantes que elijan la opción D identifiquen la constante de proporcionalidad (80.000.000) entre el número de cuotas y el valor de la cuota. Sin embargo, asumen que los dos valores crecen por igual, concluyendo que, a mayor valor por cuota, más tiempo se tardará en pagar la deuda.",
+  },
+  {
+    id: 58,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>Para ambientar musicalmente una reunión, se cuenta con tres CD, cada uno de ellos tiene canciones de salsa (S) y merengue (M).</p>`,
+    text: "¿Cuál de los siguientes diagramas representa la situación de seleccionar al azar una canción del CD1, luego una del CD2 y finalmente una del CD3?",
+    options: ["A.", "B.", "C.", "D."],
+    correct: 0,
+    competency: "Interpretación.",
+    level: "",
+    assertion:
+      "Comprende y transforma la información cuantitativa y esquemática presentada en distintos formatos.",
+    evidence:
+      "Transforma la representación de una o más piezas de información.",
+    component: "",
+    standard:
+      "Interpreto nociones básicas relacionadas con el manejo de información como población, muestra, variable aleatoria, distribución de frecuencias, parámetros y estadígrafos).",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para representar un experimento aleatorio mediante un diagrama de árbol.",
+    justification:
+      "Como el CD1 tiene canciones de salsa y de merengue, el resultado de seleccionar al azar una canción de este CD se puede diagramar con dos ramas (S y M). Como después se debe seleccionar al azar una canción del CD2, que también tiene canciones de salsa y merengue solamente, el resultado de seleccionar al azar una canción del CD2, después de haber seleccionado una del CD1, se puede diagramar de la siguiente manera. Finalmente, y de manera análoga, el resultado de seleccionar al azar una canción del CD3, después de haber seleccionado una del CD2, y después de haber seleccionado una del CD1, se puede diagramar de la misma manera.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción B consideren que, si selecciona una canción de salsa en el CD 1, las canciones seleccionadas en los CD 2 y 3 también serán de salsa. Análogamente, consideran que, si selecciona una canción de merengue en el CD 1, las canciones seleccionadas en los CD 2 y 3 también serán de merengue. <br> Es posible que los estudiantes que elijan la opción C consideren que la selección de los CD también se realiza al azar, y que en el CD1 solo hay canciones de salsa, en el CD2 solo de merengue, y en el CD3 de salsa y merengue. <br> Es posible que los estudiantes que elijan la opción D consideren que la selección de los CD también se realiza al azar, y que en cada CD hay canciones tanto de salsa como de merengue.",
+  },
+  {
+    id: 59,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>Para observar los efectos de un medicamento, este se inyecta en un animal y se registra el comportamiento de la temperatura (ºC) en función del tiempo (horas), como lo muestra la gráfica.</p>
+<p>La gráfica muestra una curva sinusoidal con temperatura entre 34 y 38 ºC y periodo de 3 horas, que inicia en 36 ºC cuando t = 0.</p>`,
+    text: "¿Cuál de las siguientes expresiones corresponde a la curva que describe la temperatura del animal en función del tiempo?",
+    options: [
+      "F(t) = 2cos(2π/3 · t) + 36",
+      "F(t) = 3cos(2π/3 · t) + 38",
+      "F(t) = 2sen(2π/3 · t) + 36",
+      "F(t) = 3sen(2π/3 · t) + 38",
+    ],
+    correct: 2,
+    competency: "Formulación y ejecución.",
+    level: "",
+    assertion:
+      "Frente a un problema que involucre información cuantitativa, plantea e implementa estrategias que lleven a soluciones adecuadas.",
+    evidence:
+      "Diseña planes para la solución de problemas que involucran información cuantitativa o esquemática.",
+    component: "",
+    standard:
+      "Modelo situaciones de variación periódica con funciones trigonométricas e interpreto y utilizo sus derivadas.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para construir la función trigonométrica que representa una curva en una gráfica dada.",
+    justification:
+      "A partir de la información de la gráfica se puede determinar que la amplitud de la curva es 2, la curva está trasladada 36 unidades hacia arriba respecto al eje horizontal, y tiene periodo 3. Por tanto, la expresión que corresponde a la curva es: F(t) = 2 sen(2π/3(t + b)) + 36. Como en t=0, F(t)= 36, entonces 0 = 2 sen(2π/3 · b) y, por tanto, b=0, de donde F(t) = 2 sen(2π/3 · t) + 36.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción A consideren que como la amplitud de la curva es 2, la curva está trasladada 36 unidades hacia arriba respecto al eje horizontal, tiene periodo 3, e inicia en un valor mayor que 0, entonces debe estar asociada a la función coseno y, por tanto, la expresión que corresponde a la curva es F(t) = 2 cos(2π/3 · t) + 36. <br> Es posible que los estudiantes que elijan la opción B consideren la ordenada del punto más alto de la gráfica (38) como la cantidad de unidades en que se trasladó hacia arriba la curva. Además, consideran que la amplitud es el número de unidades que hay en el eje horizontal (3), y como la curva inicia en un valor mayor que 0, debe estar asociada a la función coseno; por tanto, la expresión que corresponde a la curva es F(t) = 3 cos(2π/3 · t) + 36. <br> Es posible que los estudiantes que elijan la opción D consideren que la amplitud es el número de unidades que hay en el eje horizontal (3). Además, consideran la ordenada del punto más alto de la gráfica (38) como la cantidad de unidades en que se trasladó hacia arriba la curva, asociándola, por tanto, con la expresión F(t) = 3 sen(2π/3 · t) + 38.",
+  },
+  {
+    id: 60,
+    simulators: [1, 3],
+    subject: "mat",
+    context: `<p>La velocidad máxima de un auto es 100 km/h. Pilar afirma que, a su velocidad máxima, en 100 horas el auto avanzará 1 km.</p>`,
+    text: "La afirmación de Pilar es",
+    options: [
+      "falsa, porque a la velocidad máxima en una hora recorrerá 100 km.",
+      "verdadera, porque al dividir la velocidad máxima entre 100 horas se obtiene 1 km.",
+      "falsa, porque en 100 horas el auto recorrerá 100 km.",
+      "verdadera, porque al dividir 100 entre 1, se obtiene el valor 100.",
+    ],
+    correct: 0,
+    competency: "Argumentación.",
+    level: "",
+    assertion:
+      "Valida procedimientos y estrategias matemáticas utilizadas para dar solución a problemas.",
+    evidence:
+      "Plantea afirmaciones que sustentan o refutan una interpretación dada a la información disponible en el marco de la solución de un problema.",
+    component: "",
+    standard:
+      "Interpreto la noción de derivada como razón de cambio y como valor de la pendiente de la tangente a una curva y desarrollo métodos para hallar las derivadas de algunas funciones básicas en contextos matemáticos y no matemáticos.",
+    skill: "",
+    evaluationCriteria:
+      "La capacidad para analizar la validez de una afirmación sobre la interpretación de una razón de cambio.",
+    justification:
+      "Si la velocidad máxima del auto es de 100 km/h, entonces, cada hora el auto recorre 100 km manteniendo dicha velocidad. Por tanto, en 100 horas el auto recorrerá, a su velocidad máxima, 100 horas × 100 km/1 hora = 100.000 km, de donde la afirmación de Pilar es falsa.",
+    invalidOptions:
+      "Es posible que los estudiantes que elijan la opción B consideren que para calcular la distancia recorrida en 100 horas se debe dividir la velocidad máxima entre 100: 100 km/h / 100 h = 1 km, omitiendo la unidad de medida de tiempo. <br> Es posible que los estudiantes que elijan la opción C consideren que en la expresión el 100 está asociado tanto a los kilómetros como a las horas y, por tanto, el auto recorrerá 100 km en 100 horas. <br> Es posible que los estudiantes que elijan la opción D consideren que 100 km/h es igual a 100 h/km, es decir, el orden de las unidades no es relevante y, por tanto, en 100 horas el auto recorre 1 km.",
+  },
+
   // {
-  //   id: 2,
-  //   simulators: [3],
-  //   subject: "lc",
-  //   context: `<p>RESPONDA LA PREGUNTA DE ACUERDO CON LA SIGUIENTE INFORMACIÓN:</p><p><strong>LA CONTAMINACIÓN MARINA</strong></p><p>Debido a la inmensidad y profundidad de los océanos, hasta hace poco se creía que podrían ser utilizados para verter basura y sustancias químicas en cantidades ilimitadas sin que esto tuviera consecuencias importantes. Los partidarios de continuar con los vertidos en los océanos incluso tienen un eslogan: "La solución a la contaminación es la dilución". En la actualidad, basta con fijarse en la zona muerta del tamaño del estado de Nueva Jersey que se forma cada verano en el delta del Río Mississippi, o en la extensión de 1.600 kilómetros de plástico en descomposición en el Pacífico Norte para darse cuenta de que esta ideología de la "dilución" ha contribuido a llevar al borde del colapso lo que tiempo atrás fue un ecosistema oceánico próspero. Existen pruebas de que los océanos han sufrido a manos del hombre durante miles de años. Sin embargo, estudios recientes demuestran que la degradación, especialmente en las zonas costeras, se ha acelerado notablemente en los últimos tres siglos a medida que han aumentado los vertidos industriales y los contaminantes procedentes de explotaciones agrarias y ciudades costeras.</p><p>Algunos de los contaminantes más comunes derivados de la actividad humana son los plaguicidas, fertilizantes químicos, detergentes, hidrocarburos, aguas residuales, plásticos y otros sólidos. Muchos de estos contaminantes se acumulan en las profundidades del océano, donde son ingeridos por pequeños organismos marinos a través de los cuales se introducen en la cadena alimentaria global. Los fertilizantes ricos en nitrógeno que utilizan los productores agrícolas en zonas del interior, por ejemplo, acaban en las corrientes, ríos y aguas subterráneas locales, y más tarde se depositan en los estuarios, bahías y deltas. Este exceso de nutrientes puede provocar un crecimiento masivo de algas que consumen el oxígeno del agua, lo cual genera zonas en las que no puede haber vida marina o apenas existe. Los científicos han descubierto 400 zonas muertas con estas características por todo el planeta. Los humanos comienzan a percatarse de la insostenibilidad de la filosofía de la "dilución". Muchas leyes nacionales y protocolos internacionales prohíben en la actualidad el vertido de sustancias nocivas en los océanos, si bien su aplicación es a menudo incierta. Se están creando santuarios marinos con el fin de mantener ecosistemas marinos prístinos. Asimismo, se están llevando a cabo iniciativas aisladas que han logrado cierto éxito en la restauración de estuarios y bahías.</p><div style="margin-top:10px;font-size:11px;color:#888;font-style:italic;text-align:center"><p><em>Tomado y adaptado de: http://www.nationalgeographic.es/el-oceano/cuestiones-criticas-sobre-el-problemas-de-la-contaminacion-marina/</em></p></div>`,
-  //   text: "¿Cuál de los siguientes enunciados puede considerarse la antítesis del argumento central del texto?",
+  //   id: 41,
+  //   simulators: [1,3],
+  //   subject: "mat",
+  //   context: `<p>En una bolsa hay 3 bolas rojas, 3 negras y 12 blancas. Una persona afirma que al sacar una bola al azar, los tres colores tienen la misma probabilidad de salir. </p>`,
+  //   text: "Esta afirmación es",
   //   options: [
-  //     "La respuesta al problema de la contaminación es la dilución.",
-  //     "Las iniciativas dirigidas a la protección marítima son casi inexistentes.",
-  //     "Los océanos han sido contaminados por los humanos durante miles de años.",
-  //     "Los humanos han comenzado a advertir la insostenibilidad de la filosofía de la dilución.",
+  //     "verdadera, pues el número de bolas de cada color no importa.",
+  //     "falsa, pues no se sabe el número total de bolas en la bolsa.",
+  //     "falsa, pues hay más bolas de un color que de los otros dos.",
+  //     "verdadera, pues las bolas están repartidas de igual manera.",
   //   ],
-  //   correct: 0,
-  //   competency: "Comprensión lectora",
+  //   correct: 2,
+  //   competency: "Argumentación.",
   //   level: "",
   //   assertion:
-  //     "Comprende cómo se articulan las partes de un texto para darle un sentido global.",
+  //     "Valida procedimientos y estrategias matemáticas utilizadas para dar solución a problemas.",
   //   evidence:
-  //     "Identifica y caracteriza las ideas o afirmaciones presentes en un texto informativo.",
+  //     "Plantea afirmaciones que sustentan o refutan una interpretación dada a la información disponible en el marco de la solución de un problema.",
   //   component: "",
   //   standard:
-  //     "Diseño un esquema de interpretación, teniendo en cuenta el tipo de texto, tema, interlocutor e intención comunicativa.",
+  //     "Justifico o refuto inferencias basadas en razonamientos estadísticos a partir de resultados de estudios publicados en los medios o diseñados en el ámbito escolar.",
   //   skill: "",
   //   evaluationCriteria:
-  //     "La capacidad para inferir la tesis contraria a la tesis principal de un texto.",
+  //     "La capacidad para justificar la validez de una afirmación sobre una probabilidad a partir de la descripción de los elementos de un conjunto.",
   //   justification:
-  //     "La opción A es la respuesta correcta, ya que el texto argumenta que la idea de la dilución ha llevado a que causemos daños cada vez mayores a los océanos: “En la actualidad, basta con fijarse en la zona muerta del tamaño del estado de Nueva Jersey que se forma cada verano en el delta del Río Mississippi, o en la extensión de 1.600 kilómetros de plástico en descomposición en el Pacífico Norte para darse cuenta de que esta ideología de la ‘dilución’ ha contribuido a llevar al borde del colapso lo que tiempo atrás fue un ecosistema oceánico próspero”. La opción A afirma justamente lo contrario.",
+  //     "En la bolsa hay en total 18 bolas y, por tanto, la probabilidad de seleccionar al azar una roja es de 3/18; una negra, de 3/18; una blanca, de 12/18. Luego, como 3 < 12 entonces el color blanco tiene una mayor probabilidad de ser elegido al azar.",
   //   invalidOptions:
-  //     'Las opciones B, C y D no son correctas porque presentan tesis que no se oponen a lo dicho en el texto. La opción B afirmaría que las iniciativas para proteger los océanos abundan, pero el texto no niega que existan, simplemente señala que hay más santuarios marinos e iniciativas aisladas. La opción C dice lo que el propio texto afirma explícitamente. La opción D también es algo que el texto afirma: "Los humanos comienzan a percatarse de la insostenibilidad de la filosofía de la dilución".',
+  //     "Es posible que los estudiantes que elijan la opción A consideren que, al haber bolas de 3 colores en la bolsa, la probabilidad de sacar una bola de cualquier color es de 1/3. <br> Es posible que los estudiantes que elijan la opción B consideren que las 3 bolas rojas, las 3 negras y las 12 blancas son solo una muestra del total de bolas que hay en la bolsa, por lo que se desconoce el número total de bolas. <br> Es posible que los estudiantes que elijan la opción D consideren que, como las bolas están mezcladas dentro de la bolsa, y no se puede ver el color, entonces están repartidas de igual manera.",
   // },
 
   // Pregunta de prueba con optsImg
-  {
-    id: 150,
-    simulators: [1],
-    subject: "mat",
-    context: "Observe las siguientes figuras geométricas:",
-    text: "¿Cuál de las opciones corresponde a un triángulo rectángulo?",
-    options: [
-      "A. Figura con 3 lados iguales",
-      "B. Figura con 1 ángulo recto",
-      "C. Figura con todos los ángulos menores a 90°",
-      "D. Figura con 4 lados",
-    ],
-    optionsImg: [
-      "test_triangulo_eq",
-      "test_triangulo_recto",
-      "test_triangulo_acut",
-      "test_cuadrilatero",
-    ],
-    correct: 1,
-    competency: "Interpretación y representación",
-    level: 2,
-    justification:
-      "La figura B tiene un ángulo de 90°, característica del triángulo rectángulo.",
-  },
-
-  // MAT - Matemáticas (9 preguntas)
-  {
-    id: 201,
-    simulators: [1,2,3],
-    subject: "mat",
-    contextImg: "mat_fig1",
-    contextImgCaption: "Figura 1 — Mapa de la ciudad con puntos A, B y C",
-    context:
-      "En la figura se presenta un mapa de la vista aérea de las calles de una ciudad. Cada cuadrilátero corresponde a un cuadrado. La ruta de A a C mide 25 cm. Cada cuadrado tiene lado de 5 cm.",
-    questionImg: "mat_fig2",
-    questionImgCaption: "Figura 2 — Tres rutas posibles de A a B",
-    text: "Una persona debe ir del punto A al punto B. ¿Cuál(es) de las rutas presentadas tiene(n) longitud igual a la mostrada en la figura 1?",
-    options: [
-      "A. Solamente I.",
-      "B. Solamente I y III.",
-      "C. Solamente II.",
-      "D. Solamente II y III.",
-    ],
-    correct: 1,
-    competency: "Interpretación y representación",
-    level: 3,
-    justification:
-      "Ruta I: 5 cuadrados × 5 cm = 25 cm. Ruta III: 5 cuadrados × 5 cm = 25 cm.",
-  },
-  {
-    id: 202,
-    simulators: [1,2],
-    subject: "cn",
-    contextImg: "mat_fig1",
-    contextImgCaption: "Figura 1 — Mapa de la ciudad con puntos A, B y C",
-    context:
-      "En la figura se presenta un mapa de la vista aérea de las calles de una ciudad. Cada cuadrilátero corresponde a un cuadrado. La ruta de A a C mide 25 cm. Cada cuadrado tiene lado de 5 cm.",
-    questionImg: "mat_fig2",
-    questionImgCaption: "Figura 2 — Tres rutas posibles de A a B",
-    text: "Una persona debe ir del punto A al punto B. ¿Cuál(es) de las rutas presentadas tiene(n) longitud igual a la mostrada en la figura 1?",
-    options: [
-      "A. Solamente I.",
-      "B. Solamente I y III.",
-      "C. Solamente II.",
-      "D. Solamente II y III.",
-    ],
-    correct: 1,
-    competency: "Interpretación y representación",
-    level: 3,
-    justification:
-      "Ruta I: 5 cuadrados × 5 cm = 25 cm. Ruta III: 5 cuadrados × 5 cm = 25 cm.",
-  },
-  {
-    id: 203,
-    simulators: [1],
-    subject: "ing",
-    contextImg: "mat_fig1",
-    contextImgCaption: "Figura 1 — Mapa de la ciudad con puntos A, B y C",
-    context:
-      "En la figura se presenta un mapa de la vista aérea de las calles de una ciudad. Cada cuadrilátero corresponde a un cuadrado. La ruta de A a C mide 25 cm. Cada cuadrado tiene lado de 5 cm.",
-    questionImg: "mat_fig2",
-    questionImgCaption: "Figura 2 — Tres rutas posibles de A a B",
-    text: "Una persona debe ir del punto A al punto B. ¿Cuál(es) de las rutas presentadas tiene(n) longitud igual a la mostrada en la figura 1?",
-    options: [
-      "A. Solamente I.",
-      "B. Solamente I y III.",
-      "C. Solamente II.",
-      "D. Solamente II y III.",
-    ],
-    correct: 1,
-    competency: "Interpretación y representación",
-    level: 3,
-    justification:
-      "Ruta I: 5 cuadrados × 5 cm = 25 cm. Ruta III: 5 cuadrados × 5 cm = 25 cm.",
-  },
+  // {
+  //   id: 150,
+  //   simulators: [1],
+  //   subject: "mat",
+  //   context: "Observe las siguientes figuras geométricas:",
+  //   text: "¿Cuál de las opciones corresponde a un triángulo rectángulo?",
+  //   options: [
+  //     "A. Figura con 3 lados iguales",
+  //     "B. Figura con 1 ángulo recto",
+  //     "C. Figura con todos los ángulos menores a 90°",
+  //     "D. Figura con 4 lados",
+  //   ],
+  //   optionsImg: [
+  //     "test_triangulo_eq",
+  //     "test_triangulo_recto",
+  //     "test_triangulo_acut",
+  //     "test_cuadrilatero",
+  //   ],
+  //   correct: 1,
+  //   competency: "Interpretación y representación",
+  //   level: 2,
+  //   justification:
+  //     "La figura B tiene un ángulo de 90°, característica del triángulo rectángulo.",
+  // },
 ];
 
 // Función para obtener preguntas de un simulacro específico
