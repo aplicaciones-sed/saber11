@@ -1485,7 +1485,7 @@ const QUESTIONS = [
   },
   {
     id: 49,
-    simulators: [1, 2, 3],
+    simulators: [1, 3],
     subject: "mat",
     context: `<p>El costo de la boleta en un cinema depende de la edad de la persona, como lo muestra la tabla.</p>
 <table style="text-align='center'" border="1" cellpadding="4" cellspacing="0">
@@ -1541,7 +1541,10 @@ const QUESTIONS = [
     simulators: [1, 3],
     subject: "mat",
     context: `<p>En la figura se muestra la construcción de una cometa triangular, en la que se conoce únicamente la medida del ángulo M = 150º. El ángulo O debe ser menor que 150º para que la cometa vuele.</p>
-<p>Se realiza el siguiente análisis para saber si la cometa volará o no volará:</p>
+  <p align='center'>
+  <img  style="width:50%; " src="../shared/img/questions/mat50.png" alt='' loading="lazy">  
+ </p>
+    <p>Se realiza el siguiente análisis para saber si la cometa volará o no volará:</p>
 <p>I. Tomando en cuenta que M = 150º, N = 180º - 150º.<br>
 II. N = 30º.<br>
 III. La suma de los ángulos de un triángulo debe ser 160º.<br>
@@ -1571,16 +1574,18 @@ VIII. La cometa volará.</p>`,
     evaluationCriteria:
       "La capacidad para justificar un error en un procedimiento para determinar si una figura dada cumple con una condición establecida.",
     justification:
-      "La suma de los ángulos internos de un triángulo debe ser igual a 180°. Por tanto: O + P = 180° – 30° = 150°, de donde O < 150°. La conclusión sigue siendo verdadera, pero en la argumentación había una premisa falsa.",
+      "La suma de los ángulos internos de un triángulo debe ser igual a 180°. Por tanto:<br> O + P = 180° – 30° = 150°, de donde O < 150°. <br>La conclusión sigue siendo verdadera, pero en la argumentación había una premisa falsa.",
     invalidOptions:
       'Es posible que los estudiantes que elijan la opción A consideren que la suma de dos ángulos suplementarios es igual a 160°. <br> Es posible que los estudiantes que elijan la opción C consideren que si O < 130°, a lo sumo se puede asegurar que O + 20° < 130° + 20° = 150°, pero no se puede establecer una relación únicamente entre O y 150°. <br> Es posible que los estudiantes que elijan la opción D asocien la expresión "O < 150°" con que el ángulo O es mayor que 150°, por lo que la cometa no volaría.',
   },
   {
     id: 51,
-    simulators: [1, 3],
+    simulators: [1, 2, 3],
     subject: "mat",
     context: `<p>Se realizó una encuesta a 200 clientes de una empresa de telecomunicaciones para saber cómo califican la calidad del servicio que reciben. La siguiente gráfica muestra los porcentajes de las calificaciones dadas por los clientes:</p>
-<p>Porcentajes: Malo 40 % (clientes insatisfechos), Regular 15 % (clientes insatisfechos), Bueno 35 % (clientes satisfechos), Excelente 10 % (clientes satisfechos).</p>`,
+ <p align='center'>
+  <img  style="width:100%; " src="../shared/img/questions/mat51.png" alt='' loading="lazy">  
+ </p>`,
     text: "La afirmación verdadera acerca de los resultados de la encuesta es:",
     options: [
       "Más de 30 clientes consideran que la calidad del servicio que ofrece la empresa es excelente.",
