@@ -653,7 +653,7 @@ function selectOpt(idx){
       if(evidence) rows += `<tr><td>🔍 Evidencia</td><td>${evidence}</td></tr>`;
       if(component) rows += `<tr><td>🔖 Componente</td><td>${component}</td></tr>`;
       if(standard) rows += `<tr><td>📚 Estándar asociado</td><td>${standard}</td></tr>`;
-      if(skill) rows += `<tr><td>💭 Pensamiento</td><td>${skill}</td></tr>`;
+      if(skill) rows += `<tr><td>💭 Acción de <br>pensamiento <br>asociada</td><td>${skill}</td></tr>`;
       if(evaluationCriteria) rows += `<tr><td>📋 ¿Qué Evalúa?</td><td>${evaluationCriteria}</td></tr>`;
       if(level) rows += `<tr><td>⭐ Nivel</td><td><span class="meta-pill meta-nivel ${nivelCls}">${level}</span></td></tr>`;
       metaDiv.innerHTML = rows ? `<table class="meta-table">${rows}</table>` : '';
@@ -835,7 +835,7 @@ function showResults(){
             ${q.evidence ? `<tr><td>🔍 Evidencia</td><td>${q.evidence}</td></tr>` : ''}
             ${q.component ? `<tr><td>🔖 Componente</td><td>${q.component}</td></tr>` : ''}
             ${q.standard ? `<tr><td>📚 Estándar asociado</td><td>${q.standard}</td></tr>` : ''}
-            ${q.skill ? `<tr><td>💭 Pensamiento</td><td>${q.skill}</td></tr>` : ''}
+            ${q.skill ? `<tr><td>💭 Acción de <br>pensamiento <br>asociada</td><td>${q.skill}</td></tr>` : ''}
             ${q.evaluationCriteria ? `<tr><td>📋 ¿Qué evalúa?</td><td>${q.evaluationCriteria}</td></tr>` : ''}
             ${q.level ? `<tr><td>⭐ Nivel</td><td><span class="meta-pill meta-nivel meta-nivel-${q.level}">${q.level}</span></td></tr>` : ''}
           </table>` : ''}

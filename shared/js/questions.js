@@ -16,7 +16,7 @@
 // - evidence: evidencia
 // - component: componente
 // - standard: estándar asociado
-// - skill: pensamiento asociado
+// - skill: Acción de pensamiento asociada
 // - evaluationCriteria: qué evalúa
 // - justification: justificación/explicación
 // - invalidOptions: opciones no válidas
@@ -1727,7 +1727,7 @@ VIII. La cometa volará.</p>`,
   },
   {
     id: 55,
-    simulators: [1, 2,3],
+    simulators: [1, 3],
     subject: "mat",
     context: `<p>En el servicio de urgencias de un hospital se sigue este procedimiento para clasificar a un paciente: en el momento de su llegada recibe un número de turno con la hora de llegada; cuando el tablero digital muestra ese número, el paciente pasa a valoración y se clasifica; luego regresa a la sala a esperar el llamado para ser atendido.</p>
 <p>La tabla muestra los niveles de clasificación, el tiempo de espera en sala desde que el paciente recibe el turno y el porcentaje de personas clasificadas diariamente en cada nivel.</p>
@@ -1764,7 +1764,9 @@ VIII. La cometa volará.</p>`,
     simulators: [1, 3],
     subject: "mat",
     context: `<p>Cada uno de los lados del cuadrilátero de la figura se traslada una unidad hacia la izquierda; luego se amplía esta al doble de su tamaño, manteniéndose fijo el vértice inferior. Dos de los vértices del cuadrilátero ampliado son (-5,7) y (-1,1).</p>
-<p>El cuadrilátero original tiene vértices en (-2,4) y (2,4) [entre otros].</p>`,
+ <p align='center'>
+  <img  style="width:100%; " src="../shared/img/questions/mat56.png" alt='' loading="lazy">  
+ </p>`,
     text: "¿Cuáles son las coordenadas de los otros dos vértices?",
     options: [
       "(-1,5) y (3,7).",
@@ -1786,33 +1788,26 @@ VIII. La cometa volará.</p>`,
     evaluationCriteria:
       "La capacidad para determinar las coordenadas de los vértices de una figura a la que se le realiza una transformación.",
     justification:
-      "Si el cuadrilátero de la figura se traslada una unidad hacia la izquierda y luego se amplía hasta el doble de su tamaño, manteniendo fijo el vértice inferior, se obtiene: Por tanto, conocidos los vértices (–5, 7) y (–1, 1) del cuadrilátero ampliado, los otros dos vértices tienen coordenadas (–1, 5) y (3, 7).",
+      `Si el cuadrilátero de la figura se traslada una unidad hacia la izquierda y luego se amplía hasta el doble de su tamaño, manteniendo fijo el vértice inferior, se obtiene: 
+      <p align='center'>
+  <img  style="width:100%; " src="../shared/img/questions/mat56-j1.png" alt='' loading="lazy">  
+ </p>
+      Por tanto, conocidos los vértices (–5, 7) y (–1, 1) del cuadrilátero ampliado, los otros dos vértices tienen coordenadas (–1, 5) y (3, 7).`,
     invalidOptions:
-      "Es posible que los estudiantes que elijan la opción B consideren que en las coordenadas de un punto primero se indica la posición respecto al eje vertical y después respecto al eje horizontal, obteniendo como coordenadas de los otros dos vértices los puntos (5, –1) y (7, 3). <br> Es posible que los estudiantes que elijan la opción C consideren que al ser el cuadrilátero una figura simétrica respecto a la recta vertical que pasa por el punto (–1, 1), entonces, si se conocen los vértices (–5, 7) y (–1, 1), los otros dos vértices deben tener coordenadas (5, 7) y (1, 1). <br> Es posible que los estudiantes que elijan la opción D consideren que el cuadrilátero se trasladó una unidad a la derecha, y se amplía hasta el doble de su tamaño: Identificando que uno de los vértices está en el punto (1, 5) y el otro en el punto (5, 7). Sin embargo, este último punto lo asocia con el (–5, –7).",
+      `Es posible que los estudiantes que elijan la opción B consideren que en las coordenadas de un punto primero se indica la posición respecto al eje vertical y después respecto al eje horizontal, obteniendo como coordenadas de los otros dos vértices los puntos (5, –1) y (7, 3). <br> Es posible que los estudiantes que elijan la opción C consideren que al ser el cuadrilátero una figura simétrica respecto a la recta vertical que pasa por el punto (–1, 1), entonces, si se conocen los vértices (–5, 7) y (–1, 1), los otros dos vértices deben tener coordenadas (5, 7) y (1, 1). <br> Es posible que los estudiantes que elijan la opción D consideren que el cuadrilátero se trasladó una unidad a la derecha, y se amplía hasta el doble de su tamaño: 
+      <p align='center'>
+  <img  style="width:100%; " src="../shared/img/questions/mat56-nv1.png" alt='' loading="lazy">  
+ </p>
+      Identificando que uno de los vértices está en el punto (1, 5) y el otro en el punto (5, 7). Sin embargo, este último punto lo asocia con el (–5, –7).`,
   },
   {
     id: 57,
     simulators: [1, 3],
     subject: "mat",
     context: `<p>Un empresario compra un apartamento de $80.000.000 (incluidos los intereses), y acuerda pagarlo en cuotas mensuales de igual valor. Para ello, le ofrecen las siguientes opciones de pago que se muestran en la tabla.</p>
-<table border="1" cellpadding="4" cellspacing="0">
-<thead>
-  <tr>
-    <th>N.° de cuotas</th>
-    <th>Valor cuota ($)</th>
-  </tr>
-</thead>
-<tbody>
-  <tr><td>50</td><td>1.600.000</td></tr>
-  <tr><td>40</td><td>2.000.000</td></tr>
-  <tr><td>32</td><td>2.500.000</td></tr>
-  <tr><td>25</td><td>3.200.000</td></tr>
-  <tr><td>20</td><td>4.000.000</td></tr>
-  <tr><td>16</td><td>5.000.000</td></tr>
-  <tr><td>10</td><td>8.000.000</td></tr>
-  <tr><td>8</td><td>10.000.000</td></tr>
-</tbody>
-</table>`,
+<p align='center'>
+  <img  style="width:50%; " src="../shared/img/questions/mat57.png" alt='' loading="lazy">  
+ </p>`,
     text: "Respecto a la información de la tabla, es verdadero afirmar que",
     options: [
       "el empresario paga más por el apartamento dependiendo de la cantidad de cuotas que decida pagar.",
@@ -1834,7 +1829,11 @@ VIII. La cometa volará.</p>`,
     evaluationCriteria:
       "La capacidad para identificar una afirmación verdadera sobre la relación entre dos variables representadas en una tabla.",
     justification:
-      "A partir de la información en la tabla se puede concluir que el número de cuotas y el valor de la cuota son inversamente proporcionales, y que entre mayor sea el número de cuotas, menor valor se pagará en cada una de ellas.",
+      `A partir de la información en la tabla se tiene que: 
+      <p align='center'>
+  <img  style="width:100%; " src="../shared/img/questions/mat57-j1.png" alt='' loading="lazy">  
+ </p>
+      De lo anterior, se puede concluir que el número de cuotas y el valor de la cuota son inversamente proporcionales, y que entre mayor sea el número de cuotas, menor valor se pagará en cada una de ellas.`,
     invalidOptions:
       "Es posible que los estudiantes que elijan la opción A consideren que entre menor sea el número de cuotas, mayor será el valor de la cuota y, por tanto, mayor será el valor total por pagar por el apartamento. <br> Es posible que los estudiantes que elijan la opción C comprueben que, para 8 cuotas, el valor de cada cuota es de $10.000.000 y, por tanto, pagarán los $80.000.000 que vale el apartamento, concluyendo que esto solo es posible para estos dos valores particulares de número de cuotas y valor de la cuota. <br> Es posible que los estudiantes que elijan la opción D identifiquen la constante de proporcionalidad (80.000.000) entre el número de cuotas y el valor de la cuota. Sin embargo, asumen que los dos valores crecen por igual, concluyendo que, a mayor valor por cuota, más tiempo se tardará en pagar la deuda.",
   },
@@ -1845,6 +1844,12 @@ VIII. La cometa volará.</p>`,
     context: `<p>Para ambientar musicalmente una reunión, se cuenta con tres CD, cada uno de ellos tiene canciones de salsa (S) y merengue (M).</p>`,
     text: "¿Cuál de los siguientes diagramas representa la situación de seleccionar al azar una canción del CD1, luego una del CD2 y finalmente una del CD3?",
     options: ["A.", "B.", "C.", "D."],
+    optionsImg: [
+           "mat58-A",
+           "mat58-B",
+           "mat58-C",
+           "mat58-D",
+         ],
     correct: 0,
     competency: "Interpretación.",
     level: "",
@@ -1859,7 +1864,19 @@ VIII. La cometa volará.</p>`,
     evaluationCriteria:
       "La capacidad para representar un experimento aleatorio mediante un diagrama de árbol.",
     justification:
-      "Como el CD1 tiene canciones de salsa y de merengue, el resultado de seleccionar al azar una canción de este CD se puede diagramar con dos ramas (S y M). Como después se debe seleccionar al azar una canción del CD2, que también tiene canciones de salsa y merengue solamente, el resultado de seleccionar al azar una canción del CD2, después de haber seleccionado una del CD1, se puede diagramar de la siguiente manera. Finalmente, y de manera análoga, el resultado de seleccionar al azar una canción del CD3, después de haber seleccionado una del CD2, y después de haber seleccionado una del CD1, se puede diagramar de la misma manera.",
+      `Como el CD1 tiene canciones de salsa y de merengue, el resultado de seleccionar al azar una canción de este CD se puede diagramar de la siguiente manera:
+      <p align='center'>
+  <img  style="width:50%; " src="../shared/img/questions/mat58-j1.png" alt='' loading="lazy">  
+ </p>
+      Como después se debe seleccionar al azar una canción del CD2, que también tiene canciones de salsa y merengue solamente, el resultado de seleccionar al azar una canción del CD2, después de haber seleccionado una del CD1, se puede diagramar de la siguiente manera:
+       <p align='center'>
+  <img  style="width:50%; " src="../shared/img/questions/mat58-j2.png" alt='' loading="lazy">  
+ </p>
+      Finalmente, y de manera análoga, el resultado de seleccionar al azar una canción del CD3, después de haber seleccionado una del CD2, y después de haber seleccionado una del CD1, se puede diagramar de la siguiente manera:
+       <p align='center'>
+  <img  style="width:50%; " src="../shared/img/questions/mat58-j3.png" alt='' loading="lazy">  
+ </p>
+      `,
     invalidOptions:
       "Es posible que los estudiantes que elijan la opción B consideren que, si selecciona una canción de salsa en el CD 1, las canciones seleccionadas en los CD 2 y 3 también serán de salsa. Análogamente, consideran que, si selecciona una canción de merengue en el CD 1, las canciones seleccionadas en los CD 2 y 3 también serán de merengue. <br> Es posible que los estudiantes que elijan la opción C consideren que la selección de los CD también se realiza al azar, y que en el CD1 solo hay canciones de salsa, en el CD2 solo de merengue, y en el CD3 de salsa y merengue. <br> Es posible que los estudiantes que elijan la opción D consideren que la selección de los CD también se realiza al azar, y que en cada CD hay canciones tanto de salsa como de merengue.",
   },
@@ -1868,7 +1885,9 @@ VIII. La cometa volará.</p>`,
     simulators: [1, 3],
     subject: "mat",
     context: `<p>Para observar los efectos de un medicamento, este se inyecta en un animal y se registra el comportamiento de la temperatura (ºC) en función del tiempo (horas), como lo muestra la gráfica.</p>
-<p>La gráfica muestra una curva sinusoidal con temperatura entre 34 y 38 ºC y periodo de 3 horas, que inicia en 36 ºC cuando t = 0.</p>`,
+      <p align='center'>
+  <img  style="width:50%; " src="../shared/img/questions/mat59.png" alt='' loading="lazy">  
+ </p>`,
     text: "¿Cuál de las siguientes expresiones corresponde a la curva que describe la temperatura del animal en función del tiempo?",
     options: [
       "F(t) = 2cos(2π/3 · t) + 36",
@@ -1892,7 +1911,7 @@ VIII. La cometa volará.</p>`,
     justification:
       "A partir de la información de la gráfica se puede determinar que la amplitud de la curva es 2, la curva está trasladada 36 unidades hacia arriba respecto al eje horizontal, y tiene periodo 3. Por tanto, la expresión que corresponde a la curva es: F(t) = 2 sen(2π/3(t + b)) + 36. Como en t=0, F(t)= 36, entonces 0 = 2 sen(2π/3 · b) y, por tanto, b=0, de donde F(t) = 2 sen(2π/3 · t) + 36.",
     invalidOptions:
-      "Es posible que los estudiantes que elijan la opción A consideren que como la amplitud de la curva es 2, la curva está trasladada 36 unidades hacia arriba respecto al eje horizontal, tiene periodo 3, e inicia en un valor mayor que 0, entonces debe estar asociada a la función coseno y, por tanto, la expresión que corresponde a la curva es F(t) = 2 cos(2π/3 · t) + 36. <br> Es posible que los estudiantes que elijan la opción B consideren la ordenada del punto más alto de la gráfica (38) como la cantidad de unidades en que se trasladó hacia arriba la curva. Además, consideran que la amplitud es el número de unidades que hay en el eje horizontal (3), y como la curva inicia en un valor mayor que 0, debe estar asociada a la función coseno; por tanto, la expresión que corresponde a la curva es F(t) = 3 cos(2π/3 · t) + 36. <br> Es posible que los estudiantes que elijan la opción D consideren que la amplitud es el número de unidades que hay en el eje horizontal (3). Además, consideran la ordenada del punto más alto de la gráfica (38) como la cantidad de unidades en que se trasladó hacia arriba la curva, asociándola, por tanto, con la expresión F(t) = 3 sen(2π/3 · t) + 38.",
+      "Es posible que los estudiantes que elijan la opción A consideren que como la amplitud de la curva es 2, la curva está trasladada 36 unidades hacia arriba respecto al eje horizontal, tiene periodo 3, e inicia en un valor mayor que 0, entonces debe estar asociada a la función coseno y, por tanto, la expresión que corresponde a la curva es F(t) = 2 cos(2π/3 · t) + 36. <br> Es posible que los estudiantes que elijan la opción B consideren la ordenada del punto más alto de la gráfica (38) como la cantidad de unidades en que se trasladó hacia arriba la curva. Además, consideran que la amplitud es el número de unidades que hay en el eje horizontal (3), y como la curva inicia en un valor mayor que 0, debe estar asociada a la función coseno; por tanto, la expresión que corresponde a la curva es F(t) = 3 cos(2π/3 · t) + 36. <br> Es posible que los estudiantes que elijan la opción D consideren que la amplitud es el número de unidades que hay en el eje horizontal (3). Además, consideran la ordenada del punto más alto de la gráfica (38) como la cantidad de unidades en que se trasladó hacia arriba la curva, asociándola, por tanto, con la expresión F(t) = 3 sen(2π/3 · t) + 36.",
   },
   {
     id: 60,
@@ -1925,6 +1944,534 @@ VIII. La cometa volará.</p>`,
       "Es posible que los estudiantes que elijan la opción B consideren que para calcular la distancia recorrida en 100 horas se debe dividir la velocidad máxima entre 100: 100 km/h / 100 h = 1 km, omitiendo la unidad de medida de tiempo. <br> Es posible que los estudiantes que elijan la opción C consideren que en la expresión el 100 está asociado tanto a los kilómetros como a las horas y, por tanto, el auto recorrerá 100 km en 100 horas. <br> Es posible que los estudiantes que elijan la opción D consideren que 100 km/h es igual a 100 h/km, es decir, el orden de las unidades no es relevante y, por tanto, en 100 horas el auto recorre 1 km.",
   },
 
+
+
+//cn - Ciencias naturales (20 preguntas)
+{
+  id: 61,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>En el grupo de los mamíferos se presentan dos tipos de ciclos reproductivos: el menstrual (de 24 a 35 días), exclusivo de primates y humanos; y el ciclo estral (entre estaciones), en el resto de mamíferos. La diferencia entre estos dos tipos de ciclos radica en el periodo de receptividad sexual. En el ciclo estral, la hembra solo es sexualmente receptiva durante el estro u ovulación; en el ciclo menstrual, la hembra muestra receptividad sexual durante casi todo el ciclo.<br><br>Los modelos de la figura muestran cada ciclo de reproducción.</p>
+  <p align='center'><img style="width:100%;" src="../shared/img/questions/cn61.png" alt='' loading="lazy"></p>`,
+  text: `La mayoría de las pastillas anticonceptivas se basan en una mezcla de hormonas con una combinación estratégica de estrógeno y progesterona.<br><br>Con base en la información anterior, ¿por qué una mujer que utiliza este método anticonceptivo tiene menor probabilidad de quedar embarazada?`,
+  options: [
+    "Porque restringirá a unos días específicos su receptividad sexual, lo cual disminuye la posibilidad de quedar embarazada.",
+    "Porque estas hormonas permanecerán en altas concentraciones durante todo el ciclo, lo cual impide la ovulación.",
+    "Porque este método eliminará los espermatozoides durante su trayecto hacia el óvulo, lo cual impide la fecundación.",
+    "Porque este método aumentará el número de días que dura el ciclo menstrual, lo cual altera los días fértiles.",
+  ],
+  correct: 1,
+  competency: "Explicación de fenómenos.",
+  level: "",
+  assertion: "Analiza el potencial del uso de recursos naturales o artefactos y sus efectos sobre el entorno y la salud, así como las posibilidades de desarrollo para las comunidades.",
+  evidence: "Explica algunos principios para mantener la salud individual y la pública basado en principios biológicos, químicos y físicos.",
+  component: "Ciencia, tecnología y sociedad.",
+  standard: "",
+  skill: "Argumento la importancia de las medidas de prevención del embarazo y de las enfermedades de transmisión sexual en el mantenimiento de la salud individual y colectiva.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para analizar la información suministrada y argumentar acerca de las medidas de prevención del embarazo.",
+  justification: "La opción B es la respuesta correcta porque la ovulación no se dará cuando los niveles de progesterona son altos, sino que se dará cuando comiencen a disminuir los niveles de estrógeno, como se observa en las gráficas.",
+  invalidOptions: "La opción A no es la respuesta correcta porque en el contexto se menciona que, para el ciclo menstrual, la hembra muestra receptividad durante casi todo el ciclo. <br>La opción C no es la respuesta correcta porque las hormonas no actúan como espermaticidas, sino que controlan la ovulación. <br>La opción D no es la respuesta correcta porque, cuando se usan correctamente, las pastillas anticonceptivas no modifican la duración de ciclo.",
+},
+{
+  id: 62,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>En el grupo de los mamíferos se presentan dos tipos de ciclos reproductivos: el menstrual (de 24 a 35 días), exclusivo de primates y humanos; y el ciclo estral (entre estaciones), en el resto de mamíferos. La diferencia entre estos dos tipos de ciclos radica en el periodo de receptividad sexual. En el ciclo estral, la hembra solo es sexualmente receptiva durante el estro u ovulación; en el ciclo menstrual, la hembra muestra receptividad sexual durante casi todo el ciclo.<br><br>Los modelos de la figura muestran cada ciclo de reproducción.</p>
+  <p align='center'><img style="width:100%;" src="../shared/img/questions/cn61.png" alt='' loading="lazy"></p>`,
+  text: `En la tabla se muestra la duración en días de los ciclos reproductivos de algunas especies de mamíferos.<br><br>
+  <table border="1" style="width:100%; border-collapse:collapse; text-align:center;">
+    <tr><th>Especie</th><th>Nombre científico</th><th>Ciclo (días)</th><th>Número de ciclos al año</th></tr>
+    <tr><td>1</td><td>Ateles belzebuth</td><td>24 - 27</td><td>12</td></tr>
+    <tr><td>2</td><td>Bos primigenius taurus</td><td>21 - 23</td><td>6</td></tr>
+    <tr><td>3</td><td>Equus ferus caballus</td><td>23 - 26</td><td>4</td></tr>
+    <tr><td>4</td><td>Papio hamadryas</td><td>31 - 35</td><td>11</td></tr>
+  </table><br>Con base en la información anterior, ¿cuáles corresponden a ciclos menstruales?`,
+  options: [
+    "Los de las especies 1 y 4.",
+    "Los de las especies 1 y 3.",
+    "Los de las especies 2 y 3.",
+    "Los de las especies 3 y 4.",
+  ],
+  correct: 0,
+  competency: "Indagación.",
+  level: "",
+  assertion: "Observa y relaciona patrones en los datos para evaluar las predicciones.",
+  evidence: "Interpreta y analiza datos representados en texto, gráficas, dibujos, diagramas o tablas.",
+  component: "Procesos vivos.",
+  standard: "",
+  skill: "Registro mis resultados en forma organizada y sin alteración alguna.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para analizar una tabla de datos y determinar cuáles de los datos cumplen las características definidas.",
+  justification: "La opción A es la respuesta correcta porque los ciclos menstruales duran alrededor de un mes, y se esperan alrededor de 12 ciclos al año. Las especies 1 y 4 son las que satisfacen esta característica.",
+  invalidOptions: "La opción B no es la respuesta correcta porque la especie 3 no tiene alrededor de 12 ciclos al año. <br>La opción C no es la respuesta correcta porque las especies 2 y 3 no tienen alrededor de 12 ciclos al año. <br>La opción D no es la respuesta correcta porque la especie 3 no tiene alrededor de 12 ciclos al año.",
+},
+{
+  id: 63,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>En un zoológico necesitan regular la natalidad de las hembras del mono ardilla. Se ha diseñado el siguiente experimento para probar la efectividad de un nuevo método anticonceptivo:<br><br>
+  1. Formación de dos grupos de hembras en edad reproductiva.<br>
+  2. Suministro del anticonceptivo a todas las hembras de los dos grupos.<br>
+  3. Reunión con machos de la especie.<br>
+  4. Se repite cada mes el procedimiento y se contabiliza el número de embarazos por cada grupo.</p>`,
+  text: `Con base en la información anterior, ¿el experimento planteado permitirá reconocer la efectividad del anticonceptivo en la población de monos ardilla?`,
+  options: [
+    "No, porque faltan grupos similares a los que no se les suministre el anticonceptivo para comparar los resultados.",
+    "Sí, porque el experimento planteado es similar al que se realiza en humanos, donde es más fácil reconocer el embarazo.",
+    "No, porque al reunir los animales estos podrán estresarse por no estar en su ambiente natural.",
+    "Sí, porque el anticonceptivo modifica los niveles hormonales de las hembras y esto las hace más agresivas.",
+  ],
+  correct: 0,
+  competency: "Indagación.",
+  level: "",
+  assertion: "Utiliza algunas habilidades de pensamiento y de procedimiento para evaluar predicciones.",
+  evidence: "Diseña experimentos para dar respuesta a sus preguntas.",
+  component: "Procesos vivos.",
+  standard: "",
+  skill: "Establezco relaciones causales y multicausales entre los datos recopilados.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para establecer las condiciones necesarias para realizar un experimento biológico.",
+  justification: "La opción A es la respuesta correcta porque en esta se reconoce la necesidad de tener un grupo control para poder contrastar si el método anticonceptivo es efectivo o no.",
+  invalidOptions: "La opción B no es la respuesta correcta porque no tiene en cuenta la necesidad de la inclusión del grupo control y compara especies diferentes en los resultados del experimento. <br>La opción C no es la respuesta correcta porque, aunque la afirmación puede ser verdadera, no responderá la pregunta formulada. <br>La opción D no es la respuesta correcta porque no podemos saber si la afirmación es cierta, y no se incluye un grupo control para su contraste.",
+},
+{
+  id: 64,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Unos estudiantes quieren comprobar si las hormigas que viven en los árboles de acacia defienden a estos del ataque de insectos que consumen sus hojas. Para ello, realizan seguimiento a 10 hojas de dos grupos de árboles de acacia similares, uno sin hormigas y otro con hormigas. Los resultados de su investigación se muestran en la gráfica.</p>
+  <p align='center'><img style="width:100%;" src="../shared/img/questions/cn64.png" alt='' loading="lazy"></p>`,
+  text: `¿Cuál de las siguientes opciones es el principal error en la forma como se muestran los resultados obtenidos por los estudiantes?`,
+  options: [
+    "El título de la gráfica no contiene las variables trabajadas en el experimento.",
+    "Las gráficas de barras no se pueden usar para representar porcentajes.",
+    "El eje Y debe tener porcentajes positivos y porcentajes negativos.",
+    "No se indica cuál barra corresponde a hojas con hormigas y cuál a hojas sin hormigas.",
+  ],
+  correct: 3,
+  competency: "Indagación.",
+  level: "",
+  assertion: "Deriva conclusiones para algunos fenómenos de la naturaleza basándose en conocimientos científicos y en la evidencia de su propia investigación y de la de otros.",
+  evidence: "Comunica de forma apropiada el proceso y los resultados de investigación en ciencias naturales.",
+  component: "Procesos vivos.",
+  standard: "",
+  skill: "Registro mis resultados en forma organizada y sin alteración alguna.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para comprender las fases de un experimento y la importancia de comunicarlos correctamente.",
+  justification: "La opción D es la respuesta correcta porque si en la gráfica no se identifica a qué tipo de hormigas pertenece cada barra, no se puede interpretar correctamente el estudio.",
+  invalidOptions: `La opción A no es la respuesta correcta porque el título sí contiene las variables trabajadas en el experimento, pues es "Porcentaje consumido de hojas con presencia de hormigas y sin hormigas". <br>La opción B no es la respuesta correcta porque las gráficas de barras sí permiten la correcta presentación de este tipo de resultados. <br>La opción C no es la respuesta correcta porque esta afirmación no es válida, ya que la presencia de porcentajes negativos depende del estudio realizado, y en este caso el eje no toma valores negativos.`,
+},
+{
+  id: 65,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Cuando un sólido no se disuelve en un líquido, el método de separación más adecuado es la filtración.</p>`,
+  text: `A partir de esta información, ¿cuál de los siguientes diagramas representa una filtración?
+  <p align='center'><img style="width:100%;" src="../shared/img/questions/cn65.png" alt='' loading="lazy"></p>`,
+  options: [
+    "A.",
+    "B.",
+    "C.",
+    "D.",
+  ],
+  correct: 3,
+  competency: "Uso comprensivo del conocimiento científico.",
+  level: "",
+  assertion: "Asocia fenómenos naturales con conceptos propios del conocimiento científico.",
+  evidence: "Establece relaciones entre conceptos fisicoquímicos simples (separación de mezclas, solubilidad, gases ideales) con distintos fenómenos naturales.",
+  component: "Procesos químicos.",
+  standard: "",
+  skill: "Clasifico materiales en sustancias puras o mezclas.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para identificar correctamente un método de separación de mezclas.",
+  justification: "La opción D es la respuesta correcta porque en el diagrama se observa un tamiz o filtro que permite la separación del sólido no disuelto en la mezcla.",
+  invalidOptions: "La opción A no es la respuesta correcta porque en este diagrama solo se observa que el recipiente de la mezcla está al revés y no que se pueda hacer una filtración. <br>La opción B no es la respuesta correcta porque en este diagrama se observa que la mezcla está siendo transferida de un recipiente a otro sin separación de la mezcla. <br>La opción C no es la respuesta correcta porque en este diagrama se muestra que el recipiente de la mezcla está en una posición de mayor altura, pero no hay elementos que indiquen un proceso de filtración.",
+},
+{
+  id: 66,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>En un experimento, un estudiante deja rodar una esfera de madera sobre una rampa a la cual se le puede variar el ángulo de inclinación. El estudiante prueba varios ángulos y registra la velocidad con que llega la esfera a la parte inferior de la rampa, en cada caso.</p>`,
+  text: `¿Qué se puede determinar con el anterior experimento?`,
+  options: [
+    "Cómo es la resistencia de la esfera de madera a los golpes.",
+    "Cómo varía la velocidad de la esfera de madera respecto al ángulo de la rampa.",
+    "Cómo cambia el peso de la esfera respecto al ángulo de inclinación de la rampa.",
+    "Cómo la rampa es deformada por el peso de la esfera de madera.",
+  ],
+  correct: 1,
+  competency: "Indagación.",
+  level: "",
+  assertion: "Utiliza algunas habilidades de pensamiento y de procedimiento para evaluar predicciones.",
+  evidence: "Diseña experimentos para dar respuesta a sus preguntas.",
+  component: "Procesos físicos.",
+  standard: "",
+  skill: "Observo y formulo preguntas específicas sobre aplicaciones de teorías científicas.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para determinar qué pregunta puede contestarse a partir de un diseño experimental descrito.",
+  justification: "La opción B es la respuesta correcta porque el ángulo de la rampa y la velocidad de la esfera son las dos variables del experimento y, por lo tanto, son las variables entre las que se puede establecer una relación.",
+  invalidOptions: "La opción A no es la respuesta correcta porque en ningún momento se hace chocar la esfera contra algo y, por lo tanto, no se puede evaluar su resistencia. <br>La opción C no es la respuesta correcta porque siempre se usó la misma esfera en el experimento y, por lo tanto, su peso es constante. <br>La opción D no es la respuesta correcta porque la rampa no se deforma por el peso de la esfera, sino que el ángulo de inclinación de rampa es modificado por el estudiante.",
+},
+{
+  id: 67,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Dos de las etapas en el ciclo de vida de la rana Pelophylax esculentus son: (1) renacuajo, se desarrolla en charcas o lagos, y se alimenta de plantas acuáticas; (2) rana adulta, se desarrolla en ambiente terrestre, donde se alimenta de insectos, babosas, gusanos y lombrices.</p>`,
+  text: `Teniendo en cuenta la información anterior, se puede afirmar que uno de los motivos por los que la competencia entre los renacuajos y las ranas adultas es baja, es porque`,
+  options: [
+    "durante el desarrollo de su ciclo de vida los renacuajos y las ranas adultas ocupan diferentes ecosistemas.",
+    "ningún otro organismo en estos ecosistemas se alimenta de plantas acuáticas y animales pequeños.",
+    "el uso de pocos recursos por los renacuajos aumenta la disponibilidad de alimento para las ranas adultas.",
+    "los renacuajos, al ser más pequeños que las ranas adultas, aseguran un mayor espacio para los adultos.",
+  ],
+  correct: 0,
+  competency: "Explicación de fenómenos.",
+  level: "",
+  assertion: "Explica cómo ocurren algunos fenómenos de la naturaleza basado en observaciones, en patrones y en conceptos propios del conocimiento científico.",
+  evidence: "Analiza aspectos de los ecosistemas y da razón de cómo funcionan, de sus interrelaciones con los factores bióticos y abióticos y de sus efectos al modificarse alguna variable al interior.",
+  component: "Procesos vivos.",
+  standard: "",
+  skill: "Establezco relaciones entre individuo, población, comunidad y ecosistema.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para comprender que los seres vivos pasan por diferentes etapas en la vida, y que cada una de estas presenta unas características particulares.",
+  justification: "La opción A es la respuesta correcta porque en el enunciado se dice explícitamente cuáles son los comportamientos y los hábitats necesarios para cada etapa de la rana, los cuales son disímiles en varios aspectos.",
+  invalidOptions: "La opción B no es la respuesta correcta porque es una afirmación que no se puede comprobar con la información brindada en la pregunta. De hecho, muchos otros organismos se encuentran presentes en los ecosistemas de las ranas. <br>La opción C no es la respuesta correcta porque una etapa no afecta directamente a la otra, al crecer en ecosistemas separados, como lo menciona el enunciado. <br>La opción D no es la respuesta correcta porque si bien es cierta en su primera parte, esto no quiere decir que los adultos se encuentren limitados en espacio.",
+},
+{
+  id: 68,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Un grupo de estudiantes decide medir el pH de cinco sustancias disueltas en agua. Los resultados se muestran en la tabla.<br><br>
+  <table border="1" style="width:100%; border-collapse:collapse; text-align:center;">
+    <tr><th>Sustancia</th><th>pH</th></tr>
+    <tr><td>HF</td><td>2,06</td></tr>
+    <tr><td>H₂SO₄</td><td>0,65</td></tr>
+    <tr><td>Na₃PO₄</td><td>12,12</td></tr>
+    <tr><td>NaCl</td><td>7,00</td></tr>
+    <tr><td>Zn(OH)₂</td><td>8,55</td></tr>
+  </table></p>`,
+  text: `Teniendo en cuenta que los compuestos ácidos tienen un valor de pH inferior a 7, y que las bases tienen un valor de pH mayor que 7, ¿cuáles sustancias corresponden a bases?`,
+  options: [
+    "HF y H₂SO₄.",
+    "NaCl y H₂SO₄.",
+    "Na₃PO₄ y Zn(OH)₂.",
+    "NaCl y Na₃PO₄.",
+  ],
+  correct: 2,
+  competency: "Indagación.",
+  level: "",
+  assertion: "Observa y relaciona patrones en los datos para evaluar las predicciones.",
+  evidence: "Interpreta y analiza datos representados en texto, gráficas, dibujos, diagramas o tablas.",
+  component: "Procesos químicos.",
+  standard: "",
+  skill: "Registro mis resultados en forma organizada y sin alteración alguna.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para interpretar y analizar los datos que se presentan en una tabla.",
+  justification: "La opción C es la respuesta correcta porque las sustancias que tienen valores de pH mayores que 7,00 son el Na₃PO₄ y el Zn(OH)₂, 12,12 y 8,55, respectivamente.",
+  invalidOptions: "La opción A no es la respuesta correcta porque las dos sustancias mencionadas tienen pH por debajo de 7,00. <br>La opción B no es la respuesta correcta porque una de las sustancias, NaCl, tiene pH neutro, mientras que la otra es una sustancia ácida, con un pH de 0,65. <br>La opción D no es la respuesta correcta porque solo una de las dos sustancias es una base, Na₃PO₄.",
+},
+{
+  id: 69,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>La figura representa el cruce entre dos ratones, para una característica dada por un solo gen.</p>
+  <p align='center'><img style="width:100%;" src="../shared/img/questions/cn69.png" alt='' loading="lazy"></p>`,
+  text: `¿Cuál de las siguientes tablas muestra los genotipos de los parentales y del descendiente para esta característica?`,
+  options: [
+    "<table border='1' style='border-collapse:collapse; text-align:center; width:100%;'><tr><th>Individuo</th><th>Genotipo</th></tr><tr><td>Parental 1</td><td>MM</td></tr><tr><td>Parental 2</td><td>mm</td></tr><tr><td>Descendencia</td><td>MM</td></tr></table>",
+    "<table border='1' style='border-collapse:collapse; text-align:center; width:100%;'><tr><th>Individuo</th><th>Genotipo</th></tr><tr><td>Parental 1</td><td>mm</td></tr><tr><td>Parental 2</td><td>mm</td></tr><tr><td>Descendencia</td><td>Mm</td></tr></table>",
+    "<table border='1' style='border-collapse:collapse; text-align:center; width:100%;'><tr><th>Individuo</th><th>Genotipo</th></tr><tr><td>Parental 1</td><td>MM</td></tr><tr><td>Parental 2</td><td>mm</td></tr><tr><td>Descendencia</td><td>mm</td></tr></table>",
+    "<table border='1' style='border-collapse:collapse; text-align:center; width:100%;'><tr><th>Individuo</th><th>Genotipo</th></tr><tr><td>Parental 1</td><td>MM</td></tr><tr><td>Parental 2</td><td>mm</td></tr><tr><td>Descendencia</td><td>Mm</td></tr></table>",
+  ],
+  correct: 3,
+  competency: "Uso comprensivo del conocimiento científico.",
+  level: "",
+  assertion: "Asocia fenómenos naturales con conceptos propios del conocimiento científico.",
+  evidence: "Establece relaciones entre fenómenos biológicos para comprender la dinámica de lo vivo.",
+  component: "Procesos vivos.",
+  standard: "",
+  skill: "Explico la relación entre el ADN, el ambiente y la diversidad de los seres vivos.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para comprender las leyes de Mendel y reconocer la importancia de los genes recesivos.",
+  justification: "La opción D es la respuesta correcta porque los genotipos presentados en la tabla coinciden correctamente con el cruce mostrado en el enunciado.",
+  invalidOptions: "La opción A no es la respuesta correcta porque los genotipos presentados en la tabla no coinciden con el cruce mostrado en el enunciado, pues la decendencia no podrá ser dominante. <br>La opción B no es la respuesta correcta porque los genotipos presentados en la tabla no coinciden con el cruce mostrado en el enunciado, pues los dos parentales deben tener genotipos diferentes según la imagen. <br>La opción C no es la respuesta correcta porque los genotipos presentados en la tabla no coinciden con el cruce mostrado en el enunciado, pues la decendencia debe ser un heterocigoto.",
+},
+{
+  id: 70,
+  simulators: [1, 3],
+  subject: "cn",
+  context: ``,
+  text: `En el siglo XIX, Dalton formuló su modelo atómico, en el cual explicaba la forma de los átomos, el modo en que se diferencian unos de otros dependiendo del elemento químico, y la forma en que se relacionan entre sí en las reacciones químicas. En su modelo, el átomo se consideraba una esfera sólida sin partes y, por tanto, indivisible; sin embargo, su modelo atómico se rechazó años después porque`,
+  options: [
+    "no explicaba las diferentes formas de los átomos de los elementos de la tabla periódica.",
+    "no tenía en cuenta la existencia de cargas eléctricas en el interior del átomo.",
+    "no explicaba el hecho de que hubiese otros estados de la materia además del sólido.",
+    "no tenía en cuenta que el átomo ha evolucionado en el tiempo.",
+  ],
+  correct: 1,
+  competency: "Indagación.",
+  level: "",
+  assertion: "Comprende que a partir de la investigación científica se construyen explicaciones sobre el mundo natural.",
+  evidence: "Reconoce la importancia de la evidencia para comprender fenómenos naturales.",
+  component: "Procesos químicos.",
+  standard: "",
+  skill: "Persisto en la búsqueda de respuestas a mis preguntas.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para comprender una evidencia y reconocer sus implicaciones.",
+  justification: "La opción B es la respuesta correcta porque la información disponible en el siglo XIX no permitía tener en cuenta que el átomo está conformado por partículas, y que algunas poseen carga eléctrica.",
+  invalidOptions: "La opción A no es la respuesta correcta, ya que el modelo atómico propuesto fue rechazado, no por las formas de los átomos, sino porque se descubrió que estos estaban conformados por partículas. <br>La opción C no es la respuesta correcta, ya que el modelo atómico propuesto fue rechazado, no porque no haya explicado los estados de la materia, sino porque se descubrió que el átomo estaba conformado por partículas. <br>La opción D no es la respuesta correcta, ya que el modelo atómico propuesto fue rechazado, no porque el átomo haya evolucionado, sino porque se descubrió que este estaba conformado por partículas.",
+},
+{
+  id: 71,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Shewanella oneidensis es una bacteria anaeróbica que se encuentra en los suelos de los ríos a grandes profundidades. Esta bacteria puede ser utilizada para la producción de energía eléctrica mediante el proceso que se describe a continuación:<br><br>
+  La bacteria oxida la materia orgánica y produce electrones (e⁻) que se transfieren a un electrodo mediante el compuesto químico llamado riboflavina. Luego, mediante un material conductor, los electrones viajan a un segundo electrodo, en donde ocurre una reacción de reducción y, de esta forma, se genera una corriente eléctrica.<br><br>
+  Estos electrodos se encuentran en dos cámaras comunicadas por una membrana que permite solamente el paso de iones H⁺, como se muestra en la figura. En la cámara catódica (aerobia) se lleva a cabo la reducción del O₂ en presencia de iones H⁺ para producir agua, y en la cámara anódica (anaeróbica) se oxida la materia orgánica para producir dióxido de carbono.</p>
+  <p align='center'><img style="width:100%;" src="../shared/img/questions/cn71.png" alt='' loading="lazy"></p>`,
+  text: `Teniendo en cuenta la información anterior, si se bloquea el paso de H⁺ por la membrana, la corriente que recorre el cable`,
+  options: [
+    "aumenta, porque la cantidad de electrones y H⁺ en la cámara anódica se incrementaría y ambos viajarían por el cable.",
+    "aumenta, porque los H⁺ acumulados en la cámara anódica repelerían a los electrones y viajarían más electrones por el cable.",
+    "se anula, porque los H⁺ no podrían reaccionar con los electrones en la cámara anódica y los H⁺ viajarían por el cable.",
+    "se anula, porque los H⁺ acumulados en la cámara anódica atraerían a los electrones y estos últimos no viajarían por el cable.",
+  ],
+  correct: 3,
+  competency: "Explicación de fenómenos.",
+  level: "",
+  assertion: "Explica cómo ocurren algunos fenómenos de la naturaleza basado en observaciones, en patrones y en conceptos propios del conocimiento científico.",
+  evidence: "Elabora explicaciones al relacionar las variables de estado que describen un sistema electrónico, argumentando a partir de los modelos básicos de circuitos.",
+  component: "Procesos físicos.",
+  standard: "",
+  skill: "Relaciono voltaje y corriente con los diferentes elementos de un circuito eléctrico complejo y para todo el sistema.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para explicar el efecto de modificar alguna de las variables relacionadas con el funcionamiento de un circuito eléctrico.",
+  justification: "La opción D es la respuesta correcta porque para que haya corriente es necesario que el oxígeno, los iones de hidrógeno y los electrones se combinen en la cámara catódica. Sin iones de hidrógeno no ocurre la reacción y no se produce corriente.",
+  invalidOptions: "La opción A no es la respuesta correcta porque por el cable, que es de metal, solo se pueden mover libremente los electrones y no los iones de hidrógeno. <br>La opción B no es la respuesta correcta porque los iones de hidrógeno tienen carga positiva y atraen a los electrones, de carga negativa, no los repelen. <br>La opción C no es la respuesta correcta porque si los electrones y los iones de hidrógeno se recombinaran en la cámara anódica no habría electrones para viajar por el cable y, por lo tanto, no habría corriente.",
+},
+{
+  id: 72,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Shewanella oneidensis es una bacteria anaeróbica que se encuentra en los suelos de los ríos a grandes profundidades. Esta bacteria puede ser utilizada para la producción de energía eléctrica mediante el proceso que se describe a continuación:<br><br>
+  La bacteria oxida la materia orgánica y produce electrones (e⁻) que se transfieren a un electrodo mediante el compuesto químico llamado riboflavina. Luego, mediante un material conductor, los electrones viajan a un segundo electrodo, en donde ocurre una reacción de reducción y, de esta forma, se genera una corriente eléctrica.<br><br>
+  Estos electrodos se encuentran en dos cámaras comunicadas por una membrana que permite solamente el paso de iones H⁺, como se muestra en la figura. En la cámara catódica (aerobia) se lleva a cabo la reducción del O₂ en presencia de iones H⁺ para producir agua, y en la cámara anódica (anaeróbica) se oxida la materia orgánica para producir dióxido de carbono.</p>
+  <p align='center'><img style="width:100%;" src="../shared/img/questions/cn71.png" alt='' loading="lazy"></p>`,
+  text: `Teniendo en cuenta que en cualquier reacción química se conserva la masa, ¿cuál de las siguientes ecuaciones químicas describe la reacción balanceada de la cámara catódica?`,
+  options: [
+    "O₂ + 4H⁺ + 4e⁻ → 2H₂O",
+    "O₂ + H⁺ + 4e⁻ → 2H₂O",
+    "2O₂ + 2H⁺ + 4e⁻ → 4H₂O",
+    "O₂ + H⁺ + 4e⁻ → H₂O",
+  ],
+  correct: 0,
+  competency: "Uso comprensivo del conocimiento científico.",
+  level: "",
+  assertion: "Asocia fenómenos naturales con conceptos propios del conocimiento científico.",
+  evidence: "Diferencia distintos tipos de reacciones químicas y realiza de manera adecuada cálculos teniendo en cuenta la ley de conservación de la masa y carga.",
+  component: "Procesos químicos.",
+  standard: "",
+  skill: "Realizo cálculos cuantitativos en cambios químicos.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para describir correctamente ecuaciones químicas asociadas a un fenómeno de las ciencias naturales.",
+  justification: "La opción A es la respuesta correcta porque la ecuación tiene el mismo número de átomos en los reactivos y en los productos, además, la carga está balanceada.",
+  invalidOptions: "La opción B no es la respuesta correcta porque en los reactivos hay menor cantidad de átomos de H que en los productos, por lo tanto, la masa de la reacción no está balanceada. <br>La opción C no es la respuesta correcta porque en los reactivos hay menor cantidad de átomos de H que en los productos, por lo tanto, la masa de la reacción no está balanceada. <br>La opción D no es la respuesta correcta porque en los reactivos hay menor cantidad de átomos de H que en los productos. Además, hay mayor cantidad de átomos de O en los reactivos que en los productos, por lo tanto, la masa de la reacción no está balanceada.",
+},
+{
+  id: 73,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Shewanella oneidensis es una bacteria anaeróbica que se encuentra en los suelos de los ríos a grandes profundidades. Esta bacteria puede ser utilizada para la producción de energía eléctrica mediante el proceso que se describe a continuación:<br><br>
+  La bacteria oxida la materia orgánica y produce electrones (e⁻) que se transfieren a un electrodo mediante el compuesto químico llamado riboflavina. Luego, mediante un material conductor, los electrones viajan a un segundo electrodo, en donde ocurre una reacción de reducción y, de esta forma, se genera una corriente eléctrica.<br><br>
+  Estos electrodos se encuentran en dos cámaras comunicadas por una membrana que permite solamente el paso de iones H⁺, como se muestra en la figura. En la cámara catódica (aerobia) se lleva a cabo la reducción del O₂ en presencia de iones H⁺ para producir agua, y en la cámara anódica (anaeróbica) se oxida la materia orgánica para producir dióxido de carbono.</p>
+  <p align='center'><img style="width:100%;" src="../shared/img/questions/cn71.png" alt='' loading="lazy"></p>`,
+  text: `La nueva tecnología para la producción de energía eléctrica a partir de la bacteria Shewanella oneidensis promueve la conservación del medio ambiente, porque`,
+  options: [
+    "se pueden realizar los procesos de descomposición de la materia orgánica utilizando la bacteria Shewanella oneidensis y, a su vez, producir energía eléctrica.",
+    "los productos obtenidos por la descomposición de la materia orgánica no producen gases de invernadero, y se puede obtener energía eléctrica.",
+    "la técnica no necesita instalaciones especiales y desde que haya oxígeno ambiental se puede obtener energía eléctrica directamente de los ríos.",
+    "se podrían extraer todas las bacterias Shewanella oneidensis de suelos de los ríos para la producción a gran escala de energía eléctrica, sin alterar el equilibrio de la naturaleza.",
+  ],
+  correct: 0,
+  competency: "Explicación de fenómenos.",
+  level: "",
+  assertion: "Analiza el potencial del uso de recursos naturales o artefactos y sus efectos sobre el entorno y la salud, así como las posibilidades de desarrollo para las comunidades.",
+  evidence: "Explica cómo la explotación de un recurso o el uso de una tecnología tiene efectos positivos y/o negativos en las personas y en el entorno.",
+  component: "Ciencia, tecnología y sociedad.",
+  standard: "",
+  skill: "Analizo el potencial de los recursos naturales en la obtención de energía para diferentes usos.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para explicar por qué el uso de una tecnología puede o no ser beneficioso para el ambiente.",
+  justification: "La opción A es la respuesta correcta porque, efectivamente, con el montaje mostrado en el contexto es posible obtener energía eléctrica de la degradación de desechos orgánicos.",
+  invalidOptions: "La opción B no es la respuesta correcta porque en la cámara anódica se produce dióxido de carbono, que es un gas de efecto invernadero. <br>La opción C no es la respuesta correcta porque no se pude obtener energía directamente de los ríos, pues se necesitan instalaciones especiales con cámaras separadas por una membrada especial y unos electrodos en las cámaras. <br>La opción D no es la respuesta correcta porque al extraer las bacterias se produciría un desequilibrio en el ecosistema, pues ellas tienen un papel como descomponedoras.",
+},
+{
+  id: 74,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Un alumno fundió dos sustancias puras con la intención de saber cuál de ellas cambia de estado más rápidamente. Para ello, él metió un trozo de cada sustancia en un recipiente de vidrio, los calentó con un mechero, y midió el tiempo que tardaron en cambiar de estado. Los resultados se muestran a continuación:<br><br>
+  <table border="1" style="width:100%; border-collapse:collapse; text-align:center;">
+    <tr><th>Sustancia</th><th>Tiempo (s)</th><th>Observación final</th></tr>
+    <tr><td>1</td><td>50</td><td>Pasa de estado sólido a líquido</td></tr>
+    <tr><td>2</td><td>163</td><td>Pasa de estado sólido a líquido</td></tr>
+  </table></p>`,
+  text: `Las observaciones realizadas por el estudiante se pueden considerar`,
+  options: [
+    "una conclusión, porque las dos sustancias empiezan a cambiar de estado a los 50 segundos.",
+    "una evidencia de que las sustancias se funden por efecto de la temperatura.",
+    "una conclusión, porque los cambios de estado se dan a la misma temperatura.",
+    "una evidencia de que las sustancias tienen puntos de fusión cercanos.",
+  ],
+  correct: 1,
+  competency: "Indagación.",
+  level: "",
+  assertion: "Comprende que a partir de la investigación científica se construyen explicaciones sobre el mundo natural.",
+  evidence: "Reconoce la importancia de la evidencia para comprender fenómenos naturales.",
+  component: "Procesos químicos.",
+  standard: "",
+  skill: "Establezco diferencias entre descripción, explicación y evidencia.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para diferenciar entre evidencias y conclusiones, teniendo en cuenta la información provista en una investigación.",
+  justification: "La opción B es la respuesta correcta porque el estudiante reconoce que en su investigación obtuvo una evidencia del efecto de la temperatura sobre las sustancias evaluadas.",
+  invalidOptions: "La opción A no es la respuesta correcta porque la observación del alumno no puede considerarse una conclusión, y solo una de las sustancias cambia a partir de los 50 segundos. <br>La opción C no es la respuesta correcta porque la observación del alumno no puede considerarse una conclusión, y las dos sustancias presentan temperaturas diferentes de fusión. <br>La opción D, no es la respuesta correcta porque en la tabla se evidencia que los puntos de fusión de las dos sustancias son bastante lejanos entre sí.",
+},
+{
+  id: 75,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Los átomos están conformados por protones, neutrones y electrones. El número atómico (Z) representa el número de protones o de electrones en un átomo neutro. La suma del número de protones y neutrones en el núcleo se denomina número de masa (A). El sodio tiene las siguientes propiedades en la tabla periódica:<br><br>
+  <table border="1" style="width:60%; border-collapse:collapse; text-align:center; margin:auto;">
+    <tr><th colspan="2">Sodio - Na</th></tr>
+    <tr><td>Número atómico Z</td><td>11</td></tr>
+    <tr><td>Número de masa A</td><td>23</td></tr>
+  </table></p>`,
+  text: `Con base en la información anterior, se puede afirmar que el sodio neutro tiene`,
+  options: [
+    "11 protones, 11 electrones y 11 neutrones.",
+    "11 protones, 11 electrones y 12 neutrones.",
+    "23 protones, 11 electrones y 23 neutrones.",
+    "23 protones, 23 electrones y 11 neutrones.",
+  ],
+  correct: 1,
+  competency: "Uso comprensivo del conocimiento científico.",
+  level: "",
+  assertion: "Asocia fenómenos naturales con conceptos propios del conocimiento científico.",
+  evidence: "Establece relaciones entre las propiedades y estructura de la materia con la formación de iones y moléculas.",
+  component: "Procesos químicos.",
+  standard: "",
+  skill: "Explico la estructura de los átomos a partir de diferentes teorías.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para identificar las partes de un átomo, su estructura y las relaciones con su estructura atómica.",
+  justification: "La opción B es la respuesta correcta porque el número atómico depende del número de protones en el átomo (11), mientras que la masa atómica es la suma del número de protones (11) y neutrones en el átomo (12); además, al ser un átomo neutro tendrá el mismo número de electrones (11) que de protones.",
+  invalidOptions: "La opción A no es la respuesta correcta porque reporta un menor número de neutrones que el correspondiente al el átomo de sodio, y no es claro el concepto de número de masa. <br>La opción C no es la respuesta correcta porque reporta valores erróneos del número de protones y de neutrones. <br>La opción D no es la respuesta correcta porque reporta valores erróneos del número de protones y de electrones.",
+},
+{
+  id: 76,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>En algunas especies de plantas, se ha estudiado su relación con especies de hongos microscópicos que habitan dentro de sus hojas y tallos. Las plantas le proveen alimento, hospedaje y protección al hongo, mientras que el hongo le permite a la planta soportar suelos más ácidos o con altos contenidos de algunos metales, y disminuye la depredación por insectos.</p>`,
+  text: `Con base en la información anterior, la relación entre la planta y el hongo microscópico permite que en un ecosistema de suelos ácidos`,
+  options: [
+    "se facilite a especies de plantas con esta asociación sobrevivir en el ecosistema.",
+    "desaparezcan los insectos y aumente la diversidad de hongos en el suelo.",
+    "predomine una sola especie de planta en el ecosistema.",
+    "se neutralice el pH del suelo.",
+  ],
+  correct: 0,
+  competency: "Uso comprensivo del conocimiento científico.",
+  level: "",
+  assertion: "Asocia fenómenos naturales con conceptos propios del conocimiento científico.",
+  evidence: "Establece relaciones entre fenómenos biológicos para comprender su entorno.",
+  component: "Procesos vivos.",
+  standard: "",
+  skill: "Explico diversos tipos de relaciones entre especies en los ecosistemas.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para comprender algunas de las relaciones ecológicas que se presentan en un ecosistema particular.",
+  justification: "La opción A es la respuesta correcta porque la afirmación brindada reafirma lo expuesto en el enunciado.",
+  invalidOptions: "La opción B no es la respuesta correcta porque en el enunciado nunca se habla de que la asociación desaparezca a todos los insectos, solo disminuye el ataque de estos a la planta asociada. <br>La opción C no es la respuesta correcta porque la asociación beneficia a las dos especies, pero no perjudica al resto de plantas del ecosistema. <br>La opción D no es la respuesta correcta porque esta no es la función del hongo; su función es ayudar a la planta a tolerar ese tipo de suelos, no corregir los suelos en donde se encuentra.",
+},
+{
+  id: 77,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Una niña pone dos objetos en la superficie del agua de una tina. Uno de ellos flota con la mitad de su volumen sumergido en el agua, mientras que el segundo se sumerge la cuarta parte, como se muestra en la siguiente figura:</p>
+  <p align='center'><img style="width:100%;" src="../shared/img/questions/cn77.png" alt='' loading="lazy"></p>`,
+  text: `A partir de estos resultados, ¿cuál de las siguientes preguntas podría responderse?`,
+  options: [
+    "¿Cuál de los dos objetos es más denso?",
+    "¿Cuál de los dos objetos es más pesado?",
+    "¿Cuál de los dos objetos tiene mayor volumen?",
+    "¿Cuál de los dos objetos tiene más masa?",
+  ],
+  correct: 0,
+  competency: "Indagación.",
+  level: "",
+  assertion: "Comprende que a partir de la investigación científica se construyen explicaciones sobre el mundo natural.",
+  evidence: "Analiza qué tipo de pregunta puede ser contestada a partir del contexto de una investigación científica.",
+  component: "Procesos físicos.",
+  standard: "",
+  skill: "Observo y formulo preguntas específicas sobre aplicaciones de teorías científicas.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para determinar qué pregunta puede responderse a partir de un montaje experimental y sus resultados.",
+  justification: "La opción A es la respuesta correcta porque la flotabilidad de los objetos depende de su densidad. Dado que se conoce la proporción sumergida de cada objeto y la densidad del agua, es posible determinar la densidad de los objetos.",
+  invalidOptions: "La opción B no es la respuesta correcta porque no se conoce el volumen sumergido de los objetos y, por lo tanto, no se puede determinar el peso del agua desplazada, que debe ser igual al peso de los objetos. <br>La opción C no es la respuesta correcta porque en la pregunta no se da información que permita determinar el volumen de los objetos. <br>La opción D no es la respuesta correcta porque no se brinda información para determinar el volumen de los objetos. Por lo tanto, aunque se calcule su densidad, no se podrá determinar su masa.",
+},
+{
+  id: 78,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>El modelo muestra una red trófica marina.</p>
+  <p align='center'><img style="width:100%;" src="../shared/img/questions/cn78.png" alt='' loading="lazy"></p>`,
+  text: `Teniendo en cuenta la red trófica anterior, ¿qué pasaría si se extinguen los tiburones?`,
+  options: [
+    "Disminuiría la población de calamares por el aumento en la población de atunes.",
+    "Aumentaría la población de sardinas al no ser depredadas por los tiburones.",
+    "Disminuiría la cantidad de zooplancton porque los atunes comenzarían a depredarlos.",
+    "Los pastos marinos y el fitoplancton se disminuirían al ser productores primarios.",
+  ],
+  correct: 0,
+  competency: "Explicación de fenómenos.",
+  level: "",
+  assertion: "Modela fenómenos de la naturaleza basado en el análisis de variables, la relación entre dos o más conceptos del conocimiento científico y de la evidencia derivada de investigaciones científicas.",
+  evidence: "Analiza y usa modelos biológicos para comprender la dinámica que se da en lo vivo y en el entorno.",
+  component: "Procesos vivos.",
+  standard: "",
+  skill: "Explico diversos tipos de relaciones entre especies en los ecosistemas.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para comprender las relaciones presentes en una red trófica y las consecuencias de un cambio drástico en ella.",
+  justification: "La opción A es la respuesta correcta porque, al ser el tiburón el único depredador de los atunes, estos seguirán creciendo en número y atacarán con mayor frecuencia a los calamares.",
+  invalidOptions: "La opción B no es la respuesta correcta porque los tiburones no son el principal depredador de las sardinas, entonces, no tendrán una relación directa con esta situación. <br>La opción C no es la respuesta correcta porque no existe una relación directa entre atunes y zooplancton, ya que existen dos intermediarios entre esta relación. <br>La opción D no es la respuesta correcta porque esta situación no se podría presentar pues si se extinguen los tiburones, esto afectará de manera indirecta a toda la red trófica, incluyendo a los productores.",
+},
+{
+  id: 79,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Un detector de sonido está diseñado para funcionar tanto en el aire como en el agua. En ambos casos, registra la frecuencia, la longitud de onda, la velocidad de la onda y la intensidad del sonido.</p>`,
+  text: `De las variables registradas por el detector, ¿cuál permite conocer con certeza si el detector está en el aire o en el agua?`,
+  options: [
+    "La frecuencia de la onda.",
+    "La longitud de onda de la onda.",
+    "La velocidad de la onda.",
+    "La intensidad del sonido.",
+  ],
+  correct: 2,
+  competency: "Uso comprensivo del conocimiento científico.",
+  level: "",
+  assertion: "Identifica las características de algunos fenómenos de la naturaleza basado en el análisis de información y conceptos propios del conocimiento científico.",
+  evidence: "Identifica las características fundamentales de las ondas así como las variables y parámetros que afectan estas características en un medio de propagación.",
+  component: "Procesos físicos.",
+  standard: "",
+  skill: "Establezco relaciones entre frecuencia, amplitud, velocidad de propagación y longitud de onda en diversos tipos de ondas mecánicas.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para reconocer cómo cambian las propiedades de las ondas en distintos medios de propagación.",
+  justification: "La opción C es la respuesta correcta porque la velocidad de una onda cambia entre el aire y el agua y, por lo tanto, es posible conocer el medio de propagación conociendo la velocidad de propagación de las ondas en el mismo.",
+  invalidOptions: "La opción A no es la respuesta correcta porque se pueden generar ondas de la misma frecuencia en el aire y en el agua y, por lo tanto, con el solo valor de la frecuencia de la onda no es posible establecer por cuál medio se propaga. <br>La opción B no es la respuesta correcta porque se pueden generar ondas de la misma longitud de onda en el aire y en el agua y, por lo tanto, con el solo valor de la longitud de onda no es posible establecer por cuál medio se propaga. <br>La opción D no es la respuesta correcta porque se pueden generar ondas de la misma intensidad en el aire y en el agua y, por lo tanto, con el solo valor de la intensidad de la onda no es posible establecer por cuál medio se propaga.",
+},
+{
+  id: 80,
+  simulators: [1, 3],
+  subject: "cn",
+  context: `<p>Un salto bungee consiste en lanzarse de un puente, mientras se está atado a una cuerda elástica que, a su vez, está atada al puente. Cuando el saltador llega a la parte más baja de su trayectoria, permanece un instante quieto, antes de ser halado por la cuerda elástica hacía arriba.</p>`,
+  text: `En ese punto, cuando está quieto en el punto más bajo de su trayectoria, ¿en qué se ha transformado la energía potencial gravitacional que tenía el saltador en la parte de arriba del puente?`,
+  options: [
+    "Parte en energía potencial elástica y parte en energía térmica por la fricción con el aire.",
+    "Toda su energía inicial se ha trasformado en energía cinética.",
+    "Parte en energía potencial gravitacional y parte en energía cinética.",
+    "Toda su energía se ha transformado en energía potencial gravitacional por la fricción con el aire.",
+  ],
+  correct: 0,
+  competency: "Uso comprensivo del conocimiento científico.",
+  level: "",
+  assertion: "Identifica las características de algunos fenómenos de la naturaleza basado en el análisis de información y conceptos propios del conocimiento científico.",
+  evidence: "Identifica las formas de energía presentes en un fenómeno físico y las transformaciones que se dan entre las formas de energía.",
+  component: "Procesos físicos.",
+  standard: "",
+  skill: "Explico la transformación de energía mecánica en energía térmica.",
+  evaluationCriteria: "Esta pregunta evalúa si los estudiantes tienen la capacidad para comprender que en cualquier proceso la energía se transforma entre sus diferentes formas.",
+  justification: "La opción A es la respuesta correcta porque al llegar al punto más bajo la velocidad del saltador, es cero y no tiene energía cinética. Entonces, toda la energía potencial inicial se convirtió en energía elástica de la cuerda o en calor, por la fricción con el aire.",
+  invalidOptions: "La opción B no es la respuesta correcta porque al estar momentáneamente quieto, la energía cinética del saltador es cero. <br>La opción C no es la respuesta correcta porque, por un lado, el saltador no ha vuelto a subir y, entonces, no ha recuperado parte de su energía potencial gravitacional inicial. Por otro lado, su energía cinética es cero. <br>La opción D no es la respuesta correcta porque la fricción con el aire produce calor, que en parte es transferido al ambiente y parte al cuerpo del saltador. Por lo tanto, la fricción con el aire no produjo energía potencial gravitacional.",
+},
   // {
   //   id: 41,
   //   simulators: [1,3],
