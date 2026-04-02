@@ -260,6 +260,11 @@ function renderSubjects() {
     div.innerHTML = `<span class="subj-icon">${info.icon}</span><div class="subj-name">${info.name}</div><div class="subj-count">${count} preguntas</div>`;
     grid.appendChild(div);
   });
+  
+  // Auto-seleccionar primera materia si none selected
+  if (!state.subject && subjectsToShow.length > 0) {
+    selectSubject(subjectsToShow[0]);
+  }
 }
 
 function getSubjectQuestionCount(subject) {
@@ -357,6 +362,13 @@ function startAllSubjects() {
 
 function beginSubject(){
   const s=QB[state.subject];
+  
+  if (!s || !s.questions || s.questions.length === 0) {
+    console.error('QB vacío para:', state.subject, QB);
+    alert('No hay preguntas disponibles para esta materia');
+    goScreen('s-home');
+    return;
+  }
   
   let questionsToUse = s.questions.map(q => shuffleOpts(q));
   
@@ -889,6 +901,19 @@ window.addEventListener('DOMContentLoaded', function() {
       } catch (e) {
         console.error('Error:', e);
       }
+    }
+    
+    // Si no hay config, inicializar con valores por defecto
+    if (Object.keys(SUBJECT_CONFIG).length === 0) {
+      ACTIVE_SUBJECTS.forEach(subj => {
+        const defaultConfig = getSubjectDefaultConfig(subj);
+        const maxQuestions = getSubjectMaxQuestions(subj, SIMULACRO_ID);
+        SUBJECT_CONFIG[subj] = {
+          preguntas: Math.min(defaultConfig.preguntas, maxQuestions),
+          inicio: Math.min(defaultConfig.inicio, maxQuestions),
+          aleatorio: defaultConfig.aleatorio
+        };
+      });
     }
   }
   

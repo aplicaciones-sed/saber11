@@ -163,30 +163,27 @@ function buildDynamicQuestions(subject, config, simulacroId = 1) {
       q.simulators.includes(simulacroId),
   );
 
+  if (allQuestions.length === 0) return [];
+
+  const isRandom = config.aleatorio !== false;
+  const numQuestions = config.preguntas || 3;
+  const startIndex = config.inicio || 1;
+
   let selectedQuestions;
 
-  if (config.isRandom) {
+  if (isRandom) {
     // Mezclar TODO el pool y tomar las primeras X
     const shuffled = [...allQuestions];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    selectedQuestions = shuffled.slice(0, config.questions);
-    
-    // Eliminar duplicados por índice original
-    const seen = new Set();
-    selectedQuestions = selectedQuestions.filter(q => {
-      const uniqueKey = q.id + '_' + allQuestions.indexOf(q);
-      if (seen.has(uniqueKey)) return false;
-      seen.add(uniqueKey);
-      return true;
-    });
+    selectedQuestions = shuffled.slice(0, numQuestions);
   } else {
     // Sin aleatorio: tomar desde inicio
-    const startIndex = config.startIndex - 1;
-    const endIndex = startIndex + config.questions;
-    selectedQuestions = allQuestions.slice(startIndex, endIndex);
+    const start = startIndex - 1;
+    const end = start + numQuestions;
+    selectedQuestions = allQuestions.slice(start, end);
   }
 
   return selectedQuestions;
