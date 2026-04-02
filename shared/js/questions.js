@@ -1580,7 +1580,7 @@ VIII. La cometa volará.</p>`,
   },
   {
     id: 51,
-    simulators: [1, 2, 3],
+    simulators: [1, 3],
     subject: "mat",
     context: `<p>Se realizó una encuesta a 200 clientes de una empresa de telecomunicaciones para saber cómo califican la calidad del servicio que reciben. La siguiente gráfica muestra los porcentajes de las calificaciones dadas por los clientes:</p>
  <p align='center'>
@@ -1616,11 +1616,19 @@ VIII. La cometa volará.</p>`,
     simulators: [1, 3],
     subject: "mat",
     context: `<p>En una clase de Matemáticas se plantea la siguiente actividad:</p>
-<p><em>"Quisiéramos dividir el segmento MN en dos partes congruentes".</em></p>
+  <p align='center'>
+  <img  style="width:100%; " src="../shared/img/questions/mat52.png" alt='' loading="lazy">  
+ </p>  
 <p>Para su construcción, un estudiante efectuó de manera correcta el siguiente procedimiento:</p>
-<p>Se construyen dos triángulos equiláteros MNP y MNQ. Luego se traza el segmento PQ, intersecando a MN en R, los ángulos MPR y RPN son congruentes entre sí. Como los triángulos MRP y PRN que se forman son congruentes, entonces MR es congruente con RN. Por tanto, MN se ha dividido en dos partes congruentes en el punto R.</p>`,
+<p>Se construyen dos triángulos equiláteros MNP y MNQ. Luego se traza el segmento PQ, intersecando a MN en R, los ángulos ∠MPR y ∠RPN son congruentes entre sí. Como los triángulos MRP y PRN que se forman son congruentes, entonces MR es congruente con RN. Por tanto, MN se ha dividido en dos partes congruentes en el punto R.</p>`,
     text: "De acuerdo con la información anterior, la construcción geométrica que debió hacer el estudiante para realizar la actividad fue",
     options: ["A.", "B.", "C.", "D."],
+    optionsImg: [
+      "mat52-A",
+      "mat52-B",
+     "mat52-C",
+      "mat52-D",
+    ],
     correct: 3,
     competency: "Formulación y ejecución.",
     level: "",
@@ -1635,7 +1643,17 @@ VIII. La cometa volará.</p>`,
     evaluationCriteria:
       "La capacidad para determinar la figura que representa correctamente un procedimiento geométrico.",
     justification:
-      "Siguiendo los pasos de la construcción, se tiene que: Se construyen dos triángulos equiláteros MNP y MNQ. Luego se traza el segmento PQ, intersecando a MN en R. La anterior, es la construcción geométrica que debió hacer el estudiante.",
+      `Siguiendo los pasos de la construcción, se tiene que: 
+      Se construyen dos triángulos equiláteros MNP y MNQ: 
+       <p align='center'>
+  <img  style="width:50%; " src="../shared/img/questions/mat52-j1.png" alt='' loading="lazy">  
+ </p>
+      Luego se traza el segmento PQ, 
+      intersecando a MN en R: 
+       <p align='center'>
+  <img  style="width:50%; " src="../shared/img/questions/mat52-j2.png" alt='' loading="lazy">  
+ </p>
+      La anterior, es la construcción geométrica que debió hacer el estudiante.`,
     invalidOptions:
       "Es posible que los estudiantes que elijan la opción A consideren que los segmentos MN y PQ se intersectan en el centro R de la circunferencia y, por tanto, se cortan mutuamente en dos partes congruentes, concluyendo la representación resultante cumple con la construcción descrita. <br> Es posible que los estudiantes que elijan la opción B observen que se han construido dos triángulos congruentes y, por tanto, la representación resultante cumple con la construcción descrita. Sin embargo, no tiene en cuenta que los puntos M y N deben ser vértices de los triángulos. <br> Es posible que los estudiantes que elijan la opción C consideren que M y N deben ser los centros de las circunferencias concluyendo que los triángulos formados son equiláteros y, por tanto, la representación resultante cumple con la construcción descrita. Sin embargo, no tiene en cuenta que el segmento PQ debe intersectar a MN en R.",
   },
@@ -1644,27 +1662,9 @@ VIII. La cometa volará.</p>`,
     simulators: [1, 3],
     subject: "mat",
     context: `<p>La gráfica y la tabla muestran parte de la información que recibe la familia Ramírez en su factura telefónica del mes de enero.</p>
-<p><strong>Diagrama de barras de los últimos consumos de voz</strong><br>
-Su plan local actual es de 220 minutos<br>
-Jul: 148 | Ago: 171 | Sep: 321 | Oct: 205 | Nov: 214 | Dic: 389 | Ene: 331 minutos consumidos</p>
-<table border="1" cellpadding="4" cellspacing="0">
-<thead><tr><th colspan="2">Estado de cuenta mes de enero</th></tr></thead>
-<tbody>
-  <tr><td>Saldo anterior</td><td>$49.610,00</td></tr>
-  <tr><td>Gracias por su pago</td><td>$-49.610,00</td></tr>
-  <tr><td><strong>Saldo</strong></td><td><strong>$0</strong></td></tr>
-  <tr><td>Cargos del mes</td><td>$35.416,83</td></tr>
-  <tr><td>IVA</td><td>$6.378,70</td></tr>
-  <tr><td><strong>Subtotal</strong></td><td><strong>$41.795,53</strong></td></tr>
-  <tr><td>Crédito por ajuste a la decena</td><td>$-5,53</td></tr>
-  <tr><td><strong>Total a pagar</strong></td><td><strong>$41.790,00</strong></td></tr>
-  <tr><td colspan="2"><strong>Cargos del mes</strong></td></tr>
-  <tr><td>Plan local</td><td>$20.086,21</td></tr>
-  <tr><td>Consumo adicional</td><td>$14.065,92</td></tr>
-  <tr><td>Llamada en espera</td><td>$1.264,70</td></tr>
-  <tr><td><strong>Total cargos del mes</strong></td><td><strong>$35.416,83</strong></td></tr>
-</tbody>
-</table>`,
+ <p align='center'>
+  <img  style="width:100%; " src="../shared/img/questions/mat53.png" alt='' loading="lazy">  
+ </p> `,
     text: "El tiempo adicional consumido por la familia Ramírez en enero fue:",
     options: [
       "1 hora y 11 minutos.",
@@ -1694,28 +1694,12 @@ Jul: 148 | Ago: 171 | Sep: 321 | Oct: 205 | Nov: 214 | Dic: 389 | Ene: 331 minut
     id: 54,
     simulators: [1, 3],
     subject: "mat",
-    context: `<p>La gráfica y la tabla muestran parte de la información que recibe la familia Ramírez en su factura telefónica del mes de enero.</p>
-<p><strong>Diagrama de barras de los últimos consumos de voz</strong><br>
-Su plan local actual es de 220 minutos<br>
-Jul: 148 | Ago: 171 | Sep: 321 | Oct: 205 | Nov: 214 | Dic: 389 | Ene: 331 minutos consumidos</p>
-<table border="1" cellpadding="4" cellspacing="0">
-<thead><tr><th colspan="2">Estado de cuenta mes de enero</th></tr></thead>
-<tbody>
-  <tr><td>Saldo anterior</td><td>$49.610,00</td></tr>
-  <tr><td>Gracias por su pago</td><td>$-49.610,00</td></tr>
-  <tr><td><strong>Saldo</strong></td><td><strong>$0</strong></td></tr>
-  <tr><td>Cargos del mes</td><td>$35.416,83</td></tr>
-  <tr><td>IVA</td><td>$6.378,70</td></tr>
-  <tr><td><strong>Subtotal</strong></td><td><strong>$41.795,53</strong></td></tr>
-  <tr><td>Crédito por ajuste a la decena</td><td>$-5,53</td></tr>
-  <tr><td><strong>Total a pagar</strong></td><td><strong>$41.790,00</strong></td></tr>
-  <tr><td colspan="2"><strong>Cargos del mes</strong></td></tr>
-  <tr><td>Plan local</td><td>$20.086,21</td></tr>
-  <tr><td>Consumo adicional</td><td>$14.065,92</td></tr>
-  <tr><td>Llamada en espera</td><td>$1.264,70</td></tr>
-  <tr><td><strong>Total cargos del mes</strong></td><td><strong>$35.416,83</strong></td></tr>
-</tbody>
-</table>`,
+    context: `
+     <p>La gráfica y la tabla muestran parte de la información que recibe la familia Ramírez en su factura telefónica del mes de enero.</p>
+    <p align='center'>
+  <img  style="width:100%; " src="../shared/img/questions/mat53.png" alt='' loading="lazy">  
+ </p> 
+   `,
     text: "El señor Ramírez considera que el valor del minuto adicional del mes de enero fue excesivo. Su hija asegura que la diferencia entre el valor del minuto del plan y el valor del minuto adicional es de $35,42. ¿Cuál de los siguientes datos NO se necesita para hallar esta diferencia?",
     options: [
       "La cantidad de minutos del plan.",
@@ -1743,25 +1727,13 @@ Jul: 148 | Ago: 171 | Sep: 321 | Oct: 205 | Nov: 214 | Dic: 389 | Ene: 331 minut
   },
   {
     id: 55,
-    simulators: [1, 3],
+    simulators: [1, 2,3],
     subject: "mat",
     context: `<p>En el servicio de urgencias de un hospital se sigue este procedimiento para clasificar a un paciente: en el momento de su llegada recibe un número de turno con la hora de llegada; cuando el tablero digital muestra ese número, el paciente pasa a valoración y se clasifica; luego regresa a la sala a esperar el llamado para ser atendido.</p>
 <p>La tabla muestra los niveles de clasificación, el tiempo de espera en sala desde que el paciente recibe el turno y el porcentaje de personas clasificadas diariamente en cada nivel.</p>
-<table border="1" cellpadding="4" cellspacing="0">
-<thead>
-  <tr>
-    <th>Nivel</th>
-    <th>Tiempo en sala de espera</th>
-    <th>Distribución diaria de los pacientes por niveles (%)</th>
-  </tr>
-</thead>
-<tbody>
-  <tr><td>I</td><td>Atención inmediata</td><td>1 %</td></tr>
-  <tr><td>II</td><td>Entre 5 minutos y 2 horas</td><td>5 %</td></tr>
-  <tr><td>III</td><td>Entre 4 y 6 horas</td><td>74 %</td></tr>
-  <tr><td>IV</td><td>Debe solicitar atención por consulta externa</td><td>20 %</td></tr>
-</tbody>
-</table>`,
+  <p align='center'>
+  <img  style="width:100%; " src="../shared/img/questions/mat55.png" alt='' loading="lazy">  
+ </p>`,
     text: "Isabel llegó a este hospital y recibió el turno 180. Fue clasificada en Nivel III y al cabo del máximo tiempo indicado para ese nivel es llamada para ser atendida; en ese momento observa que el tablero digital va en el número 240. ¿Aproximadamente cuántas personas por hora llegaron a la sala de espera mientras Isabel estuvo allí?",
     options: [
       "60 personas por hora.",
